@@ -23,7 +23,7 @@ jobs:
           working_directory: ~/workdir
           command: |
             git clone --depth 1 https://${K3MT_SERVER_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
-      - push:
+      - run:
           name: Trigger server deployment
           working_directory: ~/workdir/ShoppingList
           command: |
