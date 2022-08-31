@@ -22,7 +22,7 @@ jobs:
           name: Clone server
           working_directory: ~/workdir
           command: |
-            git clone --depth 1 --no-single-branch https://${K3MT_SERVER_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
+            git clone --depth 1 --no-single-branch https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
       - run:
           name: Trigger server deployment
           working_directory: ~/workdir/ShoppingList
@@ -34,7 +34,7 @@ jobs:
             git checkout dev-server
             git commit --allow-empty -m "Trigger deployment"
             # Push quietly to prevent showing the token in log
-            git push -q https://${K3MT_SERVER_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git main-server
+            git push -q https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git main-server
       
   say-hello:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
