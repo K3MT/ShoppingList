@@ -15,14 +15,14 @@ jobs:
     steps:
       - checkout
   
-  deploy:
+  deploy-to-main-server:
     machine: true
     steps:
       - run:
           name: Clone server
           working_directory: ~/workdir
           command: |
-            git clone --depth 1 https://${K3MT_SERVER_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
+            git clone --depth 1 --no-single-branch https://${K3MT_SERVER_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
       - run:
           name: Trigger server deployment
           working_directory: ~/workdir/ShoppingList
@@ -30,6 +30,7 @@ jobs:
             git config credential.helper 'cache --timeout=120'
             git config user.email "<email>"
             git config user.name "Deployment Bot"
+            git checkout dev-server
             git commit --allow-empty -m "Trigger deployment"
             # Push quietly to prevent showing the token in log
             git push -q https://${K3MT_SERVER_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git main-server
@@ -57,7 +58,7 @@ workflows:
   test-deploy-workflow:
     jobs:
       - test
-      - deploy:
+      - deploy-to-main-server:
           requires:
             - test
           filters:
