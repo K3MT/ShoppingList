@@ -9,8 +9,8 @@ class GVM
     }
 
     public static function getLink(){
-        $hostname = "localhost";
-        $username = "root";
+        $hostname = "k3mt-db.csig7fwo3yso.af-south-1.rds.amazonaws.com";
+        $username = "Kaytee";
         $password = "milktartsrgood";
         $database = "local_kemt";
 
