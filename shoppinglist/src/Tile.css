@@ -1,0 +1,46 @@
+.gameTile {
+    height: fit-content;
+    padding: 0.5em 1em 1em 1em;
+    text-align: center;
+    border-radius: 0.8em;
+    max-width: 25em;
+    display: fixed;
+    background-color: white;
+    box-shadow: 2%;
+    margin: 2.5%;
+}
+
+.imageholder {
+    width: fit-content;
+    height: fit-content;
+    background-size: 'cover';
+    border-radius: '1em';
+}
+
+.showButtons {
+    width: inherit;
+    height: inherit;
+    background: rgba(195, 195, 195, 0.8);
+    display: flex;
+    flex-direction: row;
+    font-size: 5vh;
+    justify-content: space-around;
+    transition: ease-in-out 500ms;
+}
+
+.buttonHolder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonHolder :hover {
+    cursor: pointer;
+}
+
+
+
+.hideButtons {
+    display: none;
+}
