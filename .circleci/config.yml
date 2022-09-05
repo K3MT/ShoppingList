@@ -37,7 +37,7 @@ jobs:
           name: Clone server
           working_directory: ~/workdir
           command: |
-            git clone --depth 1 --no-single-branch https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
+            git clone https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
       - run:
           name: Trigger server deployment
           working_directory: ~/workdir/ShoppingList
