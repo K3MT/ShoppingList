@@ -11,9 +11,9 @@
             require_once('GVM.php');
             require_once('RequestObject.php');
 
-            $json = GVM::getData();
+//            $json = GVM::getData();
 
-            $userID = new RequestObject($json["userID"], true);
+            $userID = new RequestObject($_REQUEST["userID"], true);
 
             $parameters = array($userID);
 
