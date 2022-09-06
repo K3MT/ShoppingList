@@ -4,8 +4,6 @@
 
     use GVM;
 
-    GVM::cors();
-
     class GetAllItems
     {
         public static function makeCall(): bool|string

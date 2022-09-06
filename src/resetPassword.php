@@ -5,8 +5,6 @@
     use GVM;
     use RequestObject;
 
-    GVM::cors();
-
 class ResetPassword{
         public static function makeCall(): bool|string
         {
