@@ -10,6 +10,8 @@ class GVM
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, PATCH, HEAD");
         header("Access-Control-Allow-Headers: X-PINGOTHER, Content-Type");
         header("Content-Type: application/json");
+        header("Status: 200");
+
     }
 
     public static function getData(){
