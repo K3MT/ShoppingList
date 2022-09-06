@@ -27,6 +27,5 @@
         }
     }
 
-    echo Registration::makeCall();
-    exit(0);
+    print(Registration::makeCall());
 ?>
