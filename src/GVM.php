@@ -8,14 +8,14 @@ class GVM
             header("Access-Control-Allow-Origin: *");
             header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
             header("Access-Control-Allow-Headers: Authorization, Content-Type,Accept, Origin");
-        exit(0);
+            exit(0);
         }
 
         header("Access-Control-Allow-Origin: *");
         header('Access-Control-Allow-Credentials: true');
         header('Access-Control-Max-Age: 86400');    // cache for 1 day
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, PATCH, HEAD");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, origin"); 
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Origin"); 
         header("Content-Type: application/json");
         header($_SERVER["SERVER_PROTOCOL"]." 200 OK"); 
     }
