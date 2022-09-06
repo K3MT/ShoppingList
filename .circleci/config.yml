@@ -16,7 +16,8 @@ jobs:
       - checkout
   
   deploy-to-main-frontend:
-    machine: true
+    docker:
+      - image: cimg/base:stable
     steps:
       - run:
           name: Clone server
@@ -37,7 +38,7 @@ jobs:
             git commit --allow-empty -m "Trigger deployment"
             # Push quietly to prevent showing the token in log
             git push -q https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
-      
+
   say-hello:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
