@@ -9,9 +9,8 @@ version: 2.1
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   test: 
-    # docker:
-    #   - image: cimg/base:stable
-    machine: true
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
   
