@@ -31,7 +31,8 @@ jobs:
       # run test-suite
   
   deploy-to-main-backend:
-    machine: true
+    docker:
+      - image: cimg/base:stable
     steps:
       - run:
           name: Clone server
