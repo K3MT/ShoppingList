@@ -4,6 +4,12 @@ class GVM
 {
     public static function addHeaders()
     {
+        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+            header("Access-Control-Allow-Headers: Authorization, Content-Type,Accept, Origin");
+        exit(0);
+        }
+
         header("Access-Control-Allow-Origin: *");
         header('Access-Control-Allow-Credentials: true');
         header('Access-Control-Max-Age: 86400');    // cache for 1 day
