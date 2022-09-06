@@ -33,10 +33,10 @@ jobs:
             git config user.name "Deployment Bot"
             git checkout dev-frontend
             git checkout main-frontend
-            git merge --squash dev-frontend
+            git merge --no-edit dev-frontend
             git commit --allow-empty -m "Trigger deployment"
             # Push quietly to prevent showing the token in log
-            git push -q https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git main-frontend
+            git push -q https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
       
   say-hello:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
