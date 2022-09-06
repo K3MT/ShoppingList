@@ -28,4 +28,5 @@
     }
 
     echo Registration::makeCall();
+    exit(0);
 ?>
