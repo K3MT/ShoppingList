@@ -5,6 +5,8 @@
     use GVM;
     use RequestObject;
 
+    GVM::cors();
+
     class GetSecurityQuestion{
         public static function makeCall(): bool|string
         {
