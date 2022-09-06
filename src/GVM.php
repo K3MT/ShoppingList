@@ -2,11 +2,12 @@
 
 class GVM
 {
-    public static function cors()
+    public static function addHeaders()
     {
         header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Methods: GET, POST');
-        header("Access-Control-Allow-Headers: X-Requested-With");
+//        header('Access-Control-Allow-Methods: GET, POST');
+//        header("Access-Control-Allow-Headers: X-Requested-With");
+        header('Content-Type: application/json');
     }
 
     public static function getData(){
@@ -51,7 +52,7 @@ class GVM
     }
 
     public static function makeCall($procedureName, $parameters, $echoCall){
-        GVM::cors();
+        GVM::addHeaders();
         $link = GVM::getLink();
 
         $output=array();
