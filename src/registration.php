@@ -5,6 +5,8 @@
     use GVM;
     use RequestObject;
 
+    GVM::cors();
+
     class Registration{
         public static function makeCall(): bool|string
         {
