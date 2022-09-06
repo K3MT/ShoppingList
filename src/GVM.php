@@ -9,6 +9,7 @@ class GVM
         header('Access-Control-Max-Age: 86400');    // cache for 1 day
         header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, PATCH, HEAD");
         header("Access-Control-Allow-Headers: X-PINGOTHER, Content-Type");
+        header("Content-Type: application/json");
     }
 
     public static function getData(){
