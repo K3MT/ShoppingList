@@ -4,8 +4,6 @@
     use GVM;
     use RequestObject;
 
-    GVM::cors();
-
     class Login{
         public static function makeCall(): bool|string
         {

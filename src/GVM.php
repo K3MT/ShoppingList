@@ -51,6 +51,7 @@ class GVM
     }
 
     public static function makeCall($procedureName, $parameters, $echoCall){
+        GVM::cors();
         $link = GVM::getLink();
 
         $output=array();
