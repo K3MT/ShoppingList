@@ -5,13 +5,23 @@ version: 2.1
 # Define the orbs to be used by CircleCI
 orbs:
   browser-tools: circleci/browser-tools@1.2
+  phpunit: stockfiller/phpunit@1.1.0
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
+  build-php:
+    description: By default, use the official CircleCI Docker images to run PHPUnit tests
+    docker:
+      - image: cimg/php:7.4
+    resource_class: small
+    working_directory: ~/ShoppingList
+    steps:
+        - checkout
+
   build:
     docker: # run the steps with Docker
-      - image: cimg/php:8.0.14-browsers
+      - image: cimg/php:7.4
     working_directory: ~/ShoppingList
     steps:
       - checkout
@@ -27,9 +37,16 @@ jobs:
          key: composer-v1-{{ checksum "composer.lock" }}
          paths:
            - vendor
-      - run: sudo install php-mysql
+      - run:
+          command: |
+#            sudo install php-mysql
+            curl -Os https://uploader.codecov.io/v0.1.0_4653/linux/codecov
+    
+            chmod +x codecov
+            ./codecov -t ${CODECOV_TOKEN}
 
-      # run test-suite
+
+            
   
   deploy-to-main-backend:
     docker:
@@ -76,10 +93,15 @@ workflows:
 
   test-deploy-workflow:
     jobs:
-      - build
+#      - build
+      - test_code_coverage:
+          filters:
+            branches:
+              only:
+                dev-backend
       - deploy-to-main-backend:
           requires:
-            - build
+            - test_code_coverage
           filters:
             branches:
               only:
