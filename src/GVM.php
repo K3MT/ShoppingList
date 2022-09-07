@@ -27,7 +27,7 @@ class GVM
         
         if (defined('TEST_MODE') && TEST_MODE)
         { 
-            $inputStream = INPUT_TEST_FILE;
+            $inputStream = __DIR__."/../".INPUT_TEST_FILE;
         }
         else
         {

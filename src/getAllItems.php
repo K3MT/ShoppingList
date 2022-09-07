@@ -6,7 +6,7 @@
 
     class GetAllItems
     {
-        public static function makeCall(): bool|string
+        public static function makeCall()
         {
             require_once('GVM.php');
 

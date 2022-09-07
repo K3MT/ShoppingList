@@ -2,49 +2,35 @@
     // use TestInput;
     use \PHPUnit\Framework\TestCase;
     use App\Registration;
-    use App\GVM;
     
     require_once(__DIR__.'/../src/GVM.php');
     require_once('inputHandler.php');
 
+/**
+ * @covers Registration
+ */
     class RegistrationTest extends TestCase {
 
-      static function generateInput() : void
+      static function generateValidInput() : void
       {
-        $faker = TestInput::getFaker();
-
-        $objContent = new stdClass();
-        
-        $bodyContent = new stdClass();
-        $bodyContent->firstName = $faker->firstName();
-        $bodyContent->lastName = $faker->lastName();
-        $bodyContent->userEmail = $faker->email();
-        $bodyContent->userPassword = $faker->password(10, 15);
-        $bodyContent->securityQuestion = $faker->sentence();
-        $bodyContent->securityAnswer = $faker->word();
-
-        $objContent->data = $bodyContent;
+        $objContent = TestInput::getNewUser();
 
         $jsonString = json_encode($objContent);
 
         TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
       }
 
+      /**
+       * @covers RegistrationTest::makeCall
+       */
       public function testMakeCall() 
       {
-        self::generateInput();
-        // $registration = new Registration();
-        // $jsonString = $registration->makeCall(self::FILENAME);
-        // $jsonObject = json_decode($jsonString)[0];
+        self::generateValidInput();
 
         $_SERVER["REQUEST_METHOD"] = "POST";
-        $out = json_decode(Registration::makeCall(INPUT_TEST_FILE));// + array(null);
 
-        // echo ($out[0]->userID.'\n');
-        // echo ($out);
-        // echo (gettype($out[0])." \n");
-
-        $this->assertIsArray($out, "result obtained \n");
+        $this->expectOutputRegex('/userID/');
+        Registration::makeCall();
       }
 
     }

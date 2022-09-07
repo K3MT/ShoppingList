@@ -4,8 +4,8 @@
     use GVM;
     use RequestObject;
 
-    class Login{
-        public static function makeCall(): bool|string
+class Login{
+        public static function makeCall()
         {
             require_once('GVM.php');
             require_once('RequestObject.php');

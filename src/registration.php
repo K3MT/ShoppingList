@@ -5,7 +5,7 @@
     use GVM;
     use RequestObject;
 
-    class Registration{
+class Registration{
         public static function makeCall()
         {
             require_once('GVM.php');
@@ -26,8 +26,7 @@
             return GVM::makeCall($procedureName, $parameters, false);
         }
     }
-
-
     
-    print(Registration::makeCall());
+    echo Registration::makeCall();
+
 ?>
