@@ -15,9 +15,9 @@
       <const name="INPUT_TEST_FILE" value="testInput.txt"/>
     </php>
     <coverage>
-      <report>
-        <clover outputFile="testOutput/report.xml"/>
-      </report>
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
     </coverage>
     <logging>
       <junit outputFile="testOutput/coverage.xml"/>
