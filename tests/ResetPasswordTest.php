@@ -6,7 +6,7 @@ require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers ResetPassword
+ * @covers App\ResetPassword
  */
 class ResetPasswordTest extends TestCase {
 
@@ -26,7 +26,7 @@ class ResetPasswordTest extends TestCase {
   }
 
   /**
-   * @covers ResetPassword::makeCall
+   * @covers App\ResetPassword::makeCall
    */
   public function testMakeCall()
   {
