@@ -21,7 +21,8 @@ class GetAllItemsTest extends TestCase {
     TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
   }
   /**
-   * @covers GetAllItems::makeCall
+   * @covers App\GetAllItems::makeCall
+   * @uses GVM
    */
   public function testMakeCall()
   {

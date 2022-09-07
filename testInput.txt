@@ -1,1 +1,1 @@
-{"data":{"firstName":"Yazmin","lastName":"Konopelski","userEmail":"alvah.kub@hotmail.com","userPassword":"hjIFS[,-5m*","securityQuestion":"Aut qui ipsam inventore enim fugit.","securityAnswer":"assumenda"}}
+{"data":{"firstName":"Roosevelt","lastName":"Leuschke","userEmail":"nwyman@huels.com","userPassword":"0X^%fs%E,$%=gU~","securityQuestion":"Dolor est corrupti voluptas.","securityAnswer":"natus"}}
