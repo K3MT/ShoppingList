@@ -1,84 +1,16 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
-version: 2.1
+codecov:
+  token: 6f09d70b-ffb3-4767-a9fe-c8bb7517d68c
+  require_ci_to_pass: true
 
-# Define the orbs to be used by CircleCI
-orbs:
-  browser-tools: circleci/browser-tools@1.2
-  phpunit: stockfiller/phpunit@1.1.0
-  codecov: codecov/codecov@1.0.2
+coverage:
+  status:
+    project:
+      default:
+        informational: true
+    patch:
+      default:
+        informational: true
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-jobs:
-  build-test-codecov:
-    docker: # run the steps with Docker
-      - image: cimg/php:8.0.14-browsers
-    working_directory: ~/ShoppingList
-    steps:
-      - checkout
-      - run: sudo pecl install pcov
-      - run: sudo composer selfupdate
-      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
-          keys:
-            - composer-v1-{{ checksum "composer.lock" }}
-            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/caching/)
-            - composer-v1-
-      - run: composer install -n --prefer-dist
-      - save_cache: # special step to save the dependency cache with the `composer.lock` cache key template
-          key: composer-v1-{{ checksum "composer.lock" }}
-          paths:
-            - vendor
-      - run: sudo composer dump-autoload -o
 
-      # run tests!
-      - run:
-          command: |
-            ./vendor/bin/phpunit
-      - store_test_results:
-          path: ~/ShoppingList/testOutput/
-
-      - codecov/upload:
-          file: ~/ShoppingList/testOutput/coverage.xml
-
-  deploy-to-main-backend:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run:
-          name: Clone server
-          working_directory: ~/workdir
-          command: |
-            git clone https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
-      - run:
-          name: Trigger server deployment
-          working_directory: ~/workdir/ShoppingList
-          command: |
-            git fetch origin
-            git config credential.helper 'cache --timeout=120'
-            git config user.email "<email>"
-            git config user.name "Deployment Bot"
-            git checkout dev-backend
-            git checkout main-backend
-            git merge --no-edit dev-backend
-            git commit --allow-empty -m "Trigger deployment"
-            # Push quietly to prevent showing the token in log
-            git push -q https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-workflows:
-  test-deploy-workflow:
-    jobs:
-      - build-test-codecov:
-          filters:
-            branches:
-              only:
-                dev-backend
-      - deploy-to-main-backend:
-          requires:
-            - build-test-codecov
-          filters:
-            branches:
-              only:
-                dev-backend
+# When modifying this file, please validate using
+# curl -X POST --data-binary @codecov.yml https://codecov.io/validate
