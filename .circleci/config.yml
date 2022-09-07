@@ -6,7 +6,7 @@ version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.2
   phpunit: stockfiller/phpunit@1.1.0
-  codecov: codecov/codecov@1.0.2
+  codecov: codecov/codecov@3.2.3
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -48,7 +48,6 @@ jobs:
 #            ./codecov -t e3b40abf-e5d2-4a47-ac19-bc2d5cee6bfe -d -v
       - codecov/upload:
           file: ~/ShoppingList/testOutput/coverage.xml
-          token: e3b40abf-e5d2-4a47-ac19-bc2d5cee6bfe
 
   deploy-to-main-backend:
     docker:
