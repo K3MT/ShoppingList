@@ -9,6 +9,8 @@ require_once('TestInput.php');
 
 /**
  * @covers App\GetSecurityQuestion
+ * @covers \RequestObject
+ * @covers \GVM
  */
 class GetSecurityQuestionTest extends TestCase
 {
@@ -22,11 +24,7 @@ class GetSecurityQuestionTest extends TestCase
     TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
   }
 
-  /**
-   * @covers App\GetSecurityQuestion::makeCall
-   * @uses RequestObject
-   * @uses GVM
-   */
+
   public function testMakeCall()
   {
     self::generateValidInput();

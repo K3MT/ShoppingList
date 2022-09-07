@@ -7,7 +7,8 @@ require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers App\GetAllItems
+ * @covers \App\GetAllItems
+ * @uses \GVM
  */
 class GetAllItemsTest extends TestCase {
 
@@ -20,10 +21,7 @@ class GetAllItemsTest extends TestCase {
 
     TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
   }
-  /**
-   * @covers App\GetAllItems::makeCall
-   * @uses GVM
-   */
+
   public function testMakeCall()
   {
     $_SERVER["REQUEST_METHOD"] = "GET";

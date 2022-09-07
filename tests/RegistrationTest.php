@@ -2,15 +2,18 @@
     // use TestInput;
     use \PHPUnit\Framework\TestCase;
     use App\Registration;
-require_once(__DIR__.'/../vendor/autoload.php');
+
+    require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
  * @covers App\Registration
+ * @covers \RequestObject
+ * @covers \GVM
  */
     class RegistrationTest extends TestCase {
 
-      static function generateValidInput() : void
+      static function generateValidInput()
       {
         $objContent = TestInput::getNewUser();
 
@@ -19,18 +22,13 @@ require_once('TestInput.php');
         TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
       }
 
-      /**
-       * @covers App\Registration::makeCall
-       * @uses RequestObject
-       * @uses GVM
-       */
-      public function testMakeCall() 
+      public function testMakeCall()
       {
         self::generateValidInput();
-
         $_SERVER["REQUEST_METHOD"] = "POST";
 
         $this->expectOutputRegex('/userID/');
+
         Registration::makeCall();
       }
 

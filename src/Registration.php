@@ -26,7 +26,7 @@ class Registration{
             return GVM::makeCall($procedureName, $parameters, false);
         }
     }
-    
+
     echo Registration::makeCall();
 
 ?>
