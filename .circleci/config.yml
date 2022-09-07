@@ -32,14 +32,16 @@ jobs:
       - run: sudo composer dump-autoload -o
 
       # run tests!
-      - run: ./vendor/bin/phpunit
+      - run:
+          command: |
+            mkdir -p ~/phpunit
+            phpunit --log-junit ~/phpunit/junit.xml tests
       - store_test_results:
-          path: ~/ShoppingList/testOutput/
-      - store_artifacts:
-          path: ~/ShoppingList/testOutput/
+          path: ~/phpunit
 
       - run:
           name: Upload Test Results
+          working_directory: ~/phpunit
           command: |
             curl -Os https://uploader.codecov.io/latest/linux/codecov
   
@@ -76,20 +78,6 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  test-deploy:
-    jobs:
-      - build-test-codecov:
-          filters:
-            branches:
-              only:
-                dev-backend
-      - deploy-to-main-backend:
-          requires:
-            - build-test-codecov
-          filters:
-            branches:
-              only:
-                dev-backend
   test-deploy-workflow:
     jobs:
       - build-test-codecov:
