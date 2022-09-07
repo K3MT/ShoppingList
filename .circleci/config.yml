@@ -71,6 +71,20 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
+  test-deploy:
+    jobs:
+      - build-test-codecov:
+          filters:
+            branches:
+              only:
+                dev-backend
+      - deploy-to-main-backend:
+          requires:
+            - build-test-codecov
+          filters:
+            branches:
+              only:
+                dev-backend
   test-deploy-workflow:
     jobs:
       - build-test-codecov:
