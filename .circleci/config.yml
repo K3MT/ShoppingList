@@ -47,7 +47,7 @@ jobs:
           command: |
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN} -v --dir ./xml-coverage/
+            ./codecov -t ${CODECOV_TOKEN} -v
 
   deploy-to-main-backend:
     docker:
