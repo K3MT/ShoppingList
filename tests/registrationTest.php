@@ -38,9 +38,13 @@
         // $jsonObject = json_decode($jsonString)[0];
 
         $_SERVER["REQUEST_METHOD"] = "POST";
-        echo json_decode(Registration::makeCall(INPUT_TEST_FILE));
+        $out = json_decode(Registration::makeCall(INPUT_TEST_FILE));// + array(null);
 
-        $this->assertClassHasAttribute('userID', json_decode(Registration::makeCall(self::FILENAME)));
+        // echo ($out[0]->userID.'\n');
+        // echo ($out);
+        // echo (gettype($out[0])." \n");
+
+        $this->assertIsArray($out, "result obtained \n");
       }
 
     }

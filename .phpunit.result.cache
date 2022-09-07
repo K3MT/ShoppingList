@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Registration::testMakeCall":4,"RegistrationTest::testMakeCall":4},"times":{"Registration::testMakeCall":0.129,"RegistrationTest::testMakeCall":0.65}}
+{"version":1,"defects":{"Registration::testMakeCall":4,"RegistrationTest::testMakeCall":4},"times":{"Registration::testMakeCall":0.129,"RegistrationTest::testMakeCall":1.214}}
