@@ -34,8 +34,10 @@ jobs:
 
       # run tests!
       - run:
+          name: Run Tests
           command: |
-            ./vendor/bin/phpunit
+            mkdir -p testOutput
+            ./vendor/bin/phpunit --coverage-clover ./testOutput/coverage.xml
       #            phpunit --log-junit ~/phpunit/junit.xml tests
       - store_test_results:
           path: ~/ShoppingList/testOutput/
