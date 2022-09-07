@@ -41,8 +41,8 @@ jobs:
           path: ~/ShoppingList/testOutput/
 
       - codecov/upload:
-          - file: ~/ShoppingList/testOutput/coverage.xml
-          - token: 6f09d70b-ffb3-4767-a9fe-c8bb7517d68c
+          file: ~/ShoppingList/testOutput/coverage.xml
+          token: 6f09d70b-ffb3-4767-a9fe-c8bb7517d68c
 
   deploy-to-main-backend:
     docker:
