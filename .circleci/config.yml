@@ -39,9 +39,6 @@ jobs:
       - store_test_results:
           path: ~/ShoppingList/testOutput/
 
-      - run:
-          name: Upload Test Results
-          working_directory: ~/ShoppingList/
       - codecov/upload:
           - file: ~/ShoppingList/testOutput/coverage.xml
 
