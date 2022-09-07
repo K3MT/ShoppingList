@@ -5,14 +5,14 @@
     use GVM;
     use RequestObject;
 
-    class Registration{
-        public static function makeCall(): bool|string
+class Registration{
+        public static function makeCall()
         {
             require_once('GVM.php');
             require_once('RequestObject.php');
 
             $json = GVM::getData();
-
+            
             $firstName = new RequestObject($json["firstName"], true);
             $lastName = new RequestObject($json["lastName"], true);
             $userEmail = new RequestObject($json["userEmail"], true);
@@ -26,6 +26,7 @@
             return GVM::makeCall($procedureName, $parameters, false);
         }
     }
+    
+    echo Registration::makeCall();
 
-    print(Registration::makeCall());
 ?>

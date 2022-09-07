@@ -4,26 +4,38 @@ class GVM
 {
     public static function addHeaders()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-            header("Access-Control-Allow-Origin: *");
-            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-            header("Access-Control-Allow-Headers: Authorization, Content-Type,Accept, Origin");
-            exit(0);
-        }
+        if(!headers_sent()){
 
-        header("Access-Control-Allow-Origin: *");
-        header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Max-Age: 86400');    // cache for 1 day
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, PATCH, HEAD");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Origin"); 
-        header("Content-Type: application/json");
-        header($_SERVER["SERVER_PROTOCOL"]." 200 OK"); 
+            if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+                header("Access-Control-Allow-Origin: *");
+                header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+                header("Access-Control-Allow-Headers: Authorization, Content-Type,Accept, Origin");
+                exit(0);
+            }
+            
+            header("Access-Control-Allow-Origin: *");
+            header('Access-Control-Allow-Credentials: true');
+            header('Access-Control-Max-Age: 86400');    // cache for 1 day
+            header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, PATCH, HEAD");
+            header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Origin"); 
+            header("Content-Type: application/json");
+            header($_SERVER["SERVER_PROTOCOL"]." 200 OK"); 
+        }
     }
 
     public static function getData(){
+        
+        if (defined('TEST_MODE') && TEST_MODE)
+        { 
+            $inputStream = __DIR__."/../".INPUT_TEST_FILE;
+        }
+        else
+        {
+            $inputStream = 'php://input';
+        }
+
         $dataLabel = "data";
-        $inputFile = "php://input";
-        return json_decode(file_get_contents($inputFile), true)[$dataLabel];
+        return json_decode(file_get_contents($inputStream), true)[$dataLabel];
     }
 
     public static function getLink(){

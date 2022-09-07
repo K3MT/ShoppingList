@@ -6,7 +6,7 @@
     use RequestObject;
 
 class ResetPassword{
-        public static function makeCall(): bool|string
+        public static function makeCall()
         {
             require_once('GVM.php');
             require_once('RequestObject.php');

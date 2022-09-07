@@ -5,11 +5,13 @@ version: 2.1
 # Define the orbs to be used by CircleCI
 orbs:
   browser-tools: circleci/browser-tools@1.2
+  phpunit: stockfiller/phpunit@1.1.0
+  codecov: codecov/codecov@1.0.2
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build:
+  build-test-codecov:
     docker: # run the steps with Docker
       - image: cimg/php:8.0.14-browsers
     working_directory: ~/ShoppingList
@@ -18,18 +20,59 @@ jobs:
       - run: sudo pecl install pcov
       - run: sudo composer selfupdate
       - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
-         keys:
-           - composer-v1-{{ checksum "composer.lock" }}
-           # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/caching/)
-           - composer-v1-
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/caching/)
+            - composer-v1-
       - run: composer install -n --prefer-dist
       - save_cache: # special step to save the dependency cache with the `composer.lock` cache key template
-         key: composer-v1-{{ checksum "composer.lock" }}
-         paths:
-           - vendor
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+      # run tests!
+      - run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml -c phpunit.xml --migrate-configuration
+      - store_test_results:
+          path: ~/phpunit
+      - store_artifacts:
+          path: ~/phpunit
+      - codecov/upload:
+          file: ~/phpunit/junit.xml
 
-      # run test-suite
-  
+  build:
+    docker:
+      # specify the version you desire here
+      - image: cimg/php:7.4.3
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mysql:9.4
+    working_directory: ~/ShoppingList
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: composer self-update
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+      - run: mkdir var/data
+      # run tests!
+      - run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
+      - store_test_results:
+          path: ~/phpunit
+      - store_artifacts:
+          path: ~/phpunit
+      - codecov/upload:
+          file: ~/phpunit/junit.xml
+
+
+
+
   deploy-to-main-backend:
     docker:
       - image: cimg/base:stable
@@ -69,17 +112,22 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-#  say-hello-workflow:
-#    jobs:
-#      - say-hello
+  #  say-hello-workflow:
+  #    jobs:
+  #      - say-hello
 
   test-deploy-workflow:
     jobs:
-      - build
-      - deploy-to-main-backend:
-          requires:
-            - build
+      #      - build
+      - build-test-codecov:
           filters:
             branches:
               only:
-                - dev-backend  
+                dev-backend
+      - deploy-to-main-backend:
+          requires:
+            - build-test-codecov
+          filters:
+            branches:
+              only:
+                - dev-backend
