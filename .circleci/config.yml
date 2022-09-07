@@ -33,10 +33,9 @@ jobs:
 
       # run tests!
       - run:
-      - run:
           command: |
             ./vendor/bin/phpunit
-#            phpunit --log-junit ~/phpunit/junit.xml tests
+      #            phpunit --log-junit ~/phpunit/junit.xml tests
       - store_test_results:
           path: ~/phpunit
 
