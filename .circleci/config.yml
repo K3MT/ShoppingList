@@ -25,11 +25,11 @@ jobs:
             # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/caching/)
             - composer-v1-
       - run: composer install -n --prefer-dist
-      - run: sudo composer dump-autoload
       - save_cache: # special step to save the dependency cache with the `composer.lock` cache key template
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
             - vendor
+      - run: sudo composer dump-autoload -o
 
       # run tests!
       - run: ./vendor/bin/phpunit
@@ -43,38 +43,6 @@ jobs:
       - codecov/upload:
           file: ~/ShoppingList/testOutput/coverage.xml
           token: 6f09d70b-ffb3-4767-a9fe-c8bb7517d68c
-
-  build:
-    docker:
-      # specify the version you desire here
-      - image: cimg/php:7.4.3
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mysql:9.4
-    working_directory: ~/ShoppingList
-    steps:
-      - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run: composer self-update
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-      - run: mkdir var/data
-      # run tests!
-      - run: ./vendor/bin/phpunit
-      - store_test_results:
-          path: /tmp
-      - store_artifacts:
-          path: /tmp
-      - codecov/upload:
-          file: /tmp/coverage.xml
 
   deploy-to-main-backend:
     docker:
