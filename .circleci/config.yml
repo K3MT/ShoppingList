@@ -48,7 +48,7 @@ jobs:
 #            ./codecov -t e3b40abf-e5d2-4a47-ac19-bc2d5cee6bfe -d -v
       - codecov/upload:
           file: ~/ShoppingList/testOutput/coverage.xml
-          token: ${CODECOV_TOKEN}
+          token: CODECOV_TOKEN
 
   deploy-to-main-backend:
     docker:
