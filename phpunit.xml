@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="./vendor/autoload.php" colors="true" stopOnFailure="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage>
-    <report>
-      <clover outputFile="/tmp/coverage.xml"/>
-    </report>
-  </coverage>
-  <testsuites>
-    <testsuite name="Registration and Login">
-      <directory>tests</directory>
-    </testsuite>
-  </testsuites>
-  <php>
-    <const name="TEST_MODE" value="true"/>
-    <const name="INPUT_TEST_FILE" value="testInput.txt"/>
-  </php>
-  <logging>
-    <junit outputFile="testOutput/coverage.xml"/>
-  </logging>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.5/phpunit.xsd"
+         colors="true"
+         bootstrap="vendor/autoload.php"
+         executionOrder="depends,defects"
+         forceCoversAnnotation="true"
+         stopOnFailure="false"
+         beStrictAboutCoversAnnotation="true"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true"
+         verbose="true">
+    <php>
+      <const name="TEST_MODE" value="true"/>
+      <const name="INPUT_TEST_FILE" value="testInput.txt"/>
+    </php>
+    <coverage>
+      <report>
+        <clover outputFile="testOutput/report.xml"/>
+      </report>
+    </coverage>
+    <logging>
+      <junit outputFile="testOutput/coverage.xml"/>
+    </logging>
+    <testsuites>
+        <testsuite name="Registration and Login">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
 </phpunit>
