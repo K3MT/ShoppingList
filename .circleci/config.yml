@@ -39,14 +39,8 @@ jobs:
       - store_test_results:
           path: ~/ShoppingList/testOutput/
 
-      - run:
-          name: Upload Test Results
-          working_directory: ~/ShoppingList/
-          command: |
-            curl -Os https://uploader.codecov.io/latest/linux/codecov
-            
-            chmod +x codecov
-            ./codecov
+      - codecov/upload:
+          file: ~/ShoppingList/testOutput/coverage.xml
 
   deploy-to-main-backend:
     docker:
