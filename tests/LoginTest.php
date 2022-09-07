@@ -6,7 +6,7 @@ require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers Login
+ * @covers App\Login
  */
     class LoginTest extends TestCase {
 
@@ -29,7 +29,7 @@ require_once('TestInput.php');
       }
 
       /**
-       * @covers Login::makeCall
+       * @covers App\Login::makeCall
        */
       public function testMakeCall() 
       {

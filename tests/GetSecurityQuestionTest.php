@@ -8,7 +8,7 @@ require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers GetSecurityQuestion
+ * @covers App\GetSecurityQuestion
  */
 class GetSecurityQuestionTest extends TestCase
 {
@@ -23,7 +23,7 @@ class GetSecurityQuestionTest extends TestCase
   }
 
   /**
-   * @covers GetSecurityQuestion::makeCall
+   * @covers App\GetSecurityQuestion::makeCall
    */
   public function testMakeCall()
   {

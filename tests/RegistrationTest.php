@@ -6,7 +6,7 @@ require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers Registration
+ * @covers App\Registration
  */
     class RegistrationTest extends TestCase {
 
@@ -20,7 +20,7 @@ require_once('TestInput.php');
       }
 
       /**
-       * @covers RegistrationTest::makeCall
+       * @covers App\RegistrationTest::makeCall
        */
       public function testMakeCall() 
       {
