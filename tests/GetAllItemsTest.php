@@ -4,7 +4,7 @@ use \PHPUnit\Framework\TestCase;
 use App\GetAllItems;
 
 require_once(__DIR__.'/../vendor/autoload.php');
-require_once('inputHandler.php');
+require_once('TestInput.php');
 
 /**
  * @covers GetAllItems

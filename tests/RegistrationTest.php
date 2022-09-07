@@ -3,8 +3,7 @@
     use \PHPUnit\Framework\TestCase;
     use App\Registration;
 require_once(__DIR__.'/../vendor/autoload.php');
-
-require_once('inputHandler.php');
+require_once('TestInput.php');
 
 /**
  * @covers Registration
