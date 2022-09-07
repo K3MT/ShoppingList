@@ -1,7 +1,7 @@
 <?php
 // use TestInput;
 use \PHPUnit\Framework\TestCase;
-use App\ResetPassword;
+use \App\ResetPassword;
 
 require_once(__DIR__.'/../src/GVM.php');
 require_once('inputHandler.php');

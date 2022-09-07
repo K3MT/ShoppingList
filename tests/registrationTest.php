@@ -1,7 +1,7 @@
 <?php
     // use TestInput;
     use \PHPUnit\Framework\TestCase;
-    use App\Registration;
+    use \App\Registration;
     
     require_once(__DIR__.'/../src/GVM.php');
     require_once('inputHandler.php');
