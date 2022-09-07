@@ -1,5 +1,6 @@
 <?php
 
+
 class GVM
 {
     public static function addHeaders()

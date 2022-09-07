@@ -22,7 +22,8 @@
         fclose($fileWriter);
       }
 
-      static function getResetPasswordInput() {
+      static function getResetPasswordInput(): stdClass
+      {
         $faker = Faker\Factory::create();
         $objContent = new stdClass();
 
@@ -36,7 +37,8 @@
         return $objContent;
       }
 
-      static function getKnownSecurityQuestion() {
+      static function getKnownSecurityQuestion(): stdClass
+      {
         $objContent = new stdClass();
 
         $bodyContent = new stdClass();
@@ -73,7 +75,8 @@
         return $objContent;
       }
 
-      static function getNewUser() {
+      static function getNewUser(): stdClass
+      {
 
         $faker = Faker\Factory::create();
 

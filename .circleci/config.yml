@@ -29,49 +29,25 @@ jobs:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
             - vendor
+      - run: sudo composer dump-autoload -o
+
       # run tests!
-      - run: ./vendor/bin/phpunit --log-junit /tmp/coverage.xml -c phpunit.xml --migrate-configuration
+      - run: ./vendor/bin/phpunit
       - store_test_results:
-          path: ~/phpunit
+          path: ~/ShoppingList/testOutput/
       - store_artifacts:
-          path: ~/phpunit
-      - codecov/upload:
-          file: ~/phpunit/junit.xml
+          path: ~/ShoppingList/testOutput/
 
-  build:
-    docker:
-      # specify the version you desire here
-      - image: cimg/php:7.4.3
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mysql:9.4
-    working_directory: ~/ShoppingList
-    steps:
-      - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run: composer self-update
-      - save_cache:
-          paths:
-            - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
-      - run: mkdir var/data
-      # run tests!
-      - run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
-      - store_test_results:
-          path: ~/phpunit
-      - store_artifacts:
-          path: ~/phpunit
-      - codecov/upload:
-          file: ~/phpunit/junit.xml
-
-
-
+      - run:
+          name: Upload Test Results
+          command: |
+            curl -Os https://uploader.codecov.io/latest/linux/codecov
+  
+            chmod +x codecov
+            ./codecov
+#      - codecov/upload:
+#          file: ~/ShoppingList/testOutput/coverage.xml
+#          token: 6f09d70b-ffb3-4767-a9fe-c8bb7517d68c
 
   deploy-to-main-backend:
     docker:
@@ -96,29 +72,12 @@ jobs:
             git commit --allow-empty -m "Trigger deployment"
             # Push quietly to prevent showing the token in log
             git push -q https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  #  say-hello-workflow:
-  #    jobs:
-  #      - say-hello
-
-  test-deploy-workflow:
+  test-deploy:
     jobs:
-      #      - build
       - build-test-codecov:
           filters:
             branches:
@@ -130,4 +89,18 @@ workflows:
           filters:
             branches:
               only:
-                - dev-backend
+                dev-backend
+  test-deploy-workflow:
+    jobs:
+      - build-test-codecov:
+          filters:
+            branches:
+              only:
+                dev-backend
+      - deploy-to-main-backend:
+          requires:
+            - build-test-codecov
+          filters:
+            branches:
+              only:
+                dev-backend
