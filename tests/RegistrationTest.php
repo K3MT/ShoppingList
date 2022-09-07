@@ -20,7 +20,9 @@ require_once('TestInput.php');
       }
 
       /**
-       * @covers App\RegistrationTest::makeCall
+       * @covers App\Registration::makeCall
+       * @uses RequestObject
+       * @uses GVM
        */
       public function testMakeCall() 
       {

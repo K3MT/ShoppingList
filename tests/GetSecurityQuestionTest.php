@@ -24,6 +24,8 @@ class GetSecurityQuestionTest extends TestCase
 
   /**
    * @covers App\GetSecurityQuestion::makeCall
+   * @uses RequestObject
+   * @uses GVM
    */
   public function testMakeCall()
   {

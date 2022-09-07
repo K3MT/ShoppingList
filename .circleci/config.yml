@@ -37,10 +37,8 @@ jobs:
           name: Run Tests
           command: |
             mkdir -p testOutput
-            ./vendor/bin/phpunit --coverage-clover ./testOutput/coverage.xml
+            vendor/bin/phpunit --coverage-clover ~/ShoppingList/testOutput/coverage.xml
       #            phpunit --log-junit ~/phpunit/junit.xml tests
-      - store_test_results:
-          path: ~/ShoppingList/testOutput/
 
 #      - run:
 #          name: CodeCov Upload

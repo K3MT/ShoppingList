@@ -30,6 +30,8 @@ require_once('TestInput.php');
 
       /**
        * @covers App\Login::makeCall
+       * @uses RequestObject
+       * @uses GVM
        */
       public function testMakeCall() 
       {
