@@ -15,6 +15,6 @@
     <const name="INPUT_TEST_FILE" value="testInput.txt"/>
   </php>
   <logging>
-    <junit outputFile="/tmp/coverage.xml"/>
+    <junit outputFile="testOutput/coverage.xml"/>
   </logging>
 </phpunit>

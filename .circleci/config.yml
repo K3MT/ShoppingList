@@ -32,11 +32,11 @@ jobs:
       # run tests!
       - run: ./vendor/bin/phpunit
       - store_test_results:
-          path: /tmp
+          path: ~/ShoppingList/testOutput/
       - store_artifacts:
-          path: /tmp
+          path: ~/ShoppingList/testOutput/
       - codecov/upload:
-          file: /tmp/coverage.xml
+          file: ~/ShoppingList/testOutput/coverage.xml
 
   build:
     docker:
