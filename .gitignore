@@ -11,6 +11,7 @@ lerna-debug.log*
 log.txt
 testInput.txt
 coverage.xml
+codecov
 
 # jetbrains and composer
 .idea/
