@@ -30,7 +30,7 @@
         $bodyContent = new stdClass();
         $bodyContent->userID = 'ebd0ef94-2e9c-11ed-9ff1-062079ffe796';
         $bodyContent->securityAnswer = 'alright';
-        $bodyContent->newPassword = $faker->password(10, 15);
+        $bodyContent->newPassword = $faker->uuid();
 
         $objContent->data = $bodyContent;
 
@@ -68,7 +68,8 @@
         
         $bodyContent = new stdClass();
         $bodyContent->userEmail = $faker->email();
-        $bodyContent->userPassword = $faker->password(10, 15);
+        $bodyContent->userPassword = $faker->uuid();
+
 
         $objContent->data = $bodyContent;
 

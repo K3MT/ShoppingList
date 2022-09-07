@@ -34,9 +34,9 @@ class ResetPasswordTest extends TestCase {
 
     $_SERVER["REQUEST_METHOD"] = "POST";
 
-    $pattern = "/" . preg_quote($newPassword, "/") . "/";
+    $pattern = '/'.$newPassword.'/';
 
-    $this->expectOutputRegex($pattern, $newPassword);
+    $this->expectOutputRegex($pattern);
 
     ResetPassword::makeCall();
   }
