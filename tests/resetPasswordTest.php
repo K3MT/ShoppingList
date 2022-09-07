@@ -35,7 +35,10 @@ class ResetPasswordTest extends TestCase {
 
     $_SERVER["REQUEST_METHOD"] = "POST";
 
-    $this->expectOutputRegex('/'.$newPassword.'/');
+    $out = $this->getActualOutput();
+
+    $matches = str_contains($out, $newPassword);
+    $this->assertTrue($matches, 'The user reset `'.$newPassword.'` does not match the returned reset `'.$out.'`');
     ResetPassword::makeCall();
   }
 

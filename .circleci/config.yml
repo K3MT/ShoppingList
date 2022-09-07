@@ -30,13 +30,13 @@ jobs:
           paths:
             - vendor
       # run tests!
-      - run: ./vendor/bin/phpunit --log-junit /tmp/coverage.xml -c phpunit.xml --migrate-configuration
+      - run: ./vendor/bin/phpunit
       - store_test_results:
-          path: ~/phpunit
+          path: /tmp
       - store_artifacts:
-          path: ~/phpunit
+          path: /tmp
       - codecov/upload:
-          file: ~/phpunit/junit.xml
+          file: /tmp/coverage.xml
 
   build:
     docker:
@@ -69,9 +69,6 @@ jobs:
           path: /tmp
       - codecov/upload:
           file: /tmp/coverage.xml
-
-
-
 
   deploy-to-main-backend:
     docker:
