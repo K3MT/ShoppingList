@@ -30,7 +30,7 @@ jobs:
           paths:
             - vendor
       # run tests!
-      - run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml -c phpunit.xml --migrate-configuration
+      - run: ./vendor/bin/phpunit --log-junit /tmp/coverage.xml -c phpunit.xml --migrate-configuration
       - store_test_results:
           path: ~/phpunit
       - store_artifacts:
