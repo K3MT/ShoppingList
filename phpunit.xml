@@ -4,11 +4,8 @@
          colors="true"
          bootstrap="vendor/autoload.php"
          executionOrder="depends,defects"
-         forceCoversAnnotation="true"
          stopOnFailure="false"
-         beStrictAboutCoversAnnotation="true"
          beStrictAboutOutputDuringTests="true"
-         beStrictAboutTodoAnnotatedTests="true"
          verbose="true">
     <php>
       <const name="TEST_MODE" value="true"/>
@@ -19,7 +16,7 @@
             <directory suffix=".php">src</directory>
         </include>
         <report>
-            <cobertura outputFile="cobertura.xml"/>
+            <cobertura outputFile="coverage.xml"/>
         </report>
     </coverage>
     <testsuites>

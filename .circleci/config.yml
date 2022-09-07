@@ -38,7 +38,7 @@ jobs:
           command: |
             rm -rf testOutput
             mkdir -p testOutput
-            vendor/bin/phpunit --coverage-clover coverage.xml
+            vendor/bin/phpunit
 
 #      - codecov/upload
 #          file: ~/ShoppingList/testOutput/coverage.xml

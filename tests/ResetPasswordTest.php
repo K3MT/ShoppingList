@@ -7,15 +7,11 @@ require_once('TestInput.php');
 
 /**
  * @covers App\ResetPassword
- * @uses RequestObject
- * @uses GVM
+ * @covers \RequestObject
+ * @covers \GVM
  */
 class ResetPasswordTest extends TestCase {
 
-  /**
-   *
-   * Returns the new password to be checked
-   */
   static function generateValidInput() : string
   {
     $objContent = TestInput::getResetPasswordInput();
@@ -27,14 +23,11 @@ class ResetPasswordTest extends TestCase {
     return $objContent->data->newPassword;
   }
 
-  /**
-   * @covers App\ResetPassword::makeCall
-   */
   public function testMakeCall()
   {
-    $newPassword = self::generateValidInput();
-
     $_SERVER["REQUEST_METHOD"] = "POST";
+
+    $newPassword = self::generateValidInput();
 
     $pattern = '/'.$newPassword.'/';
 

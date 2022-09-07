@@ -1,9 +1,6 @@
 <?php
     require_once 'vendor/autoload.php';
 
-/**
- * @codeCoverageIgnore
- */
     class TestInput {
 
       static function log($message) {
@@ -30,7 +27,7 @@
         $bodyContent = new stdClass();
         $bodyContent->userID = 'ebd0ef94-2e9c-11ed-9ff1-062079ffe796';
         $bodyContent->securityAnswer = 'alright';
-        $bodyContent->newPassword = $faker->uuid();
+        $bodyContent->newPassword = $faker->word();
 
         $objContent->data = $bodyContent;
 
@@ -68,7 +65,7 @@
         
         $bodyContent = new stdClass();
         $bodyContent->userEmail = $faker->email();
-        $bodyContent->userPassword = $faker->uuid();
+        $bodyContent->userPassword = $faker->iban('NL');
 
 
         $objContent->data = $bodyContent;
@@ -76,7 +73,7 @@
         return $objContent;
       }
 
-      static function getNewUser(): stdClass
+      static function getNewUser()
       {
 
         $faker = Faker\Factory::create();
@@ -87,7 +84,7 @@
         $bodyContent->firstName = $faker->firstName();
         $bodyContent->lastName = $faker->lastName();
         $bodyContent->userEmail = $faker->email();
-        $bodyContent->userPassword = $faker->uuid();
+        $bodyContent->userPassword = $faker->iban('NL');
         $bodyContent->securityQuestion = $faker->sentence();
         $bodyContent->securityAnswer = $faker->word();
 
