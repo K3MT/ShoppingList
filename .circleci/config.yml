@@ -33,9 +33,10 @@ jobs:
 
       # run tests!
       - run:
+      - run:
           command: |
-            mkdir -p ~/phpunit
-            phpunit --log-junit ~/phpunit/junit.xml tests
+            ./vendor/bin/phpunit
+#            phpunit --log-junit ~/phpunit/junit.xml tests
       - store_test_results:
           path: ~/phpunit
 
@@ -44,12 +45,9 @@ jobs:
           working_directory: ~/phpunit
           command: |
             curl -Os https://uploader.codecov.io/latest/linux/codecov
-  
+            
             chmod +x codecov
             ./codecov
-#      - codecov/upload:
-#          file: ~/ShoppingList/testOutput/coverage.xml
-#          token: 6f09d70b-ffb3-4767-a9fe-c8bb7517d68c
 
   deploy-to-main-backend:
     docker:
