@@ -37,11 +37,11 @@ jobs:
             ./vendor/bin/phpunit
       #            phpunit --log-junit ~/phpunit/junit.xml tests
       - store_test_results:
-          path: ~/phpunit
+          path: ~/ShoppingList/testOutput/
 
       - run:
           name: Upload Test Results
-          working_directory: ~/phpunit
+          working_directory: ~/ShoppingList/
           command: |
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             
