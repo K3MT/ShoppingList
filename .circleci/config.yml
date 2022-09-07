@@ -84,4 +84,4 @@ workflows:
           filters:
             branches:
               only:
-                - dev-backend
+                dev-backend
