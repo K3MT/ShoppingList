@@ -40,14 +40,14 @@ jobs:
             mkdir -p testOutput
             vendor/bin/phpunit --coverage-clover ~/ShoppingList/testOutput/coverage.xml
 
-      - codecov/upload:
-          file: ~/ShoppingList/testOutput/coverage.xml
+      - codecov/upload
+#          file: ~/ShoppingList/testOutput/coverage.xml
 #      - run:
 #          name: CodeCov Upload
 #          command: |
 #            curl -Os https://uploader.codecov.io/latest/linux/codecov
 #            chmod +x codecov
-#            ./codecov -t e3b40abf-e5d2-4a47-ac19-bc2d5cee6bfe -d -v
+#            ./codecov -t {tokentoken}-d -v
 
   deploy-to-main-backend:
     docker:

@@ -87,7 +87,7 @@
         $bodyContent->firstName = $faker->firstName();
         $bodyContent->lastName = $faker->lastName();
         $bodyContent->userEmail = $faker->email();
-        $bodyContent->userPassword = $faker->password(10, 15);
+        $bodyContent->userPassword = $faker->uuid();
         $bodyContent->securityQuestion = $faker->sentence();
         $bodyContent->securityAnswer = $faker->word();
 
