@@ -18,6 +18,10 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <report>
+<!--            <clover outputFile="clover.xml"/>-->
+            <xml outputDirectory="xml-coverage"/>
+        </report>
     </coverage>
     <testsuites>
         <testsuite name="Registration and Login">

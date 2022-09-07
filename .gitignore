@@ -12,6 +12,7 @@ log.txt
 testInput.txt
 coverage.xml
 codecov
+xml-coverage/
 
 # jetbrains and composer
 .idea/
