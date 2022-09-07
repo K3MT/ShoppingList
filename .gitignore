@@ -10,6 +10,7 @@ lerna-debug.log*
 # Testing
 log.txt
 testInput.txt
+coverage.xml
 
 # jetbrains and composer
 .idea/

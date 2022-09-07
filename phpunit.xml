@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit  bootstrap="./vendor/autoload.php"
-          colors="true"
-          stopOnFailure="true">
-    <testsuites>
-      <testsuite name="Registration and Login">
-        <directory>tests</directory>
-      </testsuite>
-    </testsuites>        
-    <php>
-      <const name="TEST_MODE" value="true"/>
-      <const name="INPUT_TEST_FILE" value="testInput.txt"/>
-   </php>
-    <logging>
-        <log type="coverage-clover" target="/tmp/coverage.xml" />
-    </logging>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="./vendor/autoload.php" colors="true" stopOnFailure="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <report>
+      <clover outputFile="/tmp/coverage.xml"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="Registration and Login">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <const name="TEST_MODE" value="true"/>
+    <const name="INPUT_TEST_FILE" value="testInput.txt"/>
+  </php>
+  <logging>
+    <junit outputFile="/tmp/coverage.xml"/>
+  </logging>
 </phpunit>

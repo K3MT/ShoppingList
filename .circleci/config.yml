@@ -62,13 +62,13 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run: mkdir var/data
       # run tests!
-      - run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
+      - run: ./vendor/bin/phpunit
       - store_test_results:
-          path: ~/phpunit
+          path: /tmp
       - store_artifacts:
-          path: ~/phpunit
+          path: /tmp
       - codecov/upload:
-          file: ~/phpunit/junit.xml
+          file: /tmp/coverage.xml
 
 
 
