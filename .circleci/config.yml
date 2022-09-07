@@ -12,6 +12,33 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build-test-codecov:
+    docker: # run the steps with Docker
+      - image: cimg/php:8.0.14-browsers
+    working_directory: ~/ShoppingList
+    steps:
+      - checkout
+      - run: sudo pecl install pcov
+      - run: sudo composer selfupdate
+      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/caching/)
+            - composer-v1-
+      - run: composer install -n --prefer-dist
+      - save_cache: # special step to save the dependency cache with the `composer.lock` cache key template
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+      # run tests!
+      - run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
+      - store_test_results:
+          path: ~/phpunit
+      - store_artifacts:
+          path: ~/phpunit
+      - codecov/upload:
+          file: ~/phpunit/junit.xml
+
+  build:
     docker:
       # specify the version you desire here
       - image: cimg/php:7.4.3
