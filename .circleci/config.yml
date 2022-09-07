@@ -6,48 +6,46 @@ version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.2
   phpunit: stockfiller/phpunit@1.1.0
+  codecov: codecov/codecov@1.0.2
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build-php:
-    description: By default, use the official CircleCI Docker images to run PHPUnit tests
+  build-test-codecov:
     docker:
-      - image: cimg/php:7.4
-    resource_class: small
-    working_directory: ~/ShoppingList
-    steps:
-        - checkout
-
-  build:
-    docker: # run the steps with Docker
-      - image: cimg/php:7.4
+      # specify the version you desire here
+      - image: circleci/php:7.1-browsers
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mysql:9.4
     working_directory: ~/ShoppingList
     steps:
       - checkout
-      - run: sudo pecl install pcov
-      - run: sudo composer selfupdate
-      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
-         keys:
-           - composer-v1-{{ checksum "composer.lock" }}
-           # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/caching/)
-           - composer-v1-
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
       - run: composer install -n --prefer-dist
-      - save_cache: # special step to save the dependency cache with the `composer.lock` cache key template
-         key: composer-v1-{{ checksum "composer.lock" }}
-         paths:
-           - vendor
-      - run:
-          command: |
-#            sudo install php-mysql
-            curl -Os https://uploader.codecov.io/v0.1.0_4653/linux/codecov
-    
-            chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN}
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+      - run: mkdir var/data
+      # run tests!
+      - run: ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
+      - store_test_results:
+          path: ~/phpunit
+      - store_artifacts:
+          path: ~/phpunit
+      - codecov/upload:
+          file: ~/phpunit/junit.xml
 
 
-            
-  
+
+
   deploy-to-main-backend:
     docker:
       - image: cimg/base:stable
@@ -87,22 +85,22 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-#  say-hello-workflow:
-#    jobs:
-#      - say-hello
+  #  say-hello-workflow:
+  #    jobs:
+  #      - say-hello
 
   test-deploy-workflow:
     jobs:
-#      - build
-      - test_code_coverage:
+      #      - build
+      - build-test-codecov:
           filters:
             branches:
               only:
                 dev-backend
       - deploy-to-main-backend:
           requires:
-            - test_code_coverage
+            - build-test-codecov
           filters:
             branches:
               only:
-                - dev-backend  
+                - dev-backend
