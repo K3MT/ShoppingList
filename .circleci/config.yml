@@ -40,7 +40,7 @@ jobs:
           path: ~/ShoppingList/testOutput/
 
       - codecov/upload:
-          - file: ~/ShoppingList/testOutput/coverage.xml
+          file: ~/ShoppingList/testOutput/coverage.xml
 
   deploy-to-main-backend:
     docker:
