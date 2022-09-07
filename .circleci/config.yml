@@ -19,6 +19,7 @@ jobs:
       - checkout
       - run: sudo pecl install pcov
       - run: sudo composer selfupdate
+      - run: sudo composer dump-autoload
       - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
           keys:
             - composer-v1-{{ checksum "composer.lock" }}
