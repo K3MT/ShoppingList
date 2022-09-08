@@ -72,9 +72,6 @@ jobs:
             vendor/bin/phpunit
       - store_test_results:
           path: junit.xml
-
-#      - codecov/upload
-#          file: ~/ShoppingList/testOutput/coverage.xml
       - run:
           name: Upload Coverage To CodeCov
           command: |
