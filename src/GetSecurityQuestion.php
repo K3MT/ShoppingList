@@ -13,9 +13,9 @@
 
             $json = GVM::getData();
 
-            $userID = new RequestObject($json["userID"], true);
+            $userEmail = new RequestObject($json["userEmail"], true);
 
-            $parameters = array($userID);
+            $parameters = array($userEmail);
 
             $procedureName = "getSecurityQuestion";
             return GVM::makeCall($procedureName, $parameters, false);
