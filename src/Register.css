@@ -24,7 +24,7 @@ body{
 }
 
 
-.area{
+.registerarea{
     background: #4e54c8;  
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
     width: 100%;
@@ -33,7 +33,7 @@ body{
    
 }
 
-.circles{
+.registercircles{
     position: absolute;
     top: 0;
     left: 0;
@@ -42,7 +42,7 @@ body{
     overflow: hidden;
 }
 
-.circles li{
+.registercircles li{
     position: absolute;
     display: block;
     list-style: none;
@@ -54,7 +54,7 @@ body{
     
 }
 
-.circles li:nth-child(1){
+.registercircles li:nth-child(1){
     left: 25%;
     width: 80px;
     height: 80px;
@@ -62,7 +62,7 @@ body{
 }
 
 
-.circles li:nth-child(2){
+.registercircles li:nth-child(2){
     left: 10%;
     width: 20px;
     height: 20px;
@@ -70,14 +70,14 @@ body{
     animation-duration: 12s;
 }
 
-.circles li:nth-child(3){
+.registercircles li:nth-child(3){
     left: 70%;
     width: 20px;
     height: 20px;
     animation-delay: 4s;
 }
 
-.circles li:nth-child(4){
+.registercircles li:nth-child(4){
     left: 40%;
     width: 60px;
     height: 60px;
@@ -85,28 +85,28 @@ body{
     animation-duration: 18s;
 }
 
-.circles li:nth-child(5){
+.registercircles li:nth-child(5){
     left: 65%;
     width: 20px;
     height: 20px;
     animation-delay: 0s;
 }
 
-.circles li:nth-child(6){
+.registercircles li:nth-child(6){
     left: 75%;
     width: 110px;
     height: 110px;
     animation-delay: 3s;
 }
 
-.circles li:nth-child(7){
+.registercircles li:nth-child(7){
     left: 35%;
     width: 150px;
     height: 150px;
     animation-delay: 7s;
 }
 
-.circles li:nth-child(8){
+.registercircles li:nth-child(8){
     left: 50%;
     width: 25px;
     height: 25px;
@@ -114,7 +114,7 @@ body{
     animation-duration: 45s;
 }
 
-.circles li:nth-child(9){
+.registercircles li:nth-child(9){
     left: 20%;
     width: 15px;
     height: 15px;
@@ -122,7 +122,7 @@ body{
     animation-duration: 35s;
 }
 
-.circles li:nth-child(10){
+.registercircles li:nth-child(10){
     left: 85%;
     width: 150px;
     height: 150px;
@@ -350,4 +350,108 @@ h2 {
   .imessage p {
    
   }
+}
+.notification {
+  position: fixed;
+  top: 0.5rem;
+  margin-top: 10%;
+  margin-right: 10%;
+  right: 1rem;
+  /* align the content to the rigth */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: hsl(0, 0%, 20%);
+  /* hide the overflow to conceal the message when translated to the right of the container */
+  overflow-x: hidden;
+  /* padding to avoid cropping the box-shadow on the message */
+  padding: 0.25rem;
+}
+
+.notification__message {
+  display: grid;
+  grid-gap: 0.2rem;
+  grid-template-columns: 1fr auto;
+  padding: 0.5rem 1rem;
+  margin-right: 30%;
+  margin-top: 50%;
+  padding: 5%;
+  background: hsl(0, 0%, 100%);
+  border-radius: 10px;
+  box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.1), 0 2px 3px hsla(0, 0%, 0%, 0.1);
+  border-left: 0.5rem solid hsl(0, 0%, 100%);
+  /* by default hide the element from sight and include a transition for the chosen properties */
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  transition-property: transform, opacity, visibility;
+  transition-duration: 0.7s;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.notification__message h1 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.notification__message p {
+  max-width: 320px;
+  font-size: 0.8rem;
+  grid-column: 1/-1;
+}
+.notification__message button {
+  background: none;
+  border: none;
+  color: inherit;
+  width: 20px;
+  height: 20px;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  align-self: center;
+}
+.notification__message button svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* when the .notification container has a class of .received transition the message into view */
+.notification.received .notification__message {
+  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
+}
+/* change the border color according to the different modifiers
+! for each modifier specify also an svg icon in the background, to highlight the message
+*/
+.message--info {
+  border-left-color: #90dee9;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle stroke="none" fill="%2390dee9" cx="50" cy="22" r="8"></circle><path fill="none" stroke="%2390dee9" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" d="M 45 40 h 5 v 40 h -5 h 10"></path></svg>'),
+    hsl(0, 0%, 100%);
+  background-repeat: no-repeat;
+  background-size: 35px;
+  background-position: 100% 100%;
+}
+.message--success {
+  border-left-color: hsl(120, 67%, 74%);
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%2390e990" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" d="M 20 52 l 25 25 l 30 -50"></path></svg>'),
+    hsl(0, 0%, 100%);
+  background-repeat: no-repeat;
+  background-size: 35px;
+  background-position: 100% 100%;
+}
+.message--warning {
+  border-left-color: hsl(54, 67%, 74%);
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%23e9e090" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" d="M 50 18 v 40"></path><circle stroke="none" fill="%23e9e090" cx="50" cy="78" r="8"></circle></svg>'),
+    hsl(0, 0%, 100%);
+  background-repeat: no-repeat;
+  background-size: 35px;
+  background-position: 100% 100%;
+}
+.message--danger {
+  border-left-color: hsl(0, 67%, 74%);
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><g transform="translate(50 50) rotate(45)"><path fill="none" stroke="%23e99090" stroke-width="12" stroke-linejoin="round" stroke-linecap="round" d="M 0 -30 v 60 z M -30 0 h 60"></path></g></svg>'),
+    hsl(0, 0%, 100%);
+  background-repeat: no-repeat;
+  background-size: 35px;
+  background-position: 100% 100%;
 }
