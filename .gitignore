@@ -15,6 +15,7 @@ codecov
 xml-coverage/
 cobertura.xml
 public_html/
+junit.xml
 
 # jetbrains and composer
 .idea/
