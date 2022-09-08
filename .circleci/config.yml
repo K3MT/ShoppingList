@@ -39,6 +39,8 @@ jobs:
             rm -rf testOutput
             mkdir -p testOutput
             vendor/bin/phpunit
+      - store_test_results:
+          path: junit.xml
 
   build-test-codecov:
     docker: # run the steps with Docker
