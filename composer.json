@@ -1,0 +1,21 @@
+{
+    "name": "k3mt-server/test",
+    "description": "php unit tests for the backend",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "phpunit/phpunit": "^9.5",
+        "fakerphp/faker": "^1.20",
+        "phpunit/php-code-coverage": "^9.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Musa",
+            "email": "gumpu.musa@gmial.com"
+        }
+    ]
+}
