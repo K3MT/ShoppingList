@@ -71,7 +71,7 @@ export default function Login(props) {
     };
     console.log(data);
     axios
-      .post("https://k3mt-shopping-list-backend.herokuapp.com/src/login.php", {
+      .post("https://k3mt-shopping-list-backend.herokuapp.com/src/Login.php", {
         "data": data,
       })
       .then((result) => {
@@ -79,7 +79,7 @@ export default function Login(props) {
         if (result.data.length === 0) {
           generateMessage("User does not exist");
         } else {
-          navigate("/home");
+          setuserVerified(true);
         }
       });
   };
