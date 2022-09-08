@@ -39,6 +39,8 @@ jobs:
             rm -rf testOutput
             mkdir -p testOutput
             vendor/bin/phpunit
+      - store_test_results:
+          path: junit.xml
 
 #      - codecov/upload
 #          file: ~/ShoppingList/testOutput/coverage.xml
