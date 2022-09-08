@@ -80,98 +80,90 @@ export default function Login(props) {
           generateMessage("User does not exist");
         } else {
           setuserVerified(true);
+          navigate("/home");
         }
       });
   };
 
-  if(userVerified){
-    return(
-      <div>
-        <span>USER LOGGED IN</span>
+  return (
+    <div className="Auth-form-container">
+      <div class="loginarea">
+        <ul class="logincircles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
-    );
-  }
-  else{
-    return (
-      <div className="Auth-form-container">
-        <div class="loginarea">
-          <ul class="logincircles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
-  
-        <div class="loginnotification">
-          <div class="loginnotification__message message--info">
-            <h1></h1>
-            <p></p>
-            <button aria-labelledby="button-dismiss">
-              <span id="button-dismiss" hidden>
-                Dismiss
-              </span>
-              <svg viewBox="0 0 100 100" width="10" height="10">
-                <g
-                  stroke="currentColor"
-                  stroke-width="6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  fill="none"
-                >
-                  <g transform="translate(50 50) rotate(45)">
-                    <path d="M 0 -30 v 60 z M -30 0 h 60"></path>
-                  </g>
+
+      <div class="loginnotification">
+        <div class="loginnotification__message message--info">
+          <h1></h1>
+          <p></p>
+          <button aria-labelledby="button-dismiss">
+            <span id="button-dismiss" hidden>
+              Dismiss
+            </span>
+            <svg viewBox="0 0 100 100" width="10" height="10">
+              <g
+                stroke="currentColor"
+                stroke-width="6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                fill="none"
+              >
+                <g transform="translate(50 50) rotate(45)">
+                  <path d="M 0 -30 v 60 z M -30 0 h 60"></path>
                 </g>
-              </svg>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <form className="Auth-form" onSubmit={submitForm}>
+        <div className="Auth-form-content">
+          <h3 className="Auth-form-title">Login</h3>
+
+          <div className="form-group mt-3">
+            <label>Email address</label>
+            <input
+              type="email"
+              className="form-control mt-1"
+              placeholder="Enter email"
+              id="loginemail"
+            />
+          </div>
+          <div className="form-group mt-3">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control mt-1"
+              placeholder="Enter password"
+              name="userPassword"
+              id="loginpassword"
+            />
+          </div>
+          <a href="javascript:;" onClick={loginToreset}>
+            Forgot password?
+          </a>
+          <div className="d-grid gap-2 mt-3">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={checkFormValidity}
+            >
+              Submit
             </button>
           </div>
         </div>
-  
-        <form className="Auth-form" onSubmit={submitForm}>
-          <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Login</h3>
-  
-            <div className="form-group mt-3">
-              <label>Email address</label>
-              <input
-                type="email"
-                className="form-control mt-1"
-                placeholder="Enter email"
-                id="loginemail"
-              />
-            </div>
-            <div className="form-group mt-3">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control mt-1"
-                placeholder="Enter password"
-                name="userPassword"
-                id="loginpassword"
-              />
-            </div>
-            <a href="javascript:;" onClick={loginToreset}>
-              Forgot password?
-            </a>
-            <div className="d-grid gap-2 mt-3">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={checkFormValidity}
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    );
-  }
+      </form>
+    </div>
+  );
 }
