@@ -32,7 +32,6 @@ class GVM
         }
         else
         {
-            self::addHeaders();
             $inputStream = 'php://input';
         }
 
