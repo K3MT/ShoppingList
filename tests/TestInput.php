@@ -39,7 +39,7 @@
         $objContent = new stdClass();
 
         $bodyContent = new stdClass();
-        $bodyContent->userID = '2ae10548-2834-11ed-a567-e454e831c10d';
+        $bodyContent->userEmail = '2326254@students.wits.ac.za';
 
         $objContent->data = $bodyContent;
 

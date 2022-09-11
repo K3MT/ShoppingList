@@ -11,7 +11,7 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build-test-codecov:
+  test-deployment:
     docker: # run the steps with Docker
       - image: cimg/php:8.0.14-browsers
     working_directory: ~/ShoppingList
@@ -42,8 +42,36 @@ jobs:
       - store_test_results:
           path: junit.xml
 
-#      - codecov/upload
-#          file: ~/ShoppingList/testOutput/coverage.xml
+  build-test-codecov:
+    docker: # run the steps with Docker
+      - image: cimg/php:8.0.14-browsers
+    working_directory: ~/ShoppingList
+    steps:
+      - checkout
+      - run: sudo pecl install pcov
+      - run: sudo pecl install xdebug
+      - run: sudo composer selfupdate
+      - restore_cache: # special step to restore the dependency cache if `composer.lock` does not change
+          keys:
+            - composer-v1-{{ checksum "composer.lock" }}
+            # fallback to using the latest cache if no exact match is found (See https://circleci.com/docs/caching/)
+            - composer-v1-
+      - run: composer update # install -n --prefer-dist
+      - save_cache: # special step to save the dependency cache with the `composer.lock` cache key template
+          key: composer-v1-{{ checksum "composer.lock" }}
+          paths:
+            - vendor
+      - run: sudo composer dump-autoload -o
+
+      # run tests!
+      - run:
+          name: Run Tests
+          command: |
+            rm -rf testOutput
+            mkdir -p testOutput
+            vendor/bin/phpunit
+      - store_test_results:
+          path: junit.xml
       - run:
           name: Upload Coverage To CodeCov
           command: |
@@ -80,6 +108,11 @@ jobs:
 workflows:
   test-deploy-workflow:
     jobs:
+      - test-deployment:
+          filters:
+            branches:
+              only:
+                main-backend
       - build-test-codecov:
           filters:
             branches:
