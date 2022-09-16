@@ -7,7 +7,7 @@
 
 body{
     font-family: 'Exo', sans-serif;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .shoppinglist {
@@ -174,10 +174,10 @@ body{
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: fixed;
+  background: absolute;
   overflow: visible;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow: hidden;
   padding: 5%;
   margin-bottom: 5%;
   /* background-color: #0039A9; */

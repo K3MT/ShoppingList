@@ -352,7 +352,7 @@ h2 {
   }
 }
 .notification {
-  position: fixed;
+  position: absolute;
   top: 0.5rem;
   margin-top: 10%;
   margin-right: 10%;

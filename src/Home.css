@@ -1,54 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
-*{
-    margin: 0px;
-    padding: 0px;
-}
-
-body{
-    font-family: 'Exo', sans-serif;
-    overflow: auto;
-}
-
 .shoppinglist {
-    width: 100%;
-    height: 100%;
+    width: 103%;
+    height: 90%;
+    position: absolute;
+    top: 8%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding: 1%;
-    margin-left: 2%;
-
+    scroll-behavior: smooth;
+    overflow-y: scroll;
 }
 
-.context {
-    width: 100%;
-    position: absolute;
-    top:50vh;
-    
-}
-
-.context h1{
-    text-align: center;
-    color: #fff;
-    font-size: 50px;
-}
-
-
-.area{
+.homearea{
     background: #4e54c8;  
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
     width: 100%;
-    height:100vh;
-    
-   
+    height:100%;
+    position: absolute;
+    z-index: -2;
 }
 
-.circles{
+.homecircles{
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     z-index: -2;
@@ -56,7 +31,7 @@ body{
     background: #4e54c8;  
 }
 
-.circles li{
+.homecircles li{
     position: absolute;
     display: block;
     list-style: none;
@@ -64,11 +39,12 @@ body{
     height: 20px;
     background: rgba(255, 255, 255, 0.2);
     animation: animate 25s linear infinite;
-    bottom: -150px;
+    bottom: -100px;
+    overflow: hidden;
     
 }
 
-.circles li:nth-child(1){
+.homecircles li:nth-child(1){
     left: 25%;
     width: 80px;
     height: 80px;
@@ -76,7 +52,7 @@ body{
 }
 
 
-.circles li:nth-child(2){
+.homecircles li:nth-child(2){
     left: 10%;
     width: 20px;
     height: 20px;
@@ -84,14 +60,14 @@ body{
     animation-duration: 12s;
 }
 
-.circles li:nth-child(3){
+.homecircles li:nth-child(3){
     left: 70%;
     width: 20px;
     height: 20px;
     animation-delay: 4s;
 }
 
-.circles li:nth-child(4){
+.homecircles li:nth-child(4){
     left: 40%;
     width: 60px;
     height: 60px;
@@ -99,28 +75,28 @@ body{
     animation-duration: 18s;
 }
 
-.circles li:nth-child(5){
+.homecircles li:nth-child(5){
     left: 65%;
     width: 20px;
     height: 20px;
     animation-delay: 0s;
 }
 
-.circles li:nth-child(6){
+.homecircles li:nth-child(6){
     left: 75%;
     width: 110px;
     height: 110px;
     animation-delay: 3s;
 }
 
-.circles li:nth-child(7){
+.homecircles li:nth-child(7){
     left: 35%;
     width: 150px;
     height: 150px;
     animation-delay: 7s;
 }
 
-.circles li:nth-child(8){
+.homecircles li:nth-child(8){
     left: 50%;
     width: 25px;
     height: 25px;
@@ -128,7 +104,7 @@ body{
     animation-duration: 45s;
 }
 
-.circles li:nth-child(9){
+.homecircles li:nth-child(9){
     left: 20%;
     width: 15px;
     height: 15px;
@@ -136,7 +112,7 @@ body{
     animation-duration: 35s;
 }
 
-.circles li:nth-child(10){
+.homecircles li:nth-child(10){
     left: 85%;
     width: 150px;
     height: 150px;
@@ -162,49 +138,16 @@ body{
 
 }
 
-
-.App {
-  background-color: white;
-}
-
-.Auth-form-container {
+.Auth-form-container-home {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  background: fixed;
-  overflow: visible;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  padding: 5%;
-  margin-bottom: 5%;
-  /* background-color: #0039A9; */
-}
-
-.Auth-form {
-  width: 370px;
-  box-shadow: rgb(200 200 200 / 16%) 2px 2px 10px;
-  margin-top: 2%;
-  padding-top: 30px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   position: absolute;
-  padding-bottom: 20px;
-  border-radius: 8px;
-  background-color: white;
-}
-
-.Auth-form-content {
-  padding-left: 12%;
-  padding-right: 12%;
-}
-
-.Auth-form-title {
-  text-align: center;
-  margin-bottom: 1em;
-  font-size: 24px;
-  color: rgb(34, 34, 34);
-  font-weight: 800;
+  overflow: hidden;
 }
 
 .input:focus {
@@ -217,92 +160,9 @@ label {
   color: rgb(34, 34, 34);
 }
 
-body {
-  font-family: 'Alatsi', sans-serif;
-  margin: 0;
-  overflow: hidden;
-  background: black;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-}
-
 .title {
   font-size: 10vw;
   color: white;
-}
-
-canvas {
-  width: 100%;
-}
-
-.imessage {
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  font-family: "SanFrancisco";
-  font-size: 1.25rem;
-  margin: 0 auto 1rem;
-  width: 300px;
-  position: absolute;
-  border-radius: 2%;
-  margin-left: 50%;
-  margin-top: 11.5%;
-  height: 450px;
-  padding: 0.5rem 1.5rem;
-}
-.imessage_security {
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  font-family: "SanFrancisco";
-  font-size: 1.25rem;
-  margin: 0 auto 1rem;
-  width: 300px;
-  position: absolute;
-  border-radius: 2%;
-  margin-right: 50%;
-  margin-bottom: 6.8%;
-  height: 450px;
-  padding: 0.5rem 1.5rem;
-}
-
-.displayBadge{
-  margin-top: 5%; 
-  display: block; 
-  text-align :center;
-}
-
-.imessage_security p {
-  border-radius: 1.15rem;
-  line-height: 1.25;
-  padding: 0.5rem .875rem;
-  position: relative;
-  word-wrap: break-word;
-}
-
-.imessage p {
-  border-radius: 1.15rem;
-  line-height: 1.25;
-  padding: 0.5rem .875rem;
-  position: relative;
-  word-wrap: break-word;
-}
-
-p.from-me {
-  align-self: flex-end;
-  background-color: #248bf5;
-  color: #fff; 
-  margin: 1%;
 }
 
 /* general styling */
@@ -313,25 +173,7 @@ p.from-me {
     url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff") format("woff");
 }
 
-body {  
-  font-family: -apple-system, 
-    BlinkMacSystemFont, 
-    "Segoe UI", 
-    Roboto, 
-    Oxygen-Sans, 
-    Ubuntu, 
-    Cantarell, 
-    "Helvetica Neue", 
-    sans-serif;
-  font-weight: normal;
-  margin: 0;
-}
 
-.container {
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 1rem;
-}
 
 h1 {
   font-weight: normal;
@@ -346,32 +188,6 @@ h2 {
   padding-bottom: 1.5rem;
 }
 
-.comment {
-  color: #222;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  margin-bottom: 1.25rem;
-  max-width: 100%;
-  padding: 0;
-}
-
-@media screen and (width: 2000px) {
-  body {
-    width: 200px;
-    height: 200px;
-  }
-
-
-  .imessage {
-    width: 300px;
-    height: 300px;
-  }
-
-  .imessage p {
-   
-  }
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 * {
   margin: 0;
@@ -381,12 +197,21 @@ h2 {
 }
 
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 .navMenu {
   position: absolute;
-  top: 4%;
+  top: 3%;
   background: #4e54c8;  
   width: 90%;
-  height: 12vh;
+  height: 15%;
+  padding-top: 1%;
   overflow: hidden;
   align-items: center;
   align-content: center;
@@ -394,52 +219,23 @@ h2 {
   transform: translate(-50%, -50%);
 }
 
-
+.navMenu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  align-items: center;
+  display: inline-block;
+  width: 80px;
+  margin-left: 10%;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
 
 .navMenu a:hover {
   color: #fddb3a;
 }
 
-.navMenu .dot {
-  width: 6px;
-  height: 6px;
-  background: #fddb3a;
-  border-radius: 50%;
-  opacity: 0;
-  -webkit-transform: translateX(30px);
-  transform: translateX(30px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
 
-.navMenu a:nth-child(1):hover ~ .dot {
-  -webkit-transform: translateX(30px);
-  transform: translateX(30px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  opacity: 1;
-}
 
-.navMenu a:nth-child(2):hover ~ .dot {
-  -webkit-transform: translateX(110px);
-  transform: translateX(110px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  opacity: 1;
-}
-
-.navMenu a:nth-child(3):hover ~ .dot {
-  -webkit-transform: translateX(200px);
-  transform: translateX(200px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  opacity: 1;
-}
-
-.navMenu a:nth-child(4):hover ~ .dot {
-  -webkit-transform: translateX(285px);
-  transform: translateX(285px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  opacity: 1;
-}

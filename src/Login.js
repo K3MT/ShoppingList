@@ -13,10 +13,6 @@ export default function Login(props) {
 
   const [userVerified, setuserVerified] = useState(false);
 
-  // const handleChange = (e) => {
-  //   setData({ ...Data, [e.target.name]: e.target.name });
-  // };
-
   var loginnotification = document.querySelector(".loginnotification");
 
   // function called when the button to dismiss the message is clicked
@@ -64,7 +60,6 @@ export default function Login(props) {
   };
 
   const submitForm = () => {
-    console.log("hahaha");
     const data = {
       userEmail: document.getElementById("loginemail").value,
       userPassword: document.getElementById("loginpassword").value,
@@ -72,21 +67,20 @@ export default function Login(props) {
     console.log(data);
     axios
       .post("https://k3mt-shopping-list-backend.herokuapp.com/src/Login.php", {
-        "data": data,
+        data: data,
       })
       .then((result) => {
-        console.log(result.data);
         if (result.data.length === 0) {
           generateMessage("User does not exist");
         } else {
           setuserVerified(true);
-          navigate("/home");
+          navigate("/profile", { state: { userID: result.data[0].userID } });
         }
       });
   };
 
   return (
-    <div className="Auth-form-container">
+    <div className="Auth-form-container-login">
       <div class="loginarea">
         <ul class="logincircles">
           <li></li>

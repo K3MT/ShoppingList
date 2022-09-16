@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
-body{
-    font-family: 'Exo', sans-serif;
-}
 
 
 .context {
@@ -150,17 +141,14 @@ body{
 }
 
 
-.App {
-  background-color: white;
-}
-
-.Auth-form-container {
+.Auth-form-container-login {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
   /* background-color: #0039A9; */
 }
 
@@ -441,7 +429,7 @@ h2 {
 }
 
 .loginnotification {
-  position: fixed;
+  position: absolute;
   top: 0.5rem;
   right: 1rem;
   /* align the content to the rigth */
