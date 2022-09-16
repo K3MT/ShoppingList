@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.addButton{
+    position: absolute;
+    height: 7%;
+    width: 7%;
+    margin-top: 2%;
+    display: flex;
+    color: white;
+    background: black;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+.gameTile {
+    height: 500px;
+    padding: 0.5em 1em 1em 1em;
+    text-align: center;
+    border-radius: 0.8em;
+    max-width: 25em;
+    display: fixed;
+    background-color: white;
+    box-shadow: 2%;
+    margin: 2.5%;
+}
+
+.imageholder {
+    width: fit-content;
+    height: fit-content;
+    background-size: 'cover';
+    border-radius: '1em';
+}
+
+.showButtons {
+    width: inherit;
+    height: inherit;
+    background: rgba(195, 195, 195, 0.8);
+    display: flex;
+    flex-direction: row;
+    font-size: 5vh;
+    justify-content: space-around;
+    transition: ease-in-out 500ms;
+}
+
+.buttonHolder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonHolder :hover {
+    cursor: pointer;
+}
+
+
+
+.hideButtons {
+    display: none;
+}

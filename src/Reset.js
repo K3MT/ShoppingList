@@ -141,10 +141,6 @@ export default function Reset(props) {
     }
   };
 
-  // const changes = (e) => {
-  //   setData(...data, [e.])
-  // }
-
   const submitForm = () => {
     const data = {
       userEmail: document.getElementById("resetemail").value,
@@ -175,7 +171,6 @@ export default function Reset(props) {
       securityAnswer: answer,
       newPassword: password,
     };
-    console.log(data);
     axios
       .post("https://k3mt-shopping-list-backend.herokuapp.com/src/ResetPassword.php", {
         "data": data,

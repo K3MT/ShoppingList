@@ -1,0 +1,71 @@
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./EditProfile.css";
+import axios from "axios";
+export default function EditProfile(props) {
+  const { state } = useLocation();
+  let navigate = useNavigate();
+  const validateForm =()=>{
+    if(document.getElementById("newbio").value.length != 0 ){
+      let data = {
+        userID: state.userID,
+        userAboutMe: document.getElementById("newbio").value,
+      };
+      axios
+        .post(
+          "https://k3mt-shopping-list-backend.herokuapp.com/src/GetUserDetails.php",
+          {
+            data: data,
+          }
+        )
+        .then((result) => {
+          if(result.data.length!=0){
+            navigate("/profile", { state: { userID: state.userID } });
+          }
+        });
+    }
+  }
+  return (
+    <div className="Auth-form-container">
+      <div class="area">
+        <ul class="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+
+      <form className="Auth-form">
+        <div className="Auth-form-content">
+          <h3 className="Auth-form-title">Update your bio</h3>
+
+          <div className="form-group mt-3">
+            <label>New Bio</label>
+            <input
+              type="text"
+              className="form-control mt-1"
+              placeholder="Enter new bio"
+              id="newbio"
+            />
+          </div>
+          <div className="d-grid gap-2 mt-3">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={validateForm}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}

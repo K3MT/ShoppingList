@@ -18,6 +18,8 @@ function Tile({
     window.scroll(0, 0);
   }, []);
 
+  console.log("called 2");
+
   return (
     <div className="gameTile">
       <h3 className="Title">{title}</h3>
