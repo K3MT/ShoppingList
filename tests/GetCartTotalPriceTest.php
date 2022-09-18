@@ -38,7 +38,7 @@ class GetCartTotalPriceTest extends TestCase {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
     self::generateValidInput();
-    $this->expectOutputRegex("/totalCost/");
+    $this->expectOutputRegex("/(totalCost)*/");
     GetCartTotalPrice::makeCall();
   }
   /**
@@ -49,7 +49,7 @@ class GetCartTotalPriceTest extends TestCase {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
     self::generateInvalidInput();
-    $this->expectOutputRegex('/INVALID_USER/');
+    $this->expectOutputRegex('/(INVALID_USER)*/');
     GetCartTotalPrice::makeCall();
   }
 

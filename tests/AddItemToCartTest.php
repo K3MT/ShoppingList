@@ -37,7 +37,7 @@ class AddItemToCartTest extends TestCase {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
     self::generateValidInput();
-    $this->expectOutputRegex('/itemName/');
+    $this->expectOutputRegex('/itemName*|/');
     AddItemToCart::makeCall();
   }
   /**
@@ -48,7 +48,7 @@ class AddItemToCartTest extends TestCase {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
     self::generateInvalidInput();
-    $this->expectOutputRegex('/INVALID_ENTRY/');
+    $this->expectOutputRegex('/(INVALID_ENTRY)*/');
     AddItemToCart::makeCall();
   }
 

@@ -38,7 +38,7 @@ class UploadProfilePictureTest extends TestCase {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
     self::generateValidInput();
-    $this->expectOutputRegex('/name/');
+    $this->expectOutputRegex('/(name)*/');
     UploadProfilePicture::makeCall();
   }
   /**

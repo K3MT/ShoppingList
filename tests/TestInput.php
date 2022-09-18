@@ -4,6 +4,7 @@ use Faker\Factory;
 
 require_once 'vendor/autoload.php';
     const DEFAULT_USER_ID = 'ebd0ef94-2e9c-11ed-9ff1-062079ffe796';
+    const DEFAULT_IMAGE_URL = 'http://lorempixel.com/640/480/transport';
     const DEFAULT_USER_EMAIL = '2326254@students.wits.ac.za';
     const DEFAULT_SECURITY_ANSWER = 'alright';
     const DEFAULT_ITEM_ID = '52315eed-282f-11ed-a567-e454e831c10d';
@@ -192,7 +193,7 @@ require_once 'vendor/autoload.php';
 
         $bodyContent = new stdClass();
         $bodyContent->userID = DEFAULT_USER_ID;
-        $bodyContent->userImageURL = $faker->imageUrl();
+        $bodyContent->userImageURL = DEFAULT_IMAGE_URL;
 
         $objContent->data = $bodyContent;
 

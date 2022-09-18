@@ -32,21 +32,20 @@ class RemoveItemFromCartTest extends TestCase {
   }
 
   /**
-//   * @test
+   * @test
    * @Depends AddItemToCartTest::testValidMakeCall()
    * @Depends PurchaseCartTest::testValidMakeCall()
    */
-  public function MakeValidCall()
+  public function testMakeValidCall()
   {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
     self::generateValidInput();
-    AddItemToCart::makeCall();
-    RemoveItemFromCart::makeCall();
     $this->expectOutputRegex("/(itemName)*/");
+    RemoveItemFromCart::makeCall();
   }
   /**
-//   * @test
+   * @test
    * @Depends AddItemToCartTest::testMakeCall()
    */
   public function MakeInvalidCall()
