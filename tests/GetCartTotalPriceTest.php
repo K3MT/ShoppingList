@@ -1,28 +1,29 @@
 <?php
 // use TestInput;
 use \PHPUnit\Framework\TestCase;
-use App\AddItemToCart;
+use App\GetCartTotalPrice;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers \App\AddItemToCart
- * @uses \GVM
+ * @covers App\GetCartTotalPrice
+ * @covers \RequestObject
+ * @covers \GVM
  */
-class AddItemToCartTest extends TestCase {
+class GetCartTotalPriceTest extends TestCase {
 
   static function generateValidInput()
   {
-    $objContent = TestInput::getExistingItemContent();
+    $objContent = TestInput::getValidUserID();
 
     $jsonString = json_encode($objContent);
 
     TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
   }
-  static function generateInvalidInput() : void
+  static function generateInvalidInput()
   {
-    $objContent = TestInput::getWrongItemContent();
+    $objContent = TestInput::getInvalidUserID();
 
     $jsonString = json_encode($objContent);
 
@@ -32,24 +33,24 @@ class AddItemToCartTest extends TestCase {
   /**
    * @test
    */
-  public function testValidMakeCall()
+  public function testMakeValidCall()
   {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
     self::generateValidInput();
-    $this->expectOutputRegex('/itemName/');
-    AddItemToCart::makeCall();
+    $this->expectOutputRegex("/totalCost/");
+    GetCartTotalPrice::makeCall();
   }
   /**
    * @test
    */
-  public function testInvalidMakeCall()
+  public function testMakeInvalidCall()
   {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
     self::generateInvalidInput();
-    $this->expectOutputRegex('/INVALID_ENTRY/');
-    AddItemToCart::makeCall();
+    $this->expectOutputRegex('/INVALID_USER/');
+    GetCartTotalPrice::makeCall();
   }
 
 }

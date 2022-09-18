@@ -14,7 +14,17 @@ class ResetPasswordTest extends TestCase {
 
   static function generateValidInput() : string
   {
-    $objContent = TestInput::getResetPasswordInput();
+    $objContent = TestInput::getValidResetPasswordInput();
+
+    $jsonString = json_encode($objContent);
+
+    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+
+    return $objContent->data->newPassword;
+  }
+  static function generateInvalidInput() : string
+  {
+    $objContent = TestInput::getInvalidResetPasswordInput();
 
     $jsonString = json_encode($objContent);
 
@@ -23,16 +33,26 @@ class ResetPasswordTest extends TestCase {
     return $objContent->data->newPassword;
   }
 
-  public function testMakeCall()
+  /**
+   * @test
+   */
+  public function testMakeValidCall()
   {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
-    $newPassword = self::generateValidInput();
+    self::generateValidInput();
+    $this->expectOutputRegex('/userID/');
+    ResetPassword::makeCall();
+  }
+  /**
+   * @test
+   */
+  public function testMakeInvalidCall()
+  {
+    $_SERVER["REQUEST_METHOD"] = "POST";
 
-    $pattern = '/'.$newPassword.'/';
-
-    $this->expectOutputRegex($pattern);
-
+    self::generateInvalidInput();
+    $this->expectOutputRegex('//');
     ResetPassword::makeCall();
   }
 

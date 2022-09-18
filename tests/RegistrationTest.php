@@ -15,20 +15,41 @@ require_once('TestInput.php');
 
       static function generateValidInput()
       {
-        $objContent = TestInput::getNewUser();
+        $objContent = TestInput::getValidNewUser();
+
+        $jsonString = json_encode($objContent);
+
+        TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+      }
+      static function generateInvalidInput()
+      {
+        $objContent = TestInput::getInvalidNewUser();
 
         $jsonString = json_encode($objContent);
 
         TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
       }
 
-      public function testMakeCall()
+      /**
+       * @test
+       */
+      public function testValidMakeCall()
       {
-        self::generateValidInput();
         $_SERVER["REQUEST_METHOD"] = "POST";
 
+        self::generateValidInput();
         $this->expectOutputRegex('/userID/');
+        Registration::makeCall();
+      }
+      /**
+       * @test
+       */
+      public function testInvalidMakeCall()
+      {
+        $_SERVER["REQUEST_METHOD"] = "POST";
 
+        self::generateInvalidInput();
+        $this->expectOutputRegex('//');
         Registration::makeCall();
       }
 

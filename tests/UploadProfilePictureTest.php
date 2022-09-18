@@ -30,19 +30,27 @@ class UploadProfilePictureTest extends TestCase {
     TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
   }
 
-  public function testMakeCall()
+  /**
+   * @test
+   */
+  public function testMakeValidCall()
   {
     $_SERVER["REQUEST_METHOD"] = "POST";
-// TODO DEBUG AND COUT
-    self::generateInvalidInput();
-    $this->expectOutputRegex('/[]/');
-    UploadProfilePicture::makeCall();
 
     self::generateValidInput();
     $this->expectOutputRegex('/name/');
     UploadProfilePicture::makeCall();
+  }
+  /**
+   * @test
+   */
+  public function testMakeInvalidCall()
+  {
+    $_SERVER["REQUEST_METHOD"] = "POST";
 
-
+    self::generateInvalidInput();
+    $this->expectOutputRegex('//');
+    UploadProfilePicture::makeCall();
   }
 
 }
