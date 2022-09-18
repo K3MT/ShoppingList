@@ -48,12 +48,12 @@ class RemoveItemFromCartTest extends TestCase {
    * @test
    * @Depends AddItemToCartTest::testMakeCall()
    */
-  public function MakeInvalidCall()
+  public function testMakeInvalidCall()
   {
     $_SERVER["REQUEST_METHOD"] = "POST";
 
     self::generateInvalidInput();
-    $this->expectOutputRegex('/INVALID_ENTRY/');
+    $this->expectOutputRegex('/(INVALID_ENTRY)*/');
     RemoveItemFromCart::makeCall();
   }
 
