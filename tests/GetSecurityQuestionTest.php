@@ -1,5 +1,4 @@
 <?php
-
 // use TestInput;
 use \PHPUnit\Framework\TestCase;
 use App\GetSecurityQuestion;
@@ -12,26 +11,45 @@ require_once('TestInput.php');
  * @covers \RequestObject
  * @covers \GVM
  */
-class GetSecurityQuestionTest extends TestCase
-{
+class GetSecurityQuestionTest extends TestCase {
 
-  static function generateValidInput(): void
+  static function generateValidInput()
   {
-    $objContent = TestInput::getKnownSecurityQuestion();
+    $objContent = TestInput::getValidUserEmail();
+
+    $jsonString = json_encode($objContent);
+
+    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+  }
+  static function generateInvalidInput()
+  {
+    $objContent = TestInput::getInvalidUserEmail();
 
     $jsonString = json_encode($objContent);
 
     TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
   }
 
-
-  public function testMakeCall()
+  /**
+   * @test
+   */
+  public function testMakeValidCall()
   {
-    self::generateValidInput();
-
     $_SERVER["REQUEST_METHOD"] = "POST";
 
-    $this->expectOutputRegex('/What are you missing if you have everything?/');
+    self::generateValidInput();
+    $this->expectOutputRegex('/securityQuestion/');
+    GetSecurityQuestion::makeCall();
+  }
+  /**
+   * @test
+   */
+  public function testMakeInvalidCall()
+  {
+    $_SERVER["REQUEST_METHOD"] = "POST";
+
+    self::generateInvalidInput();
+    $this->expectOutputRegex('//');
     GetSecurityQuestion::makeCall();
   }
 

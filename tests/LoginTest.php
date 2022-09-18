@@ -31,13 +31,28 @@ require_once('TestInput.php');
       }
 
 
-      public function testMakeCall() 
+      /**
+       * @test
+       */
+      public function testValidMakeCall()
       {
         self::generateValidInput();
 
         $_SERVER["REQUEST_METHOD"] = "POST";
 
         $this->expectOutputRegex('/userID/');
+        Login::makeCall();
+      }
+      /**
+       * @test
+       */
+      public function testInvalidMakeCall()
+      {
+        self::generateInvalidInput();
+
+        $_SERVER["REQUEST_METHOD"] = "POST";
+
+        $this->expectOutputRegex('//');
         Login::makeCall();
       }
 

@@ -12,16 +12,6 @@ require_once('TestInput.php');
  */
 class GetAllItemsTest extends TestCase {
 
-
-  static function generateValidInput() : void
-  {
-    $objContent = TestInput::getNewUser();
-
-    $jsonString = json_encode($objContent);
-
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
-  }
-
   public function testMakeCall()
   {
     $_SERVER["REQUEST_METHOD"] = "GET";
