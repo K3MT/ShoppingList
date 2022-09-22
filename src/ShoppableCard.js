@@ -14,6 +14,7 @@ function ShoppableCard({
   arbTourney,
   setArbtourney,
   tournament_id,
+  item_id,
   user_id,
 }) {
   useEffect(() => {
@@ -23,8 +24,8 @@ function ShoppableCard({
   function addTocart() {
     console.log(document.getElementById("prodTitle").textContent);
     const data = {
-      userID: keyy,
-      itemID: user_id,
+      userID: user_id,
+      itemID: item_id,
     };
     axios
       .post(
@@ -55,7 +56,7 @@ function ShoppableCard({
         }}
       ></div>
       <button className="addButton" onClick={addTocart}>
-        Add
+        Add To Cart
       </button>
     </div>
   );
