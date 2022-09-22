@@ -10,7 +10,9 @@ export default function Profile(props) {
   const [categoryArray, setcategoryArray] = useState([]);
   const [currcategoryFilter, setcategoryFilter] = useState("Unfiltered");
   const [currSortOrder, setSortOrder] = useState("Unordered");
-  const [userInfo, setUserInfo] = useState([{name:"",surname:"",userAboutMe:"",userImageURL:""}]);
+  const [userInfo, setUserInfo] = useState([
+    { name: "", surname: "", userAboutMe: "", userImageURL: "" },
+  ]);
   const [stateChange, setstatechange] = useState(0);
   const [userInfofectched, setuserinfofecthed] = useState(true);
 
@@ -88,13 +90,13 @@ export default function Profile(props) {
   };
 
   let navigate = useNavigate();
-  const toEditProfile =()=>{
+  const toEditProfile = () => {
     navigate("/editprofile", { state: { userID: state.userID } });
-  }
+  };
 
-  const profileToCart =()=>{
+  const profileToCart = () => {
     navigate("/cart");
-  }
+  };
 
   return (
     <div className="Auth-form-container">
@@ -117,24 +119,24 @@ export default function Profile(props) {
           <div class="contentBx">
             <h2>Profile</h2>
             <div
-        style={{
-          width: "90%",
-          marginLeft: "5%",
-          height: "200px",
-          backgroundSize: "cover",
-          borderRadius: "1em",
-          backgroundImage: `url(${userInfo[0].userImageURL})`,
-        }}
-      ></div>
+              style={{
+                width: "90%",
+                marginLeft: "5%",
+                height: "200px",
+                backgroundSize: "cover",
+                borderRadius: "1em",
+                backgroundImage: `url(${userInfo[0].userImageURL})`,
+              }}
+            ></div>
             <h2>Name:{userInfo[0].name}</h2>
             <h2>Surname:{userInfo[0].surname}</h2>
             <h2>Bio:{userInfo[0].userAboutMe}</h2>
             <button className="editProfileBtn" onClick={toEditProfile}>
               Edit
-            </button>    
+            </button>
           </div>
         </div>
-        
+
         <span class="cartBtn">
           <a onClick={profileToCart}></a>
         </span>
