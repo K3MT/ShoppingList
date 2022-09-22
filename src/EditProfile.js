@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./EditProfile.css";
 import axios from "axios";
+
 export default function EditProfile(props) {
   const { state } = useLocation();
   let navigate = useNavigate();
@@ -13,12 +14,13 @@ export default function EditProfile(props) {
       };
       axios
         .post(
-          "https://k3mt-shopping-list-backend.herokuapp.com/src/GetUserDetails.php",
+          "https://k3mt-shopping-list-backend.herokuapp.com/src/UpdateAboutMe.php",
           {
             data: data,
           }
         )
         .then((result) => {
+          console.log(result);
           if(result.data.length!=0){
             navigate("/profile", { state: { userID: state.userID } });
           }
