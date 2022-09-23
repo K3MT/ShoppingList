@@ -39,9 +39,7 @@ function CartItem({
       )
       .then((result) => {
         console.log(result.data);
-        if (!result.data[0].INVALID_ENTRY) {
-          stateChanger(100 * game_id);
-        }
+        stateChanger(100 * game_id);
       });
   }
 
