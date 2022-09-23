@@ -1,23 +1,41 @@
 <?php
-namespace App;
+    # Using this namespace for testing purposes
+    namespace App;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-use GVM;
-use RequestObject;
+    # Using the required classes
+    use GVM;
+    use RequestObject;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class GetActiveCart{
-    public static function makeCall()
-    {
-        require_once('GVM.php');
-        require_once('RequestObject.php');
+    class GetActiveCart{
+        public static function makeCall()
+        {
+            # Including the required classes
+            require_once('GVM.php');
+            require_once('RequestObject.php');
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $json = GVM::getData();
+            # Get the "data" variable that stores the passed parameters in a post request using react
+            $json = GVM::getData();
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $userID = new RequestObject($json["userID"], true);
-        $parameters = array($userID);
-        $procedureName = "getActiveCart";
-        return GVM::makeCall($procedureName, $parameters, false);
+            # Getting the post variables
+            $userID = new RequestObject($json["userID"], true);
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            # Creating a parameter array and setting the procedure name for the procedure call
+            $parameters = array($userID);
+            $procedureName = "getActiveCart";
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            # Making the procedural call using these parameters
+            return GVM::makeCall($procedureName, $parameters, false);
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
     }
-}
 
-echo GetActiveCart::makeCall();
+    # Echoing the result
+    echo GetActiveCart::makeCall();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
