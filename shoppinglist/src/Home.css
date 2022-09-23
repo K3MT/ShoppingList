@@ -397,6 +397,7 @@ h2 {
 
 .navMenu a {
   color: white;
+  background-color: #4e54c8; 
   text-decoration: none;
   font-size: 1.2em;
   text-transform: uppercase;
@@ -412,20 +413,11 @@ h2 {
 }
 
 .navMenu a:hover {
-
+  background-color: #4e54c8; 
+  color: #222;
 }
 
-.navMenu .dot {
-  width: 6px;
-  height: 6px;
-  background: #fddb3a;
-  border-radius: 50%;
-  opacity: 0;
-  -webkit-transform: translateX(30px);
-  transform: translateX(30px);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
+
 
 .navMenu a:nth-child(1):hover ~ .dot {
   -webkit-transform: translateX(30px);

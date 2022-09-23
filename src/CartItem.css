@@ -4,22 +4,22 @@
 }
 
 
-.addProfileButton{
-    height:10%;
+.addButton{
+    height: 20%;
     width: 90%;
-    margin-top: 1.3rem;
+    margin-top: 1%;
     border: none;
     outline: none;
     color: white;
     font-weight: 500;
-    background: black;
-    /* background: #4b70e2; */
+    background: #4b70e2;
     cursor: pointer;
     border-radius: 12px;
     letter-spacing: 1.15px;
 }
-.Tile {
-    height: 500px;
+.cartgameTile {
+    height: 225px;
+    width: 100%;
     padding: 0.5em 1em 1em 1em;
     text-align: center;
     border-radius: 0.8em;
@@ -29,13 +29,6 @@
     background-color: white;
     box-shadow: 2%;
     margin: 2.5%;
-}
-
-.imageholder {
-    width: fit-content;
-    height: fit-content;
-    background-size: 'cover';
-    border-radius: '1em';
 }
 
 .showButtons {
@@ -59,8 +52,6 @@
 .buttonHolder :hover {
     cursor: pointer;
 }
-
-
 
 .hideButtons {
     display: none;

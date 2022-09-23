@@ -3,6 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Profile.css";
 import ShoppableCard from "./ShoppableCard.js";
 import axios from "axios";
+import { Dialog } from "primereact/dialog";
+import { InputText } from "primereact/inputtext";
+
 export default function Profile(props) {
   const { state } = useLocation();
   const [isResponse, setResponse] = useState(false);
@@ -15,6 +18,7 @@ export default function Profile(props) {
   ]);
   const [stateChange, setstatechange] = useState(0);
   const [userInfofectched, setuserinfofecthed] = useState(true);
+  const [image, setImage] = useState("");
 
   //get the different categories
   const categoryArrayupdate = () => {
@@ -95,7 +99,7 @@ export default function Profile(props) {
   };
 
   const profileToCart = () => {
-    navigate("/cart");
+    navigate("/cart", { state: { userID: state.userID } });
   };
 
   return (
@@ -122,12 +126,20 @@ export default function Profile(props) {
               style={{
                 width: "90%",
                 marginLeft: "5%",
-                height: "200px",
+                height: "210px",
                 backgroundSize: "cover",
                 borderRadius: "1em",
                 backgroundImage: `url(${userInfo[0].userImageURL})`,
               }}
             ></div>
+            {/* <InputText type="file" accept="/image/" onChange={(event) => {
+            const file = event.target.files[0];
+            if (file && file.type.substring(0, 5) === "image") {
+              setImage(file)
+            } else {
+              setImage(userInfo.userImageURL)
+            }
+          }}/> */}
             <h2>Name:{userInfo[0].name}</h2>
             <h2>Surname:{userInfo[0].surname}</h2>
             <h2>Bio:{userInfo[0].userAboutMe}</h2>
@@ -227,6 +239,7 @@ export default function Profile(props) {
                   tournament_id={item.itemMass}
                   arbTourney={item.itemMass}
                   setArbtourney={item.brandID}
+                  item_id={item.itemID}
                   user_id={state.userID}
                 />
               );

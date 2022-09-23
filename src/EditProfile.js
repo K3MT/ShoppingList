@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./EditProfile.css";
 import axios from "axios";
+
 export default function EditProfile(props) {
   const { state } = useLocation();
   let navigate = useNavigate();

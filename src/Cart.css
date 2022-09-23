@@ -1,3 +1,56 @@
+.cartArea{
+    width: 101%;
+    height: 101%;
+    background-color: #fff;
+    box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.7), 2px 2px 5px rgba(94, 104, 121, 0.3);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    border-radius: 0%;
+}
+
+.cartList{
+    display: flex;
+    top: 19%;
+    height: 78%;
+    width: 100%;
+    position: absolute;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  z-index: 0;
+}
+
+.cartInfo{
+    width: 90%;
+    height: 12%;
+    top: 5%;
+    left: 6%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.cartTotalPrice{
+    color: #fff;
+}
+
+.CheckoutBtn{
+    height: 90%;
+    width: 19%;
+    margin-top: 1%;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: 500;
+    background: #131313;
+    cursor: pointer;
+    border-radius: 12px;
+    letter-spacing: 1.15px;
+}
+
 .Auth-form-container {
     display: flex;
     flex-direction: row;
