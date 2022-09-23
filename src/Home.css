@@ -207,11 +207,11 @@ h2 {
 
 .navMenu {
   position: absolute;
-  top: 3%;
+  top: 2%;
+  
   background: #4e54c8;  
   width: 90%;
-  height: 15%;
-  padding-top: 1%;
+  height: 9%;
   overflow: hidden;
   align-items: center;
   align-content: center;
@@ -221,6 +221,7 @@ h2 {
 
 .navMenu a {
   color: white;
+  background-color: #4e54c8; 
   text-decoration: none;
   font-size: 1.2em;
   text-transform: uppercase;
@@ -228,14 +229,48 @@ h2 {
   align-items: center;
   display: inline-block;
   width: 80px;
+  padding: 1%;
+  margin: 2%;
   margin-left: 10%;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
 .navMenu a:hover {
-  color: #fddb3a;
+  background-color: #4e54c8; 
+  color: yellow;
 }
 
 
 
+.navMenu a:nth-child(1):hover ~ .dot {
+  -webkit-transform: translateX(30px);
+  transform: translateX(30px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(2):hover ~ .dot {
+  -webkit-transform: translateX(110px);
+  transform: translateX(110px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(3):hover ~ .dot {
+  -webkit-transform: translateX(200px);
+  transform: translateX(200px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(4):hover ~ .dot {
+  -webkit-transform: translateX(285px);
+  transform: translateX(285px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}

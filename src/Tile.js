@@ -21,7 +21,7 @@ function Tile({
   console.log("called 2");
 
   return (
-    <div className="gameTile">
+    <div className="homegameTile">
       <h3 className="Title">{title}</h3>
       <h3 className="Title">R{game_id}</h3>
       <div

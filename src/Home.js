@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Tile from "./Tile.js";
 import "./Home.css";
 import jdata from "./data.json";
-import Tile from "./Tile.js";
 import { useNavigate } from "react-router-dom";
 export default function Home(props) {
   console.log(jdata.data[0].itemID);

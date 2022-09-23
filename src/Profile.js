@@ -3,9 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Profile.css";
 import ShoppableCard from "./ShoppableCard.js";
 import axios from "axios";
-import { Dialog } from 'primereact/dialog'
-import { InputText } from 'primereact/inputtext'
-
+import { Dialog } from "primereact/dialog";
+import { InputText } from "primereact/inputtext";
 
 export default function Profile(props) {
   const { state } = useLocation();
@@ -14,7 +13,9 @@ export default function Profile(props) {
   const [categoryArray, setcategoryArray] = useState([]);
   const [currcategoryFilter, setcategoryFilter] = useState("Unfiltered");
   const [currSortOrder, setSortOrder] = useState("Unordered");
-  const [userInfo, setUserInfo] = useState([{name:"",surname:"",userAboutMe:"",userImageURL:""}]);
+  const [userInfo, setUserInfo] = useState([
+    { name: "", surname: "", userAboutMe: "", userImageURL: "" },
+  ]);
   const [stateChange, setstatechange] = useState(0);
   const [userInfofectched, setuserinfofecthed] = useState(true);
   const [image, setImage] = useState("");
@@ -93,13 +94,13 @@ export default function Profile(props) {
   };
 
   let navigate = useNavigate();
-  const toEditProfile =()=>{
+  const toEditProfile = () => {
     navigate("/editprofile", { state: { userID: state.userID } });
-  }
+  };
 
-  const profileToCart =()=>{
-    navigate("/cart");
-  }
+  const profileToCart = () => {
+    navigate("/cart", { state: { userID: state.userID } });
+  };
 
   return (
     <div className="Auth-form-container">
@@ -122,16 +123,16 @@ export default function Profile(props) {
           <div class="contentBx">
             <h2>Profile</h2>
             <div
-        style={{
-          width: "90%",
-          marginLeft: "5%",
-          height: "200px",
-          backgroundSize: "cover",
-          borderRadius: "1em",
-          backgroundImage: `url(${userInfo[0].userImageURL})`,
-        }}>
-        </div>
-        {/* <InputText type="file" accept="/image/" onChange={(event) => {
+              style={{
+                width: "90%",
+                marginLeft: "5%",
+                height: "210px",
+                backgroundSize: "cover",
+                borderRadius: "1em",
+                backgroundImage: `url(${userInfo[0].userImageURL})`,
+              }}
+            ></div>
+            {/* <InputText type="file" accept="/image/" onChange={(event) => {
             const file = event.target.files[0];
             if (file && file.type.substring(0, 5) === "image") {
               setImage(file)
@@ -144,10 +145,10 @@ export default function Profile(props) {
             <h2>Bio:{userInfo[0].userAboutMe}</h2>
             <button className="editProfileBtn" onClick={toEditProfile}>
               Edit
-            </button>    
+            </button>
           </div>
         </div>
-        
+
         <span class="cartBtn">
           <a onClick={profileToCart}></a>
         </span>

@@ -1,12 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import "./ShoppableCard.css";
+import "./CartItem.css";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 //TODO smooth out hover animation using css
 
-function ShoppableCard({
+function CartItem({
+  stateChanger,
   title,
   keyy,
   imageurl,
@@ -21,44 +22,40 @@ function ShoppableCard({
     window.scroll(0, 0);
   }, []);
 
-  function addTocart() {
+  function removeFromCart() {
     console.log(document.getElementById("prodTitle").textContent);
+    console.log(user_id);
+    console.log(item_id);
     const data = {
       userID: user_id,
       itemID: item_id,
     };
     axios
       .post(
-        "https://k3mt-shopping-list-backend.herokuapp.com/src/AddItemToCart.php",
+        "https://k3mt-shopping-list-backend.herokuapp.com/src/RemoveItemFromCart.php",
         {
           data: data,
         }
       )
       .then((result) => {
         console.log(result.data);
+        if (!result.data[0].INVALID_ENTRY) {
+          stateChanger(100 * game_id);
+        }
       });
   }
 
   return (
-    <div className="Tile">
+    <div className="cartgameTile">
       <h3 id="prodTitle" className="Title">
         {title}
       </h3>
-      <h3 className="Title">R{game_id}</h3>
-      <div
-        className="imageholder"
-        style={{
-          width: "20em",
-          height: "15em",
-          backgroundSize: "cover",
-          borderRadius: "1em",
-          backgroundImage: `url(${imageurl})`,
-        }}
-      ></div>
-      <button className="addProfileButton" onClick={addTocart}>
-        Add To Cart
+      <h3 className="Title">Price: R{game_id}</h3>
+      <h3 className="Title">Quantity: {keyy}</h3>
+      <button className="addButton" onClick={removeFromCart}>
+        Remove Item
       </button>
     </div>
   );
 }
-export default ShoppableCard;
+export default CartItem;
