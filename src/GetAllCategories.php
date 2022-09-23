@@ -1,22 +1,33 @@
 <?php
+    # Using this namespace for testing purposes
+    namespace App;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-namespace App;
+    # Using the required classes
+    use GVM;
+    use RequestObject;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-use GVM;
-
-class GetAllCategories
-{
-    public static function makeCall()
+    class GetAllCategories
     {
-        require_once('GVM.php');
+        public static function makeCall()
+        {
+            # Including the required classes
+            require_once('GVM.php');
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $parameters = array();
+            # Creating a parameter array and setting the procedure name for the procedure call
+            $parameters = array();
+            $procedureName = "getAllCategories";
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        $procedureName = "getAllCategories";
-        return GVM::makeCall($procedureName, $parameters, false);
+            # Making the procedural call using these parameters
+            return GVM::makeCall($procedureName, $parameters, false);
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        }
     }
-}
 
-echo GetAllCategories::makeCall();
-
+    # Echoing the result
+    echo GetAllCategories::makeCall();
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

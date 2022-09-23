@@ -1,22 +1,38 @@
 <?php
-
+    # Using this namespace for testing purposes
     namespace App;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    # Using the required classes
     use GVM;
+    use RequestObject;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     class GetAllItems
     {
         public static function makeCall()
         {
+            # Including the required classes
             require_once('GVM.php');
+            require_once('RequestObject.php');
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            # Get the "data" variable that stores the passed parameters in a post request using react
+            $json = GVM::getData();
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            # Creating a parameter array and setting the procedure name for the procedure call
             $parameters = array();
-
             $procedureName = "getAllItems";
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            # Making the procedural call using these parameters
             return GVM::makeCall($procedureName, $parameters, false);
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
     }
 
+    # Echoing the result
     echo GetAllItems::makeCall();
 
 ?>

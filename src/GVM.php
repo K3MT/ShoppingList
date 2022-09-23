@@ -3,6 +3,7 @@
 
 class GVM
 {
+    # Adding headers to remove CORS error
     public static function addHeaders()
     {
         if(!headers_sent()){
@@ -24,6 +25,7 @@ class GVM
         }
     }
 
+    # Getting the variable that holds the post data from react
     public static function getData(){
         
         if (defined('TEST_MODE') && TEST_MODE)
@@ -39,6 +41,7 @@ class GVM
         return json_decode(file_get_contents($inputStream), true)[$dataLabel];
     }
 
+    # Establishing a link with the databse
     public static function getLink(){
         $hostname = "k3mt-db.csig7fwo3yso.af-south-1.rds.amazonaws.com";
         $username = "Kaytee";
@@ -48,10 +51,12 @@ class GVM
         return mysqli_connect($hostname, $username, $password, $database);
     }
 
+    # Simplified process enclosing a string in quotes.
     public static function quotify($string){
         return "\"" . $string . "\"";
     }
 
+    # Will take in an array of parameters, and will create a parameters list for the backend call.
     public static function buildParameters($parameters){
         $result = "";
         for ($i = 0; $i < count($parameters); $i++){
@@ -74,6 +79,7 @@ class GVM
         return $result;
     }
 
+    # Will make and return the result of the ASCII call.
     public static function makeCall($procedureName, $parameters, $echoCall){
         GVM::addHeaders();
         $link = GVM::getLink();
