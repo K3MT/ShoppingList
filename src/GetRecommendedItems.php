@@ -8,7 +8,7 @@
     use RequestObject;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    class RemoveItemFromCart{
+    class GetRecommendedItems{
         public static function makeCall()
         {
             # Including the required classes
@@ -22,12 +22,11 @@
 
             # Getting the post variables
             $userID = new RequestObject($json["userID"], true);
-            $itemID = new RequestObject($json["itemID"], true);
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Creating a parameter array and setting the procedure name for the procedure call
-            $parameters = array($userID, $itemID);
-            $procedureName = "removeItemFromCart";
+            $parameters = array($userID);
+            $procedureName = "getRecommendedItems";
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Making the procedural call using these parameters
@@ -37,6 +36,6 @@
     }
 
     # Echoing the result
-    echo RemoveItemFromCart::makeCall()
+    echo GetRecommendedItems::makeCall();
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
