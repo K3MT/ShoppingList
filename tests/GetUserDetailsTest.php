@@ -9,7 +9,7 @@ require_once('TestInput.php');
 /**
  * @covers App\GetUserDetails
  * @covers \RequestObject
- * @covers \GVM
+ * @covers App\GVM
  */
 class GetUserDetailsTest extends TestCase {
 

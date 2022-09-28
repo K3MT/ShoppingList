@@ -8,7 +8,7 @@ require_once('TestInput.php');
 /**
  * @covers App\ResetPassword
  * @covers \RequestObject
- * @covers \GVM
+ * @covers App\GVM
  */
 class ResetPasswordTest extends TestCase {
 
