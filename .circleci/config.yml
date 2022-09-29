@@ -124,7 +124,7 @@ workflows:
 #              only:
 #                main-backend
 #      - build-test-codecov:
-       - hello-job
+      - hello-job:
           filters:
             branches:
               only:
