@@ -8,7 +8,7 @@
     use RequestObject;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    class GetUserDetails{
+    class GetRecommendedItems{
         public static function makeCall()
         {
             # Including the required classes
@@ -26,7 +26,7 @@
 
             # Creating a parameter array and setting the procedure name for the procedure call
             $parameters = array($userID);
-            $procedureName = "getUserDetails";
+            $procedureName = "getRecommendedItems";
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Making the procedural call using these parameters
@@ -36,6 +36,6 @@
     }
 
     # Echoing the result
-    echo GetUserDetails::makeCall();
+    echo GetRecommendedItems::makeCall();
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

@@ -8,7 +8,7 @@ require_once('TestInput.php');
 /**
  * @covers \App\Login
  * @covers \RequestObject
- * @covers \GVM
+ * @covers App\GVM
  */
     class LoginTest extends TestCase {
 

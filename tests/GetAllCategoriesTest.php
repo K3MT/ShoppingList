@@ -8,7 +8,7 @@ require_once('TestInput.php');
 
 /**
  * @covers \App\GetAllCategories
- * @uses \GVM
+ * @uses App\GVM
  */
 class GetAllCategoriesTest extends TestCase {
 

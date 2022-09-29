@@ -103,24 +103,35 @@ jobs:
             # Push quietly to prevent showing the token in log
             git push -q https://${K3MPT_GITHUB_TOKEN}@github.com/K3MT/ShoppingList.git
 
+  hello-job:
+    docker:
+      - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   test-deploy-workflow:
     jobs:
-      - test-deployment:
-          filters:
-            branches:
-              only:
-                main-backend
-      - build-test-codecov:
+#      - test-deployment:
+#          filters:
+#            branches:
+#              only:
+#                main-backend
+#      - build-test-codecov:
+      - hello-job:
           filters:
             branches:
               only:
                 dev-backend
       - deploy-to-main-backend:
-          requires:
-            - build-test-codecov
+#          requires:
+#            - build-test-codecov
           filters:
             branches:
               only:

@@ -9,7 +9,7 @@ require_once('TestInput.php');
 /**
  * @covers App\PurchaseCart
  * @covers \RequestObject
- * @covers \GVM
+ * @covers App\GVM
  */
 class PurchaseCartTest extends TestCase {
 
