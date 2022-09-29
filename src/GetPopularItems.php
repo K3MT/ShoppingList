@@ -8,7 +8,7 @@
     use RequestObject;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    class GetUserDetails{
+    class GetPopularItems{
         public static function makeCall()
         {
             # Including the required classes
@@ -16,17 +16,9 @@
             require_once('RequestObject.php');
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            # Get the "data" variable that stores the passed parameters in a post request using react
-            $json = GVM::getData();
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            # Getting the post variables
-            $userID = new RequestObject($json["userID"], true);
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
             # Creating a parameter array and setting the procedure name for the procedure call
-            $parameters = array($userID);
-            $procedureName = "getUserDetails";
+            $parameters = array();
+            $procedureName = "getPopularItems";
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Making the procedural call using these parameters
@@ -36,6 +28,6 @@
     }
 
     # Echoing the result
-    echo GetUserDetails::makeCall();
+    echo GetPopularItems::makeCall();
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

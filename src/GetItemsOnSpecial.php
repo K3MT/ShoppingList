@@ -4,11 +4,11 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     # Using the required classes
-    use GVM;
+    use App\GVM;
     use RequestObject;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    class RemoveItemFromCart{
+    class GetItemsOnSpecial{
         public static function makeCall()
         {
             # Including the required classes
@@ -16,18 +16,9 @@
             require_once('RequestObject.php');
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            # Get the "data" variable that stores the passed parameters in a post request using react
-            $json = GVM::getData();
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            # Getting the post variables
-            $userID = new RequestObject($json["userID"], true);
-            $itemID = new RequestObject($json["itemID"], true);
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
             # Creating a parameter array and setting the procedure name for the procedure call
-            $parameters = array($userID, $itemID);
-            $procedureName = "removeItemFromCart";
+            $parameters = array();
+            $procedureName = "getItemsOnSpecial";
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Making the procedural call using these parameters
@@ -37,6 +28,6 @@
     }
 
     # Echoing the result
-    echo RemoveItemFromCart::makeCall()
+    echo GetItemsOnSpecial::makeCall();
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

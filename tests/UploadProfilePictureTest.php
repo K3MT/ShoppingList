@@ -9,7 +9,7 @@ require_once('TestInput.php');
 /**
  * @covers App\UploadProfilePicture
  * @covers \RequestObject
- * @covers \GVM
+ * @covers App\GVM
  */
 class UploadProfilePictureTest extends TestCase {
 

@@ -10,7 +10,7 @@ require_once('TestInput.php');
 /**
  * @covers App\GetAllProductTypes
  * @covers \RequestObject
- * @covers \GVM
+ * @covers APP\GVM
  */
 class GetAllProductTypesTest extends TestCase
 {

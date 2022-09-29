@@ -4,11 +4,11 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     # Using the required classes
-    use GVM;
+    use App\GVM;
     use RequestObject;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    class AddItemToCart{
+    class AddItemToList{
         public static function makeCall()
         {
             # Including the required classes
@@ -23,11 +23,14 @@
             # Getting the post variables
             $userID = new RequestObject($json["userID"], true);
             $itemID = new RequestObject($json["itemID"], true);
+            $typeTemplate = new RequestObject($json["typeTemplate"], false);
+            $typeCart = new RequestObject($json["typeCart"], false);
+            $typePublic = new RequestObject($json["typePublic"], false);
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Creating a parameter array and setting the procedure name for the procedure call
-            $parameters = array($userID, $itemID);
-            $procedureName = "addItemToCart";
+            $parameters = array($userID, $itemID, $typeTemplate,$typeCart, $typePublic);
+            $procedureName = "addItemToList";
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Making the procedural call using these parameters
@@ -37,6 +40,6 @@
     }
 
     # Echoing the result
-    echo AddItemToCart::makeCall();
+    echo AddItemToList::makeCall();
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
