@@ -124,7 +124,7 @@ workflows:
 #              only:
 #                main-backend
 #      - build-test-codecov:
-      - hello-job:
+      - hello-job
       - deploy-to-main-backend:
 #          requires:
 #            - build-test-codecov
