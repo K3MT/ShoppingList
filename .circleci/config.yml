@@ -125,10 +125,6 @@ workflows:
 #                main-backend
 #      - build-test-codecov:
       - hello-job:
-          filters:
-            branches:
-              only:
-                dev-backend
       - deploy-to-main-backend:
 #          requires:
 #            - build-test-codecov
