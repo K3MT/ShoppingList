@@ -3,6 +3,10 @@
     namespace App;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    # Using the required classes
+    use RequestObject;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///
     class GVM
     {
         # Adding headers to remove CORS error
@@ -91,16 +95,17 @@
             $query = "call " . $procedureName . "(" . GVM::buildParameters($parameters) . ");";
             if ($r = mysqli_query($link, $query))
             {
-                if ($r instanceof mysqli_result){
-                    while ($row=$r->fetch_assoc()){
-                        $output[]=$row;
-                    }
+                while ($row=$r->fetch_assoc()){
+                    $output[]=$row;
                 }
+            }
+            else {
+                echo "Query failed\n";
             }
             mysqli_close($link);
 
             if ($echoCall){
-                echo $query;
+                echo $query . "\n";
             }
 
             return json_encode($output);
