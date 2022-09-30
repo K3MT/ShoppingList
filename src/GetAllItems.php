@@ -17,10 +17,6 @@
             require_once('RequestObject.php');
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            # Get the "data" variable that stores the passed parameters in a post request using react
-            $json = GVM::getData();
-            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
             # Creating a parameter array and setting the procedure name for the procedure call
             $parameters = array();
             $procedureName = "getAllItems";
