@@ -305,6 +305,7 @@ body{
   top: 8%;
   z-index: 200;
   left: 70%;
+  cursor: pointer;
 }
 .cartBtn a{
   font-size: 19px;

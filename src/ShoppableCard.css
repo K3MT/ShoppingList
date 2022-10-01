@@ -4,30 +4,65 @@
 }
 
 
-.addProfileButton{
-    height:10%;
-    width: 90%;
-    margin-top: 1.3rem;
-    border: none;
-    outline: none;
-    color: white;
-    font-weight: 500;
-    background: black;
-    /* background: #4b70e2; */
+.InfoButton{
+    height: 200px;
+    width: 30px;
+    margin: 1%;
+    position: absolute;
+    bottom: -75px;
+    text-align: center;
+    left: 85%;
     cursor: pointer;
-    border-radius: 12px;
+}
+
+.addProfileButton{
+    height:50px;
+    width:35%;
+    bottom:60px;
+    border: white;
+    z-index: 1000;
+    outline: none;
+    border-color: white;
+    color: white;
+    position: absolute;
+    background: black;
+    cursor: pointer;
+    border-radius: 25px;
+    right: 20px;
     letter-spacing: 1.15px;
 }
+
+.templateProfileButton{
+  height:50px;
+  width:50%;
+  bottom:60px;
+  left: 20px;
+  border: none;
+  outline: none;
+  color: white;
+  position: absolute;
+  background: black;
+  cursor: pointer;
+  border-radius: 25px;
+  letter-spacing: 1.15px;
+}
+
+.Title{
+    margin-top: 2%;
+}
+
 .Tile {
     height: 500px;
     padding: 0.5em 1em 1em 1em;
     text-align: center;
     border-radius: 0.8em;
-    box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.7), 2px 2px 5px rgba(94, 104, 121, 0.3);
+    /* box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.7), 2px 2px 5px rgba(94, 104, 121, 0.3); */
     max-width: 25em;
-    display: fixed;
+    display: flex;
+    flex-direction: column;
     background-color: white;
     box-shadow: 2%;
+    position: relative;
     margin: 2.5%;
 }
 
@@ -36,32 +71,50 @@
     height: fit-content;
     background-size: 'cover';
     border-radius: '1em';
+
 }
 
-.showButtons {
-    width: inherit;
-    height: inherit;
-    background: rgba(195, 195, 195, 0.8);
-    display: flex;
-    flex-direction: row;
-    font-size: 5vh;
-    justify-content: space-around;
-    transition: ease-in-out 500ms;
+.PopupInfoContent{
+    width:600px;
+    margin: 2%;
+    height:250px;
+    border-radius: 10%;
+    background-color: #ffffff;
 }
 
-.buttonHolder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.buttonHolder :hover {
+.modal {
+    font-size: 1200px;
+    background-color: black;
+    color: aqua;
+  }
+  .modal .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .modal .content {
+    width: 100%;
+    height: 500px;
+    padding: 10px 5px;
+  }
+  .modal .actions {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
+  }
+  .modal .close {
     cursor: pointer;
-}
-
-
-
-.hideButtons {
-    display: none;
-}
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+  }

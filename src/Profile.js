@@ -30,8 +30,6 @@ export default function Profile(props) {
     }
     setcategoryArray(curr);
   };
-  //Update userInfo
-
   //Catch request response from server
   useEffect(() => {
     let mounted = true;
@@ -56,12 +54,9 @@ export default function Profile(props) {
   useEffect(() => {
     let mounted = true;
     axios
-      .post(
-        "https://k3mt-shopping-list-backend.herokuapp.com/src/GetAllItems.php",
-        {
-          data: [],
-        }
-      )
+      .post("https://k3mt-backend.herokuapp.com//src/GetAllItems.php", {
+        data: [],
+      })
       .then((result) => {
         if (mounted) {
           if (currSortOrder == "Ascending") {
@@ -74,6 +69,7 @@ export default function Profile(props) {
               return parseFloat(b.itemPrice) - parseFloat(a.itemPrice);
             });
           }
+
           categoryArrayupdate();
           setListArray(Array.from(result.data));
           setResponse(true);
@@ -118,6 +114,7 @@ export default function Profile(props) {
           <li></li>
         </ul>
       </div>
+
       <div class="ProfileArea">
         <div class="card">
           <div class="contentBx">
@@ -132,14 +129,7 @@ export default function Profile(props) {
                 backgroundImage: `url(${userInfo[0].userImageURL})`,
               }}
             ></div>
-            {/* <InputText type="file" accept="/image/" onChange={(event) => {
-            const file = event.target.files[0];
-            if (file && file.type.substring(0, 5) === "image") {
-              setImage(file)
-            } else {
-              setImage(userInfo.userImageURL)
-            }
-          }}/> */}
+
             <h2>Name:{userInfo[0].name}</h2>
             <h2>Surname:{userInfo[0].surname}</h2>
             <h2>Bio:{userInfo[0].userAboutMe}</h2>
@@ -232,14 +222,13 @@ export default function Profile(props) {
             if (currcategoryFilter == "Unfiltered") {
               return (
                 <ShoppableCard
-                  title={item.itemName}
-                  keyy={item.itemID}
-                  imageurl={item.itemImageURL}
-                  game_id={item.itemPrice}
-                  tournament_id={item.itemMass}
-                  arbTourney={item.itemMass}
-                  setArbtourney={item.brandID}
-                  item_id={item.itemID}
+                  product_title={item.itemName}
+                  product_ID={item.itemID}
+                  product_imageurl={item.itemImageURL}
+                  product_price={item.itemPrice}
+                  product_mass={item.itemMass}
+                  product_brandID={item.brandID}
+                  product_description={item.itemDescription}
                   user_id={state.userID}
                 />
               );
