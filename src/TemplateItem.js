@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import "./CartItem.css";
+import "./TemplateItem.css";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 //TODO smooth out hover animation using css
 
-function CartItem({
+function TemplateItem({
   stateChanger,
   title,
   keyy,
@@ -22,19 +22,19 @@ function CartItem({
     window.scroll(0, 0);
   }, []);
 
-  function removeFromCart() {
+  function removeFromTemplate() {
     console.log(document.getElementById("prodTitle").textContent);
     console.log(user_id);
     console.log(item_id);
     const data = {
       userID: user_id,
       itemID: item_id,
-      typeTemplate: "false",
-      typeCart: "true",
+      typeTemplate: "true",
+      typeCart: "false",
       typePublic: "false",
     };
     axios
-      .post("https://k3mt-backend.herokuapp.com/src/RemoveItemFromList.php", {
+      .post("https://k3mt-backend.herokuapp.com//src/RemoveItemFromList.php", {
         data: data,
       })
       .then((result) => {
@@ -44,16 +44,15 @@ function CartItem({
   }
 
   return (
-    <div className="cartgameTile">
+    <div className="templategameTile">
       <h3 id="prodTitle" className="Title">
         {title}
       </h3>
       <h3 className="Title">Price: R{game_id}</h3>
-      <h3 className="Title">Quantity: {keyy}</h3>
-      <button className="addButton" onClick={removeFromCart}>
+      <button className="addButtontemplate" onClick={removeFromTemplate}>
         Remove Item
       </button>
     </div>
   );
 }
-export default CartItem;
+export default TemplateItem;

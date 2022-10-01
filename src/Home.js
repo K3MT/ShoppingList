@@ -8,16 +8,20 @@ export default function Home(props) {
   var listArray = Array.from(jdata.data);
   console.log(listArray);
 
+  //Initialize useNavigate for routing
   const navigate = useNavigate();
 
+  //Navigate from home to login page
   const homeToLogin = () => {
     navigate("/login");
   };
 
+  //Navigate to register from home
   const homeToRegister = () => {
     navigate("/register");
   };
 
+  //Return the html
   return (
     <div className="Auth-form-container-home">
       <span>

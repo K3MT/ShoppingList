@@ -4,8 +4,10 @@ import "./EditProfile.css";
 import axios from "axios";
 
 export default function EditProfile(props) {
+  //Use location to get sent attributes
   const { state } = useLocation();
   let navigate = useNavigate();
+  //Validate the form
   const validateForm = () => {
     if (document.getElementById("newbio").value.length != 0) {
       let data = {
@@ -58,6 +60,7 @@ export default function EditProfile(props) {
     }
   };
 
+  //Check if the image url exists
   async function exists(url) {
     try {
       const result = await fetch(url, { method: "HEAD" });
@@ -73,6 +76,7 @@ export default function EditProfile(props) {
     }
   }
 
+  //Return the html
   return (
     <div className="Auth-form-container">
       <div class="area">
