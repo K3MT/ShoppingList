@@ -22,10 +22,7 @@ require_once 'vendor/autoload.php';
       static string $usedItemID;
 
       static function log($message) {
-        $logFile = fopen('log.txt', 'a');
-
-        fwrite($logFile, $message."\n\n");
-        fclose($logFile);
+        fwrite(STDERR, $message."\n\n");
       }
       static function writeInput($fName, $strContent) {
         $_SERVER["REQUEST_METHOD"] = "POST";
