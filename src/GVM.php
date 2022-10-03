@@ -34,9 +34,9 @@
         # Getting the variable that holds the post data from react
         public static function getData(){
 
-            if (defined('TEST_MODE') && TEST_MODE)
+            if (defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE)
             {
-                $inputStream = __DIR__."/../".INPUT_TEST_FILE;
+              $inputStream = __DIR__."/../".INPUT_TEST_FILE;
             }
             else
             {
@@ -47,7 +47,7 @@
             return json_decode(file_get_contents($inputStream), true)[$dataLabel];
         }
 
-        # Establishing a link with the databse
+        # Establishing a link with the database
         public static function getLink(){
             $hostname = "k3mt-db.csig7fwo3yso.af-south-1.rds.amazonaws.com";
             $username = "Kaytee";
@@ -92,11 +92,14 @@
 
             $output=array();
 
-            $query = "call " . $procedureName . "(" . GVM::buildParameters($parameters) . ");";
-            if ($r = mysqli_query($link, $query))
+
+          $query = "call " . $procedureName . "(" . GVM::buildParameters($parameters) . ");";
+
+          if ($r = mysqli_query($link, $query))
             {
                 while ($row=$r->fetch_assoc()){
-                    $output[]=$row;
+
+                  $output[]=$row;
                 }
             }
             else {

@@ -5,7 +5,7 @@
          bootstrap="vendor/autoload.php"
          executionOrder="depends,defects"
          stopOnFailure="false"
-         beStrictAboutOutputDuringTests="true"
+         beStrictAboutOutputDuringTests="false"
          verbose="true">
     <php>
       <const name="TEST_MODE" value="true"/>

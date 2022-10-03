@@ -18,6 +18,7 @@
 
             # Get the "data" variable that stores the passed parameters in a post request using react
             $json = GVM::getData();
+
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Getting the post variables
@@ -27,6 +28,7 @@
             $typeCart = new RequestObject($json["typeCart"], false);
             $typePublic = new RequestObject($json["typePublic"], false);
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
             # Creating a parameter array and setting the procedure name for the procedure call
             $parameters = array($userID, $itemID, $typeTemplate,$typeCart, $typePublic);
