@@ -100,8 +100,8 @@ export default function Profile(props) {
 
   return (
     <div className="Auth-form-container">
-      <div class="area">
-        <ul class="circles">
+      <div class="Proarea">
+        <ul class="Procircles">
           <li></li>
           <li></li>
           <li></li>
