@@ -43,7 +43,7 @@ class PurchaseCartTest extends \PHPUnit\Framework\TestCase
 
     $response = PurchaseCart::makeCall();
 
-    $this->assertMatchesRegularExpression('/\"itemID\"|\[]/', $response, "Meant to either have an item or be empty");
+    $this->assertMatchesRegularExpression('/\"itemName\"|\[]/', $response, "Meant to either have an item or be empty");
   }
   /**
    * @test

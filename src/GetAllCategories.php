@@ -27,7 +27,9 @@
         }
     }
 
-    # Echoing the result
-    echo GetAllCategories::makeCall();
+    # Echoing the result if not in test mode
+    if (!(defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE)) {
+        echo GetAllCategories::makeCall();
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

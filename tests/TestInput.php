@@ -122,5 +122,30 @@ class TestInput
     return $objContent;
   }
 
+  /**
+   * Returns the quantity of items given the itemID within a response list
+   * @param array $response
+   * @param $itemID
+   * @return int
+   */
+  public static function getItemCount(array $response, string $itemID)
+  {
+    $itemDex = 0;
+
+    while ($itemDex < count($response)) {
+      $currItemID = (string) $response[$itemDex]->itemID;
+      if ($currItemID == $itemID) {
+        break;
+      }
+      ++$itemDex;
+    }
+
+    // If the itemID is not found there is no more of that item
+    if ($itemDex == count($response)) {
+      return 0;
+    }
+
+    return $response[$itemDex]->count;
+  }
 
 }

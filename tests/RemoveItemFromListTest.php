@@ -11,6 +11,7 @@ require_once('TestInput.php');
  * @covers App\RemoveItemFromList
  * @covers App\AddItemToList
  * @covers App\GVM
+ * @depends AddItemToListTest::testValidCall
  */
 class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
 {
@@ -42,31 +43,7 @@ class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
   }
 
   /**
-   * Returns the quantity of items given the itemID within a response list
-   * @param array $response
-   * @param $itemID
-   * @return int
-   */
-  private static function getItemCount(array $response, $itemID)
-  {
-    $itemDex = 0;
-    while ($itemDex < count($response)) {
-      if ((string) $response[$itemDex]->itemID != $itemID) {
-        ++$itemDex;
-      }
-    }
-
-    if ($itemDex == count($response)) {
-      return 0;
-    }
-
-    return $response[$itemID]->count;
-
-  }
-
-  /**
    * @test
-   * @depends AddItemToListTest::testValidCall
    */
   public function testValidCall()
   {
@@ -82,7 +59,7 @@ class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
 
     // Retrieve the current quantity of items added to the cart
     $jsonResponse = (array) json_decode($response);
-    $currQuantity = self::getItemCount($jsonResponse, $itemID);
+    $currQuantity = TestInput::getItemCount($jsonResponse, $itemID);
 
 
     for ($count = 0; $count < $maxRemovedItems; $count++) {
@@ -93,7 +70,7 @@ class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
 
     // Retrieve the current quantity of items removed from the cart, within the response
     $jsonResponse = (array) json_decode($response);
-    $currQuantity = self::getItemCount($jsonResponse, $itemID);
+    $currQuantity = TestInput::getItemCount($jsonResponse, $itemID);
 
     $this->assertEquals($currQuantity,$expectedRemainingQuantity, "The expected remaining items in the cart does not match the actual quantity");
   }

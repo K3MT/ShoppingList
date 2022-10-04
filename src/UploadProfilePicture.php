@@ -36,7 +36,9 @@ class UploadProfilePicture{
     }
 }
 
-    # Echoing the result
-    echo UploadProfilePicture::makeCall();
+    # Echoing the result if not in test mode
+    if (!(defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE)) {
+        echo UploadProfilePicture::makeCall();
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
