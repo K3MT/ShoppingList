@@ -9,8 +9,11 @@ class TestInput
   public static $POST = 'POST';
   public static $GET = 'GET';
   public static $DEFAULT_USER_ID = 'd27dcd5c-3f5d-11ed-a0a3-062079ffe796';
+  public static $DEFAULT_NAME = 'Myriam';
+  public static $DEFAULT_SURNAME = 'Ortiz';
   public static $DEFAULT_PASSWORD = '#9499Qwertz';
   public static $DEFAULT_IMAGE_URL = 'http://lorempixel.com/640/480/transport';
+  public static $DEFAULT_ABOUT_ME = 'I am a bot for testing the API of the system';
   public static $DEFAULT_EMAIL = '2326254@students.wits.ac.za';
   public static $DEFAULT_SECURITY_ANSWER = 'testing purposes';
   public static $DEFAULT_ITEM_ID = '52315eed-282f-11ed-a567-e454e831c10d';
@@ -28,7 +31,7 @@ class TestInput
   ];
 
   static function log($message) {
-    fwrite(STDERR, $message."\n\n");
+    fwrite(STDERR, "\n\nLOGGER:::\n".$message."\n\n");
   }
 
   /**
@@ -51,6 +54,7 @@ class TestInput
   {
     $faker = Faker\Factory::create();
     $dex = array_rand(self::$ITEM_IDS);
+
     $objContent = new stdClass();
 
     $bodyContent = new stdClass();
@@ -59,6 +63,59 @@ class TestInput
     $bodyContent->typeTemplate = "false";
     $bodyContent->typeCart = "false";
     $bodyContent->typePublic = "false";
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getUserID()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->userID = self::$DEFAULT_USER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getUserEmail()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->userID = self::$DEFAULT_USER_ID;
+    $bodyContent->userEmail = self::$DEFAULT_EMAIL;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getUserDetails()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->name = self::$DEFAULT_NAME;
+    $bodyContent->surname = self::$DEFAULT_SURNAME;
+    $bodyContent->userImageURL = self::$DEFAULT_IMAGE_URL;
+    $bodyContent->userAboutMe = self::$DEFAULT_ABOUT_ME;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getLoginDetails()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->userEmail = self::$DEFAULT_EMAIL;
+    $bodyContent->userPassword = self::$DEFAULT_PASSWORD;
 
     $objContent->data = $bodyContent;
 

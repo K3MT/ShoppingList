@@ -1,15 +1,15 @@
 <?php
 
 use \PHPUnit\Framework\TestCase;
-use App\AddItemToList;
+use App\GetSpecificItem;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers \App\AddItemToList
+ * @covers \App\GetSpecificItem
  * @covers App\GVM */
-class AddItemToListTest extends \PHPUnit\Framework\TestCase
+class GetSpecificItemTest extends \PHPUnit\Framework\TestCase
 {
   private static function generateValidRequest()
   {
@@ -43,11 +43,11 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
    */
   public function testValidCall()
   {
-    $addedItemID = self::generateValidRequest();
+    $expectedUUID = self::generateValidRequest();
 
-    $response = AddItemToList::makeCall();
+    $response = GetSpecificItem::makeCall();
 
-    $this->assertMatchesRegularExpression('/\"itemID\":\"'.$addedItemID.'\"/', $response, "Meant to be successful in adding an item to list");
+    $this->assertMatchesRegularExpression('/\"itemID\":\"'.$expectedUUID.'\"/', $response, "Meant to be successful in adding an item to list");
   }
   /**
    * @test
@@ -56,7 +56,7 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
   {
     self::generateInvalidRequest();
 
-    $response = AddItemToList::makeCall();
+    $response = GetSpecificItem::makeCall();
 
     $this->assertMatchesRegularExpression('/\"INVALID_ENTRY\"/', $response, "Meant to receive an INVALID_ENTRY response");
   }
