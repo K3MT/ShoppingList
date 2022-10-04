@@ -68,17 +68,17 @@ function ShoppableCard({
       <div
         className="imageholder"
         style={{
-          width: "20em",
-          height: "15em",
-          backgroundSize: "cover",
+          width: "100%",
+          height: "60%",
+          backgroundSize: "100% 100%",
           borderRadius: "1em",
           backgroundImage: `url(${product_imageurl})`,
         }}
       ></div>
-      <button className="addProfileButton" onClick={addTocart}>
+      <button className="btn" onClick={addTocart}>
         Add to cart
       </button>
-      <button className="templateProfileButton" onClick={addTotemplate}>
+      <button className="btn" onClick={addTotemplate}>
         Add to Template
       </button>
       <Popup
