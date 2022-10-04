@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Profile.css";
+// import "./Home.css";
 import ShoppableCard from "./ShoppableCard.js";
 import axios from "axios";
 import { Dialog } from "primereact/dialog";
@@ -114,107 +115,28 @@ export default function Profile(props) {
           <li></li>
         </ul>
       </div>
+      <span>
+
       <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> K3MT </a>
-      <div class="ProfileArea">
-        <div class="card">
-          <div class="contentBx">
-            <h2>Profile</h2>
-            <div
-              style={{
-                width: "90%",
-                marginLeft: "5%",
-                height: "210px",
-                backgroundSize: "cover",
-                borderRadius: "1em",
-                backgroundImage: `url(${userInfo[0].userImageURL})`,
-              }}
-            ></div>
-
-            <h2>Name:{userInfo[0].name}</h2>
-            <h2>Surname:{userInfo[0].surname}</h2>
-            <h2>Bio:{userInfo[0].userAboutMe}</h2>
-            <button className="btn" onClick={toEditProfile}>
-              Edit
-            </button>
-          </div>
-        </div>
-
-        <span class="cartBtn">
-          <a onClick={profileToCart}></a>
-        </span>
-      </div>
-
-      <div class="sec-center">
-        <input
-          class="dropdown"
-          type="checkbox"
-          id="dropdown-filter"
-          name="dropdown"
-        />
-        <label class="for-dropdown" for="dropdown-filter">
-          Filter Options <i class="uil uil-arrow-down"></i>
-        </label>
-        <div class="section-dropdown">
-          <input
-            class="dropdown-sub"
-            type="checkbox"
-            id="dropdown-sub"
-            name="dropdown-sub"
-          />
-          <label class="for-dropdown-sub" for="dropdown-sub">
-            Filter by type <i class="uil uil-plus"></i>
-          </label>
-          <div class="section-dropdown-sub">
-            {categoryArray.map((category) => {
-              const catcher = () => {
-                categoryFilter(category);
-              };
-              return (
-                <a onClick={catcher}>
-                  {category}
-                  <i class="uil uil-arrow-right"></i>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      <div class="sec-center-sort">
-        <input
-          class="dropdown"
-          type="checkbox"
-          id="dropdown-sort"
-          name="dropdown"
-        />
-        <label class="for-dropdown" for="dropdown-sort">
-          Sort Options <i class="uil uil-arrow-down"></i>
-        </label>
-        <div class="section-dropdown">
-          <input
-            class="dropdown-sub"
-            type="checkbox"
-            id="dropdown-sub-sort"
-            name="dropdown-sub"
-          />
-          <label class="for-dropdown-sub" for="dropdown-sub-sort">
-            Sort by price <i class="uil uil-plus"></i>
-          </label>
-          <div class="section-dropdown-sub">
-            {["Unordered", "Ascending", "Descending"].map((order) => {
-              const catcher = () => {
-                setOrder(order);
-              };
-              return (
-                <a onClick={catcher}>
-                  {order}
-                  <i class="uil uil-arrow-right"></i>
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+      <nav class="navMenu">
+        
+          <a href="#">Sort By</a>
+          <a href="#" >
+            Filter
+          </a>
+          <a href="#">Profile
+            
+          
+            
+          </a>
+          <a href="" onClick={profileToCart}>
+            Cart
+          </a>
+  
+          
+          
+        </nav>
+      </span>
 
       <div className="shoppableItems">
       <section class="home" id="home">

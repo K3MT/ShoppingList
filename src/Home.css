@@ -258,7 +258,7 @@ h2 {
   background: var(--black);
   color:#fff;
 }
-.navMenu {
+.navMenuHome {
   position: absolute;
   top: 2%;
   
@@ -281,7 +281,7 @@ h2 {
  .logo i{
   color:var(--orange);
 }
-.navMenu a {
+.navMenuHome a {
   color: black;
   background-color: white; 
   text-decoration: none;
@@ -298,14 +298,14 @@ h2 {
   transition: all 0.2s ease-in-out;
 }
 
-.navMenu a:hover {
+.navMenuHome a:hover {
   background-color: white; 
   color: red;
 }
 
 
 
-.navMenu a:nth-child(1):hover ~ .dot {
+.navMenuHome a:nth-child(1):hover ~ .dot {
   -webkit-transform: translateX(30px);
   transform: translateX(30px);
   -webkit-transition: all 0.2s ease-in-out;
@@ -313,7 +313,7 @@ h2 {
   opacity: 1;
 }
 
-.navMenu a:nth-child(2):hover ~ .dot {
+.navMenuHome a:nth-child(2):hover ~ .dot {
   -webkit-transform: translateX(110px);
   transform: translateX(110px);
   -webkit-transition: all 0.2s ease-in-out;
@@ -321,7 +321,7 @@ h2 {
   opacity: 1;
 }
 
-.navMenu a:nth-child(3):hover ~ .dot {
+.navMenuHome a:nth-child(3):hover ~ .dot {
   -webkit-transform: translateX(200px);
   transform: translateX(200px);
   -webkit-transition: all 0.2s ease-in-out;
@@ -329,7 +329,7 @@ h2 {
   opacity: 1;
 }
 
-.navMenu a:nth-child(4):hover ~ .dot {
+.navMenuHome a:nth-child(4):hover ~ .dot {
   -webkit-transform: translateX(285px);
   transform: translateX(285px);
   -webkit-transition: all 0.2s ease-in-out;

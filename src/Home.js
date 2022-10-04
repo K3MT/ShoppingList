@@ -27,7 +27,7 @@ export default function Home(props) {
     <div className="Auth-form-container-home">
       <span>
       <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> K3MT </a>
-        <nav class="navMenu">
+        <nav class="navMenuHome">
         
           <a href="#">Home</a>
           <a href="#" onClick={homeToLogin}>
