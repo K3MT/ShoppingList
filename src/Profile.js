@@ -100,8 +100,8 @@ export default function Profile(props) {
 
   return (
     <div className="Auth-form-container">
-      <div class="area">
-        <ul class="circles">
+      <div class="Proarea">
+        <ul class="Procircles">
           <li></li>
           <li></li>
           <li></li>
@@ -114,7 +114,7 @@ export default function Profile(props) {
           <li></li>
         </ul>
       </div>
-
+      <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> K3MT </a>
       <div class="ProfileArea">
         <div class="card">
           <div class="contentBx">
@@ -133,7 +133,7 @@ export default function Profile(props) {
             <h2>Name:{userInfo[0].name}</h2>
             <h2>Surname:{userInfo[0].surname}</h2>
             <h2>Bio:{userInfo[0].userAboutMe}</h2>
-            <button className="editProfileBtn" onClick={toEditProfile}>
+            <button className="btn" onClick={toEditProfile}>
               Edit
             </button>
           </div>
@@ -217,6 +217,13 @@ export default function Profile(props) {
       </div>
 
       <div className="shoppableItems">
+      <section class="home" id="home">
+
+      <div class="content">
+          <h3>fresh and <span>organic</span> products for you</h3>
+      </div>
+
+      </section>
         {isResponse &&
           listArray.map((item) => {
             if (currcategoryFilter == "Unfiltered") {

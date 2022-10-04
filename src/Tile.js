@@ -27,11 +27,12 @@ function Tile({
       <div
         className="imageholder"
         style={{
-          width: "20em",
-          height: "15em",
-          backgroundSize: "cover",
+          width: "100%",
+          height: "80%",
+          backgroundSize: "100% 100%",
           borderRadius: "1em",
           backgroundImage: `url(${imageurl})`,
+          
         }}
       ></div>
     </div>

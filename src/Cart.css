@@ -66,7 +66,7 @@
 }
 
 .cartTotalPrice{
-    color: #fff;
+    color: black;
 }
 
 .CheckoutBtn{
@@ -75,9 +75,9 @@
     margin-top: 1%;
     border: none;
     outline: none;
-    color: white;
+    color: black;
     font-weight: 500;
-    background: #131313;
+    background: rgb(214, 213, 213);
     cursor: pointer;
     border-radius: 12px;
     letter-spacing: 1.15px;
@@ -132,7 +132,7 @@
   }
 
 .area{
-    background: #4e54c8;  
+    background: white;  
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
     width: 105%;
     height:120vh;
@@ -155,7 +155,7 @@
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(163, 161, 161, 0.2);
     animation: animate 25s linear infinite;
     bottom: -150px;
     

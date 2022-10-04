@@ -31,6 +31,22 @@
     right: 20px;
     letter-spacing: 1.15px;
 }
+.btn{
+  margin-top: 1rem;
+  display: inline-block;
+  padding:.8rem 3rem;
+  font-size: 1rem;
+  border-radius: .3rem;
+  border:.2rem solid var(--black);
+  color:var(--black);
+  cursor: pointer;
+  background: none;
+}
+
+.btn:hover{
+  background: var(--orange);
+  color:#fff;
+}
 
 .templateProfileButton{
   height:50px;
@@ -57,13 +73,23 @@
     text-align: center;
     border-radius: 0.8em;
     /* box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.7), 2px 2px 5px rgba(94, 104, 121, 0.3); */
-    max-width: 25em;
+    width:300px;
     display: flex;
     flex-direction: column;
     background-color: white;
     box-shadow: 2%;
     position: relative;
     margin: 2.5%;
+    text-align: center;
+    padding:3rem 2rem;
+    outline-offset: -1rem;
+    outline: var(--outline);
+    box-shadow: var(--box-shadow);
+    transition: .2s linear;
+}
+.Tile:hover{
+  outline-offset: 0rem;
+  outline: var(--outline-hover);
 }
 
 .imageholder {
