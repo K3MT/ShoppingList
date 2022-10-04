@@ -217,6 +217,13 @@ export default function Profile(props) {
       </div>
 
       <div className="shoppableItems">
+      <section class="home" id="home">
+
+      <div class="content">
+          <h3>fresh and <span>organic</span> products for you</h3>
+      </div>
+
+      </section>
         {isResponse &&
           listArray.map((item) => {
             if (currcategoryFilter == "Unfiltered") {
