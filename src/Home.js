@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tile from "./Tile.js";
 import "./Home.css";
+import "./style.css";
 import jdata from "./data.json";
 import { useNavigate } from "react-router-dom";
 export default function Home(props) {
@@ -25,7 +26,9 @@ export default function Home(props) {
   return (
     <div className="Auth-form-container-home">
       <span>
+      <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> K3MT </a>
         <nav class="navMenu">
+        
           <a href="#">Home</a>
           <a href="#" onClick={homeToLogin}>
             Login
@@ -33,12 +36,28 @@ export default function Home(props) {
           <a href="#" onClick={homeToRegister}>
             Register
           </a>
+  
+          
+          
         </nav>
+
+
+        
+
       </span>
 
+
       <div className="shoppinglist">
+      <section class="home" id="home">
+
+      <div class="content">
+          <h3>fresh and <span>organic</span> products for you</h3>
+      </div>
+
+      </section>
         {listArray.map((item) => {
           return (
+            
             <Tile
               title={item.itemName}
               key={item.itemID}

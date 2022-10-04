@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://unpkg.com/swiper@7/swiper-bundle.min.css');
 
 .shoppinglist {
     width: 103%;
@@ -28,7 +31,7 @@
     height: 100%;
     z-index: -2;
     overflow: hidden;
-    background: #4e54c8;  
+    background: white;  
 }
 
 .homecircles li{
@@ -37,7 +40,7 @@
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(10, 10, 10, 0.2);
     animation: animate 25s linear infinite;
     bottom: -100px;
     overflow: hidden;
@@ -118,6 +121,39 @@
     height: 150px;
     animation-delay: 0s;
     animation-duration: 11s;
+}
+
+.home{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(./image/banner-bg.webp) no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 200%;;
+  padding-top: 17rem;
+  padding-bottom: 10rem;
+}
+
+.home .content{
+  text-align: center;
+  width:60rem;
+}
+
+.home .content h3{
+  color:var(--black);
+  font-size: 3rem;
+}
+
+.home .content h3 span{
+  color:var(--orange);
+}
+
+.home .content p{
+  color:var(--light-color);
+  font-size: 1.7rem;
+  padding:1rem 0;
+  line-height: 1.8;
 }
 
 
@@ -204,24 +240,50 @@ h2 {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+ .icons div{
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  border-radius: .5rem;
+  background: #eee;
+  color:var(--black);
+  font-size: 2rem;
+  margin-left: .3rem;
+  cursor: pointer;
+  text-align: center;
+  transform: translate(1200%, 12%);
+}
 
+ .icons div:hover{
+  background: var(--black);
+  color:#fff;
+}
 .navMenu {
   position: absolute;
   top: 2%;
   
-  background: #4e54c8;  
+  background: white;  
   width: 90%;
   height: 9%;
   overflow: hidden;
   align-items: center;
   align-content: center;
   -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  transform: translate(-30%, -50%);
+}
+  .logo{
+  font-size: 2rem;
+  font-weight: bolder;
+  color:var(--black);
+  transform: translate(0%, -110%);
 }
 
+ .logo i{
+  color:var(--orange);
+}
 .navMenu a {
-  color: white;
-  background-color: #4e54c8; 
+  color: black;
+  background-color: white; 
   text-decoration: none;
   font-size: 1.2em;
   text-transform: uppercase;
@@ -237,8 +299,8 @@ h2 {
 }
 
 .navMenu a:hover {
-  background-color: #4e54c8; 
-  color: yellow;
+  background-color: white; 
+  color: red;
 }
 
 
