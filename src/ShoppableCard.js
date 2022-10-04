@@ -6,6 +6,8 @@ import axios from "axios";
 import { BsInfoCircle } from "react-icons/bs";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 //TODO smooth out hover animation using css
 
@@ -38,6 +40,8 @@ function ShoppableCard({
       })
       .then((result) => {
         console.log(result.data);
+        toast.success("Successfully added to cart");
+        // window.alert("Successfully added to cart");
       });
   }
 
@@ -56,6 +60,7 @@ function ShoppableCard({
       })
       .then((result) => {
         console.log(result.data);
+        toast.success("Successfully added to template");
       });
   }
 
@@ -75,6 +80,7 @@ function ShoppableCard({
           backgroundImage: `url(${product_imageurl})`,
         }}
       ></div>
+      <ToastContainer/>
       <button className="btn" onClick={addTocart}>
         Add to cart
       </button>

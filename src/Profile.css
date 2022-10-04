@@ -844,3 +844,82 @@ a .uil {
   padding:1rem 0;
   line-height: 1.8;
 }
+
+.navMenu {
+  position: absolute;
+  top: 2%;
+  
+  background: white;  
+  width: 90%;
+  height: 20%;
+  overflow: hidden;
+  align-items: center;
+  align-content: center;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-40%, 0%);
+}
+  .logo{
+  font-size: 2rem;
+  font-weight: bolder;
+  color:var(--black);
+  transform: translate(0%, -110%);
+}
+
+ .logo i{
+  color:var(--orange);
+}
+.navMenu a {
+  color: black;
+  background-color: white; 
+  text-decoration: none;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  align-items: center;
+  display: inline-block;
+  width: 80px;
+  padding: 1%;
+  margin: 2%;
+  margin-left: 10%;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.navMenu a:hover {
+  background-color: white; 
+  color: red;
+}
+
+
+
+.navMenu a:nth-child(1):hover ~ .dot {
+  -webkit-transform: translateX(30px);
+  transform: translateX(30px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(2):hover ~ .dot {
+  -webkit-transform: translateX(110px);
+  transform: translateX(110px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(3):hover ~ .dot {
+  -webkit-transform: translateX(200px);
+  transform: translateX(200px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(4):hover ~ .dot {
+  -webkit-transform: translateX(285px);
+  transform: translateX(285px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
