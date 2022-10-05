@@ -4,11 +4,16 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     # Using the required classes
-    use RequestObject;
+    use App\RequestObject;
+    use TestInput;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///
     class GVM
     {
+      /**
+       * @codeCoverageIgnore
+       */
         # Adding headers to remove CORS error
         public static function addHeaders()
         {
@@ -40,7 +45,10 @@
             }
             else
             {
-                $inputStream = 'php://input';
+              // @codeCoverageIgnoreStart
+              $inputStream = 'php://input';
+              // @codeCoverageIgnoreEnd
+
             }
 
             $dataLabel = "data";
@@ -95,6 +103,9 @@
 
           $query = "call " . $procedureName . "(" . GVM::buildParameters($parameters) . ");";
 
+          require_once(__DIR__.'/../tests/TestInput.php');
+          TestInput::log("QUERY:\n".$query);
+
           if ($r = mysqli_query($link, $query))
             {
                 while ($row=$r->fetch_assoc()){
@@ -102,7 +113,9 @@
                   $output[]=$row;
                 }
             }
-            else {
+          // @codeCoverageIgnoreStart
+
+          else {
                 echo "Query failed\n";
             }
             mysqli_close($link);
@@ -110,8 +123,10 @@
             if ($echoCall){
                 echo $query . "\n";
             }
+          // @codeCoverageIgnoreEnd
 
-            return json_encode($output);
+
+          return json_encode($output);
         }
     }
 ?>

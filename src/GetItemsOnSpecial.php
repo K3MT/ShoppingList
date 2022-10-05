@@ -5,7 +5,7 @@
 
     # Using the required classes
     use App\GVM;
-    use RequestObject;
+    use App\RequestObject;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     class GetItemsOnSpecial{
@@ -27,9 +27,11 @@
         }
     }
 
+    // @codeCoverageIgnoreStart
     # Echoing the result if not in test mode
     if (!(defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE)) {
         echo GetItemsOnSpecial::makeCall();
     }
+    // @codeCoverageIgnoreEnd
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

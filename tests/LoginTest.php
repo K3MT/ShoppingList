@@ -29,7 +29,7 @@ class LoginTest extends \PHPUnit\Framework\TestCase
     $faker = Faker\Factory::create();
     $objRequest = TestInput:: getLoginDetails();
 
-    $objRequest->data->userPassword = $faker->realText(); // give a random uuid
+    $objRequest->data->userPassword = $faker->imei(); // give a random password
 
     $jsonString = json_encode($objRequest);
 

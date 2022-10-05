@@ -12,6 +12,7 @@ require_once('TestInput.php');
  * @covers App\AddItemToList
  * @covers App\GVM
  * @depends AddItemToListTest::testValidCall
+ * @depends AddItemToListTest::testInvalidCall
  */
 class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
 {

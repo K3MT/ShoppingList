@@ -12,6 +12,7 @@ require_once('TestInput.php');
  * @covers \App\GetActiveCart
  * @covers App\GVM
  * @depends GetActiveCartTest::testValidCall
+ * @depends GetActiveCartTest::testInvalidCall
  */
 class AddItemToListTest extends \PHPUnit\Framework\TestCase
 {

@@ -148,4 +148,37 @@ class TestInput
     return $response[$itemDex]->count;
   }
 
+  public static function getRegistrationDetails()
+  {
+    $faker = Faker\Factory::create();
+
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->firstName = $faker->firstName();
+    $bodyContent->lastName = $faker->lastName();
+    $bodyContent->userEmail = $faker->email();
+    $bodyContent->userPassword = $faker->imei();
+    $bodyContent->securityQuestion = $faker->words(5, true);
+    $bodyContent->securityAnswer = $faker->words(5, true);
+
+    $bodyContent->userAboutMe = 'I am '.$bodyContent->firstName.' and I am using K3MT Shopping List';
+
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getRequestObject()
+  {
+    $faker = Faker\Factory::create();
+
+    $requestObject = new stdClass();
+    $requestObject->key = $faker->word();
+    $requestObject->value = $faker->word();
+
+    return $requestObject;
+  }
+
 }
