@@ -118,16 +118,15 @@ jobs:
 workflows:
   test-deploy-workflow:
     jobs:
-#      - test-deployment:
-#          filters:
-#            branches:
-#              only:
-#                main-backend
-#      - build-test-codecov:
-      - hello-job
+      - test-deployment:
+          filters:
+            branches:
+              only:
+                main-backend
+      - build-test-codecov
       - deploy-to-main-backend:
-#          requires:
-#            - build-test-codecov
+          requires:
+            - build-test-codecov
           filters:
             branches:
               only:
