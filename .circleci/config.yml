@@ -123,7 +123,11 @@ workflows:
             branches:
               only:
                 main-backend
-      - build-test-codecov
+      - build-test-codecov:
+          filters:
+            branches:
+              only:
+                dev-backend
       - deploy-to-main-backend:
           requires:
             - build-test-codecov
