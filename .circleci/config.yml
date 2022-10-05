@@ -38,7 +38,7 @@ jobs:
           command: |
             rm -rf testOutput
             mkdir -p testOutput
-            vendor/bin/phpunit
+              vendor/bin/phpunit
       - store_test_results:
           path: junit.xml
 

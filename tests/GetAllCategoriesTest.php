@@ -1,5 +1,5 @@
 <?php
-// use TestInput;
+
 use \PHPUnit\Framework\TestCase;
 use App\GetAllCategories;
 
@@ -8,29 +8,21 @@ require_once('TestInput.php');
 
 /**
  * @covers \App\GetAllCategories
- * @uses App\GVM
- */
-class GetAllCategoriesTest extends TestCase {
-
-  static function generateValidInput()
-  {
-    $objContent = TestInput::getExistingItemContent();
-
-    $jsonString = json_encode($objContent);
-
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
-  }
-
+ * @covers App\GVM */
+class GetAllCategoriesTest extends \PHPUnit\Framework\TestCase
+{
   /**
    * @test
    */
-  public function testValidMakeCall()
+  public function testCall()
   {
-    $_SERVER["REQUEST_METHOD"] = "GET";
+    $_SERVER["REQUEST_METHOD"] = TestInput::$GET;
 
-    self::generateValidInput();
-    $this->expectOutputRegex('/categoryName/');
-    GetAllCategories::makeCall();
+    $response = GetAllCategories::makeCall();
+
+    $objResponse = (array) json_decode($response);
+
+    $this->assertGreaterThan(0, count($objResponse), 'There is meant to be more than one category');
+    $this->assertMatchesRegularExpression('/\"categoryName\"/', $response, "Meant to contain category names");
   }
-
 }

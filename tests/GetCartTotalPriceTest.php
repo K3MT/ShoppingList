@@ -1,5 +1,5 @@
 <?php
-// use TestInput;
+
 use \PHPUnit\Framework\TestCase;
 use App\GetCartTotalPrice;
 
@@ -7,50 +7,52 @@ require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers App\GetCartTotalPrice
- * @covers \RequestObject
- * @covers \GVM
- */
-class GetCartTotalPriceTest extends TestCase {
-
-  static function generateValidInput()
+ * @covers \App\GetCartTotalPrice
+ * @covers App\GVM */
+class GetCartTotalPriceTest extends \PHPUnit\Framework\TestCase
+{
+  private static function generateValidRequest()
   {
-    $objContent = TestInput::getValidUserID();
+    $objRequest = TestInput::getUserID();
 
-    $jsonString = json_encode($objContent);
+    $jsonString = json_encode($objRequest);
 
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
   }
-  static function generateInvalidInput()
+
+  private static function generateInvalidRequest()
   {
-    $objContent = TestInput::getInvalidUserID();
+    $faker = Faker\Factory::create();
+    $objRequest = TestInput::getUserID();
 
-    $jsonString = json_encode($objContent);
+    $objRequest->data->userID = $faker->uuid(); // give a random uuid
 
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+    $jsonString = json_encode($objRequest);
+
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+
   }
 
   /**
    * @test
    */
-  public function testMakeValidCall()
+  public function testValidCall()
   {
-    $_SERVER["REQUEST_METHOD"] = "POST";
+    self::generateValidRequest();
 
-    self::generateValidInput();
-    $this->expectOutputRegex("/(totalCost)*/");
-    GetCartTotalPrice::makeCall();
+    $response = GetCartTotalPrice::makeCall();
+
+    $this->assertMatchesRegularExpression('/\"totalCost\"|\[]/', $response, "Meant to have a total cost listed");
   }
   /**
    * @test
    */
-  public function testMakeInvalidCall()
+  public function testInvalidCall()
   {
-    $_SERVER["REQUEST_METHOD"] = "POST";
+    self::generateInvalidRequest();
 
-    self::generateInvalidInput();
-    $this->expectOutputRegex('/(INVALID_USER)*/');
-    GetCartTotalPrice::makeCall();
+    $response = GetCartTotalPrice::makeCall();
+
+    $this->assertMatchesRegularExpression('/\"INVALID_USER\"/', $response, "Meant to receive an INVALID_USER response");
   }
-
 }

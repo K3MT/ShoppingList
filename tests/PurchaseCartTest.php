@@ -1,5 +1,5 @@
 <?php
-// use TestInput;
+
 use \PHPUnit\Framework\TestCase;
 use App\PurchaseCart;
 
@@ -7,52 +7,53 @@ require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers App\PurchaseCart
- * @covers \RequestObject
+ * @covers \App\PurchaseCart
  * @covers App\GVM
  */
-class PurchaseCartTest extends TestCase {
-
-  static function generateValidInput()
+class PurchaseCartTest extends \PHPUnit\Framework\TestCase
+{
+  private static function generateValidRequest()
   {
-    $objContent = TestInput::getValidUserID();
+    $objRequest = TestInput::getUserID();
 
-    $jsonString = json_encode($objContent);
+    $jsonString = json_encode($objRequest);
 
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
   }
-  static function generateInvalidInput()
+
+  private static function generateInvalidRequest()
   {
-    $objContent = TestInput::getInvalidUserID();
+    $faker = Faker\Factory::create();
+    $objRequest = TestInput::getUserID();
 
-    $jsonString = json_encode($objContent);
+    $objRequest->data->userID = $faker->uuid(); // give a random uuid
 
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+    $jsonString = json_encode($objRequest);
+
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+
   }
 
   /**
    * @test
-   * @Depends AddItemToCartTest::testValidMakeCall()
    */
-  public function testValidMakeCall()
+  public function testValidCall()
   {
-    $_SERVER["REQUEST_METHOD"] = "POST";
+    self::generateValidRequest();
 
-    self::generateValidInput();
-    $this->expectOutputRegex('//');
-    PurchaseCart::makeCall();
+    $response = PurchaseCart::makeCall();
+
+    $this->assertMatchesRegularExpression('/\"itemName\"|\[]/', $response, "Meant to either have an item or be empty");
   }
   /**
    * @test
-   * @Depends AddItemToCartTest::testInvalidMakeCall()
    */
-  public function testInvalidMakeCall()
+  public function testInvalidCall()
   {
-    $_SERVER["REQUEST_METHOD"] = "POST";
+    self::generateInvalidRequest();
 
-    self::generateInvalidInput();
-    $this->expectOutputRegex('/INVALID_USER/');
-    PurchaseCart::makeCall();
+    $response = PurchaseCart::makeCall();
+
+    $this->assertMatchesRegularExpression('/\"INVALID_USER\"/', $response, "Meant to receive an INVALID_USER response");
   }
-
 }

@@ -4,11 +4,16 @@
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     # Using the required classes
-    use RequestObject;
+    use App\RequestObject;
+    use TestInput;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///
     class GVM
     {
+      /**
+       * @codeCoverageIgnore
+       */
         # Adding headers to remove CORS error
         public static function addHeaders()
         {
@@ -34,20 +39,23 @@
         # Getting the variable that holds the post data from react
         public static function getData(){
 
-            if (defined('TEST_MODE') && TEST_MODE)
+            if (defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE)
             {
-                $inputStream = __DIR__."/../".INPUT_TEST_FILE;
+              $inputStream = __DIR__."/../".INPUT_TEST_FILE;
             }
             else
             {
-                $inputStream = 'php://input';
+              // @codeCoverageIgnoreStart
+              $inputStream = 'php://input';
+              // @codeCoverageIgnoreEnd
+
             }
 
             $dataLabel = "data";
             return json_decode(file_get_contents($inputStream), true)[$dataLabel];
         }
 
-        # Establishing a link with the databse
+        # Establishing a link with the database
         public static function getLink(){
             $hostname = "k3mt-db.csig7fwo3yso.af-south-1.rds.amazonaws.com";
             $username = "Kaytee";
@@ -92,14 +100,22 @@
 
             $output=array();
 
-            $query = "call " . $procedureName . "(" . GVM::buildParameters($parameters) . ");";
-            if ($r = mysqli_query($link, $query))
+
+          $query = "call " . $procedureName . "(" . GVM::buildParameters($parameters) . ");";
+
+          require_once(__DIR__.'/../tests/TestInput.php');
+          TestInput::log("QUERY:\n".$query);
+
+          if ($r = mysqli_query($link, $query))
             {
                 while ($row=$r->fetch_assoc()){
-                    $output[]=$row;
+
+                  $output[]=$row;
                 }
             }
-            else {
+          // @codeCoverageIgnoreStart
+
+          else {
                 echo "Query failed\n";
             }
             mysqli_close($link);
@@ -107,8 +123,10 @@
             if ($echoCall){
                 echo $query . "\n";
             }
+          // @codeCoverageIgnoreEnd
 
-            return json_encode($output);
+
+          return json_encode($output);
         }
     }
 ?>

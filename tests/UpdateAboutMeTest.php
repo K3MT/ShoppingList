@@ -1,56 +1,113 @@
 <?php
-// use TestInput;
+
+use App\GetUserDetails;
 use \PHPUnit\Framework\TestCase;
 use App\UpdateAboutMe;
+use App\Registration;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers App\UpdateAboutMe
- * @covers \RequestObject
+ * @covers \App\UpdateAboutMe
+ * @covers \App\Registration
  * @covers App\GVM
+ * @depends RegistrationTest::testValidCall
+ * @depends RegistrationTest::testInvalidCall
+ * @depends GetUserDetailsTest::testValidCall
+ * @depends GetUserDetailsTest::testInvalidCall
  */
-class UpdateAboutMeTest extends TestCase {
-
-  static function generateValidInput()
+class UpdateAboutMeTest extends \PHPUnit\Framework\TestCase
+{
+  private static function writeNewAboutMe($objRequest, $userID)
   {
-    $objContent = TestInput::getValidAboutMe();
+    $faker = Faker\Factory::create();
 
-    $jsonString = json_encode($objContent);
+    $objRequest->data->userID = $userID;
+    $objRequest->data->userAboutMe = $faker->words(10, true);
 
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+    $jsonString = json_encode($objRequest);
+
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+
+    return $objRequest->data->userAboutMe;
   }
-  static function generateInvalidInput()
+
+  private static function writeUserDetailsRequest($userID)
   {
-    $objContent = TestInput::getInvalidAboutMe();
+    $objRequest = TestInput::getUserID();
 
-    $jsonString = json_encode($objContent);
+    $objRequest->data->userID = $userID; // Retrieve the new user ID of the newly registered user
 
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+    $jsonString = json_encode($objRequest);
+
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+  }
+
+  private static function generateValidRequest()
+  {
+    $objRequest = TestInput::getRegistrationDetails();
+
+    $jsonString = json_encode($objRequest);
+
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+
+    return $objRequest;
+  }
+
+  private static function generateInvalidRequest()
+  {
+    $faker = Faker\Factory::create();
+
+    $objRequest = TestInput::getRegistrationDetails();
+
+    $objRequest->data->userID = $faker->uuid();
+    $objRequest->data->aboutMe = $faker->words(5, true);
+
+    $jsonString = json_encode($objRequest);
+
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+
   }
 
   /**
    * @test
    */
-  public function testMakeValidCall()
+  public function testValidCall()
   {
-    $_SERVER["REQUEST_METHOD"] = "POST";
+    $faker = Faker\Factory::create();
+    $objNewUserRequest = self::generateValidRequest();
 
-    self::generateValidInput();
-    $this->expectOutputRegex('/name/');
-    UpdateAboutMe::makeCall();
+    $response = Registration::makeCall();
+    $jsonResponse = (array) json_decode($response);
+    $newUUID = $jsonResponse[0]->userID;
+
+    self::writeUserDetailsRequest($newUUID);
+    $response = GetUserDetails::makeCall();
+    TestInput::log($response);
+    $jsonResponse = (array) json_decode($response);
+    $currUserDetails = $jsonResponse[0];
+
+    $expectedAboutMe = self::writeNewAboutMe($objNewUserRequest, $newUUID);
+    $response = UpdateAboutMe::makeCall();
+    TestInput::log($response);
+    $jsonResponse = (array) json_decode($response);
+    $updateAboutMeResponse = $jsonResponse[0];
+
+    $this->assertEquals($updateAboutMeResponse->name, $currUserDetails->name, "The first name associated with the new UUID is invalid");
+    $this->assertEquals($updateAboutMeResponse->surname, $currUserDetails->surname, "The last name associated with the new UUID is invalid");
+    $this->assertEquals($updateAboutMeResponse->userImageURL, $currUserDetails->userImageURL, "The image URL associated with the new UUID is invalid");
+    $this->assertEquals($updateAboutMeResponse->userAboutMe, $expectedAboutMe, "The new about me is invalid");
   }
   /**
    * @test
    */
-  public function testMakeInvalidCall()
+  public function testInvalidCall()
   {
-    $_SERVER["REQUEST_METHOD"] = "POST";
+    self::generateInvalidRequest();
 
-    self::generateInvalidInput();
-    $this->expectOutputRegex('//');
-    UpdateAboutMe::makeCall();
+    $response = UpdateAboutMe::makeCall();
+
+    $this->assertMatchesRegularExpression('/\"INVALID_USER\"/', $response, "Meant to receive an INVALID_USER response");
   }
-
 }

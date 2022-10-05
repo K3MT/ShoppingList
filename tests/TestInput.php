@@ -1,296 +1,184 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
 use Faker\Factory;
 
-require_once 'vendor/autoload.php';
-    const DEFAULT_USER_ID = 'ebd0ef94-2e9c-11ed-9ff1-062079ffe796';
-    const DEFAULT_IMAGE_URL = 'http://lorempixel.com/640/480/transport';
-    const DEFAULT_USER_EMAIL = '2326254@students.wits.ac.za';
-    const DEFAULT_SECURITY_ANSWER = 'alright';
-    const DEFAULT_ITEM_ID = '52315eed-282f-11ed-a567-e454e831c10d';
-    const ITEM_IDS = ['52315eed-282f-11ed-a567-e454e831c10d',
-        '5232427d-282f-11ed-a567-e454e831c10d',
-        '5243e9cc-282f-11ed-a567-e454e831c10d',
-        '523b7f71-282f-11ed-a567-e454e831c10d',
-        '524074a7-282f-11ed-a567-e454e831c10d',
-        '52449533-282f-11ed-a567-e454e831c10d',
-        ];
+class TestInput
+{
+  public static $POST = 'POST';
+  public static $GET = 'GET';
+  public static $DEFAULT_USER_ID = 'd27dcd5c-3f5d-11ed-a0a3-062079ffe796';
+  public static $DEFAULT_NAME = 'Myriam';
+  public static $DEFAULT_SURNAME = 'Ortiz';
+  public static $DEFAULT_PASSWORD = '#9499Qwertz';
+  public static $DEFAULT_IMAGE_URL = 'http://lorempixel.com/640/480/transport';
+  public static $DEFAULT_ABOUT_ME = 'I am a bot for testing the API of the system';
+  public static $DEFAULT_EMAIL = '2326254@students.wits.ac.za';
+  public static $DEFAULT_SECURITY_ANSWER = 'testing purposes';
+  public static $DEFAULT_ITEM_ID = '52315eed-282f-11ed-a567-e454e831c10d';
+  public static $ITEM_IDS = ['522fa3f4-282f-11ed-a567-e454e831c10d',
+    '52306e1a-282f-11ed-a567-e454e831c10d',
+    '52315eed-282f-11ed-a567-e454e831c10d',
+    '5232427d-282f-11ed-a567-e454e831c10d',
+    '5233133a-282f-11ed-a567-e454e831c10d',
+    '5233dba8-282f-11ed-a567-e454e831c10d',
+    '52349e3e-282f-11ed-a567-e454e831c10d',
+    '52358877-282f-11ed-a567-e454e831c10d',
+    '52368256-282f-11ed-a567-e454e831c10d',
+    '52374adf-282f-11ed-a567-e454e831c10d',
+    '5237f188-282f-11ed-a567-e454e831c10d',
+  ];
 
+  static function log($message) {
+    fwrite(STDERR, "\n\nLOGGER:::\n".$message."\n\n");
+  }
 
+  /**
+   * Prepares a mock HTML request in a file for testing
+   * @param $fName
+   * @param $strContent
+   * @return void
+   */
+  static function writeInput($requestType, $fName, $strContent) {
+    $_SERVER["REQUEST_METHOD"] = $requestType;
 
-    class TestInput {
-      static string $usedItemID;
+    $fileWriter = fopen($fName, "w");
 
-      static function log($message) {
-        $logFile = fopen('log.txt', 'a');
+    fwrite($fileWriter, $strContent);
 
-        fwrite($logFile, $message."\n\n");
-        fclose($logFile);
+    fclose($fileWriter);
+  }
+
+  public static function getItem()
+  {
+    $faker = Faker\Factory::create();
+    $dex = array_rand(self::$ITEM_IDS);
+
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->userID = self::$DEFAULT_USER_ID;
+    $bodyContent->itemID = self::$ITEM_IDS[$dex];
+    $bodyContent->typeTemplate = "false";
+    $bodyContent->typeCart = "false";
+    $bodyContent->typePublic = "false";
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getUserID()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->userID = self::$DEFAULT_USER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getUserEmail()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->userID = self::$DEFAULT_USER_ID;
+    $bodyContent->userEmail = self::$DEFAULT_EMAIL;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getUserDetails()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->name = self::$DEFAULT_NAME;
+    $bodyContent->surname = self::$DEFAULT_SURNAME;
+    $bodyContent->userImageURL = self::$DEFAULT_IMAGE_URL;
+    $bodyContent->userAboutMe = self::$DEFAULT_ABOUT_ME;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getLoginDetails()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->userEmail = self::$DEFAULT_EMAIL;
+    $bodyContent->userPassword = self::$DEFAULT_PASSWORD;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  /**
+   * Returns the quantity of items given the itemID within a response list
+   * @param array $response
+   * @param $itemID
+   * @return int
+   */
+  public static function getItemCount(array $response, string $itemID)
+  {
+    $itemDex = 0;
+
+    while ($itemDex < count($response)) {
+      $currItemID = (string) $response[$itemDex]->itemID;
+      if ($currItemID == $itemID) {
+        break;
       }
-      static function writeInput($fName, $strContent) {
-        $_SERVER["REQUEST_METHOD"] = "POST";
-
-        $fileWriter = fopen($fName, "w");
-
-        fwrite($fileWriter, $strContent);
-
-        fclose($fileWriter);
-      }
-
-      static function getValidResetPasswordInput(): stdClass
-      {
-        $faker = Faker\Factory::create();
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = DEFAULT_USER_ID;
-        $bodyContent->securityAnswer = DEFAULT_SECURITY_ANSWER;
-        $bodyContent->newPassword = $faker->word();
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-      static function getInvalidResetPasswordInput(): stdClass
-      {
-        $faker = Faker\Factory::create();
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = $faker->uuid();
-        $bodyContent->securityAnswer = DEFAULT_SECURITY_ANSWER;
-        $bodyContent->newPassword = $faker->word();
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      static function getValidUserEmail(): stdClass
-      {
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userEmail = DEFAULT_USER_EMAIL;
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-      static function getInvalidUserEmail(): stdClass
-      {
-        $faker = Factory::create();
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userEmail = $faker->email();
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      static function getExistingUser() {
-        $objContent = new stdClass();
-        
-        $bodyContent = new stdClass();
-        $bodyContent->userEmail = DEFAULT_USER_EMAIL;
-        $bodyContent->userPassword = 'root';
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      static function getNonExistingUser() {
-        $faker = Faker\Factory::create();
-
-        $objContent = new stdClass();
-        
-        $bodyContent = new stdClass();
-        $bodyContent->userEmail = $faker->email();
-        $bodyContent->userPassword = $faker->iban('NL');
-
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      static function getValidNewUser()
-      {
-        $faker = Faker\Factory::create();
-
-        $objContent = new stdClass();
-        
-        $bodyContent = new stdClass();
-        $bodyContent->firstName = $faker->firstName();
-        $bodyContent->lastName = $faker->lastName();
-        $bodyContent->userEmail = $faker->email();
-        $bodyContent->userImageURL = $faker->imageUrl();
-        $bodyContent->userPassword = $faker->iban('NL');
-        $bodyContent->securityQuestion = $faker->sentence();
-        $bodyContent->securityAnswer = $faker->word();
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      static function getInvalidNewUser()
-      {
-        $faker = Faker\Factory::create();
-
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->firstName = $faker->firstName();
-        $bodyContent->lastName = $faker->lastName();
-        $bodyContent->userEmail = DEFAULT_USER_EMAIL;
-        $bodyContent->userImageURL = $faker->imageUrl();
-        $bodyContent->userPassword = $faker->iban('NL');
-        $bodyContent->securityQuestion = $faker->sentence();
-        $bodyContent->securityAnswer = $faker->word();
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      public static function getExistingItemContent()
-      {
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = DEFAULT_USER_ID;
-        $bodyContent->itemID = array_rand(ITEM_IDS, 1);
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      public static function getWrongItemContent()
-      {
-        $faker = Faker\Factory::create();
-
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = $faker->uuid();
-        $bodyContent->itemID = $faker->uuid();
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      public static function getValidDP()
-      {
-        $faker = Faker\Factory::create();
-
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = DEFAULT_USER_ID;
-        $bodyContent->userImageURL = DEFAULT_IMAGE_URL;
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      public static function getInvalidDP()
-      {
-        $faker = Faker\Factory::create();
-
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = $faker->uuid();
-        $bodyContent->userImageURL = $faker->uuid();
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      public static function getValidAboutMe()
-      {
-        $faker = Faker\Factory::create();
-
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = DEFAULT_USER_ID;
-        $bodyContent->userAboutMe = $faker->words(5, true);
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-      public static function getInvalidAboutMe()
-      {
-        $faker = Faker\Factory::create();
-
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = $faker->uuid();
-        $bodyContent->userAboutMe = $faker->words(5, true);
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      public static function getValidRemoveItemFromCartInput()
-      {
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = DEFAULT_USER_ID;
-        $bodyContent->itemID = DEFAULT_ITEM_ID;
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-      public static function getInvalidRemoveItemFromCartInput()
-      {
-        $faker = Factory::create();
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = $faker->uuid();
-        $bodyContent->itemID = DEFAULT_ITEM_ID;
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-
-      public static function getValidUserID()
-      {
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = DEFAULT_USER_ID;
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
-      public static function getInvalidUserID()
-      {
-        $faker =  Factory::create();
-        $objContent = new stdClass();
-
-        $bodyContent = new stdClass();
-        $bodyContent->userID = $faker->uuid();
-
-        $objContent->data = $bodyContent;
-
-        return $objContent;
-      }
+      ++$itemDex;
     }
+
+    // If the itemID is not found there is no more of that item
+    if ($itemDex == count($response)) {
+      return 0;
+    }
+
+    return $response[$itemDex]->count;
+  }
+
+  public static function getRegistrationDetails()
+  {
+    $faker = Faker\Factory::create();
+
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->firstName = $faker->firstName();
+    $bodyContent->lastName = $faker->lastName();
+    $bodyContent->userEmail = $faker->email();
+    $bodyContent->userPassword = $faker->imei();
+    $bodyContent->securityQuestion = $faker->words(5, true);
+    $bodyContent->securityAnswer = $faker->words(5, true);
+
+    $bodyContent->userAboutMe = 'I am '.$bodyContent->firstName.' and I am using K3MT Shopping List';
+
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getRequestObject()
+  {
+    $faker = Faker\Factory::create();
+
+    $requestObject = new stdClass();
+    $requestObject->key = $faker->word();
+    $requestObject->value = $faker->word();
+
+    return $requestObject;
+  }
+
+}

@@ -5,7 +5,7 @@
 
     # Using the required classes
     use App\GVM;
-    use RequestObject;
+    use App\RequestObject;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class UploadProfilePicture{
@@ -36,7 +36,11 @@ class UploadProfilePicture{
     }
 }
 
-    # Echoing the result
-    echo UploadProfilePicture::makeCall();
+    // @codeCoverageIgnoreStart
+    # Echoing the result if not in test mode
+    if (!(defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE)) {
+        echo UploadProfilePicture::makeCall();
+    }
+    // @codeCoverageIgnoreEnd
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

@@ -1,5 +1,5 @@
 <?php
-// use TestInput;
+
 use \PHPUnit\Framework\TestCase;
 use App\GetSecurityQuestion;
 
@@ -7,50 +7,53 @@ require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers App\GetSecurityQuestion
- * @covers \RequestObject
- * @covers \GVM
- */
-class GetSecurityQuestionTest extends TestCase {
-
-  static function generateValidInput()
+ * @covers \App\GetSecurityQuestion
+ * @covers App\GVM */
+class GetSecurityQuestionTest extends \PHPUnit\Framework\TestCase
+{
+  private static function generateValidRequest()
   {
-    $objContent = TestInput::getValidUserEmail();
+    $objRequest = TestInput::getUserEmail();
 
-    $jsonString = json_encode($objContent);
+    $jsonString = json_encode($objRequest);
 
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+
+    return $objRequest->data->userID;
   }
-  static function generateInvalidInput()
+
+  private static function generateInvalidRequest()
   {
-    $objContent = TestInput::getInvalidUserEmail();
+    $faker = Faker\Factory::create();
+    $objRequest = TestInput::getUserEmail();
 
-    $jsonString = json_encode($objContent);
+    $objRequest->data->userEmail = $faker->email(); // give a random email
 
-    TestInput::writeInput(INPUT_TEST_FILE, $jsonString);
+    $jsonString = json_encode($objRequest);
+
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
   }
 
   /**
    * @test
    */
-  public function testMakeValidCall()
+  public function testValidCall()
   {
-    $_SERVER["REQUEST_METHOD"] = "POST";
+    $expectedUUID = self::generateValidRequest();
 
-    self::generateValidInput();
-    $this->expectOutputRegex('/securityQuestion/');
-    GetSecurityQuestion::makeCall();
+    $response = GetSecurityQuestion::makeCall();
+
+    $this->assertMatchesRegularExpression('/\"userID\":\"'.$expectedUUID.'\"/', $response, "Meant to have the security question of the given user");
   }
   /**
    * @test
    */
-  public function testMakeInvalidCall()
+  public function testInvalidCall()
   {
-    $_SERVER["REQUEST_METHOD"] = "POST";
+    self::generateInvalidRequest();
 
-    self::generateInvalidInput();
-    $this->expectOutputRegex('//');
-    GetSecurityQuestion::makeCall();
+    $response = GetSecurityQuestion::makeCall();
+
+    $this->assertMatchesRegularExpression('/\"INVALID_USER_EMAIL\"/', $response, "Meant to receive an INVALID_USER_EMAIL response");
   }
-
 }

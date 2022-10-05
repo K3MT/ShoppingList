@@ -5,7 +5,7 @@
 
     # Using the required classes
     use App\GVM;
-    use RequestObject;
+    use App\RequestObject;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     class GetAllProductTypes
@@ -31,7 +31,11 @@
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
     }
-    # Echoing the result
-    echo GetAllProductTypes::makeCall();
+    // @codeCoverageIgnoreStart
+    # Echoing the result if not in test mode
+    if (!(defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE)) {
+        echo GetAllProductTypes::makeCall();
+    }
+    // @codeCoverageIgnoreEnd
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

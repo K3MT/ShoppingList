@@ -5,8 +5,10 @@
 
     # Using the required classes
     use App\GVM;
-    use RequestObject;
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    use App\RequestObject;
+    use TestInput;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     class Login{
         public static function makeCall()
@@ -23,6 +25,9 @@
             # Getting the post variables
             $userEmail = new RequestObject($json["userEmail"], true);
             $userPassword = new RequestObject($json["userPassword"], true);
+
+            require_once(__DIR__.'/../tests/TestInput.php');
+            TestInput::log("LOGIN RQ:\n".json_encode($userPassword));
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Creating a parameter array and setting the procedure name for the procedure call
@@ -36,7 +41,11 @@
         }
     }
 
-    # Echoing the result
-    echo Login::makeCall();
+    // @codeCoverageIgnoreStart
+    # Echoing the result if not in test mode
+    if (!(defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE)) {
+        echo Login::makeCall();
+    }
+    // @codeCoverageIgnoreEnd
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>

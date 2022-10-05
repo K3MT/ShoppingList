@@ -1,27 +1,23 @@
 <?php
 
 use \PHPUnit\Framework\TestCase;
-use App\GetUserDetails;
+use App\GetRecommendedItems;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers \App\GetUserDetails
- * @covers App\GVM
- */
-class GetUserDetailsTest extends \PHPUnit\Framework\TestCase
+ * @covers \App\GetRecommendedItems
+ * @covers App\GVM */
+class GetRecommendedItemsTest extends \PHPUnit\Framework\TestCase
 {
   private static function generateValidRequest()
   {
     $objRequest = TestInput::getUserID();
-    $objUserDetails = TestInput::getUserDetails();
 
     $jsonString = json_encode($objRequest);
 
     TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
-
-    return $objUserDetails->data;
   }
 
   private static function generateInvalidRequest()
@@ -42,19 +38,11 @@ class GetUserDetailsTest extends \PHPUnit\Framework\TestCase
    */
   public function testValidCall()
   {
-    $expectedUserDetails = self::generateValidRequest();
+    self::generateValidRequest();
 
-    $response = GetUserDetails::makeCall();
+    $response = GetRecommendedItems::makeCall();
 
-    $arrResponse = (array) json_decode($response);
-
-    $this->assertCount(1, $arrResponse, 'There is meant to be exactly one user object contained in the array');
-    $objResponse = (object) $arrResponse[0];
-
-    $this->assertEquals($expectedUserDetails->name, $objResponse->name);
-    $this->assertEquals($expectedUserDetails->surname, $objResponse->surname);
-    $this->assertEquals($expectedUserDetails->userImageURL, $objResponse->userImageURL);
-    $this->assertEquals($expectedUserDetails->userAboutMe, $objResponse->userAboutMe);
+    $this->assertMatchesRegularExpression('/\"itemID\"|\[]/', $response, "Meant to have recommended items listed");
   }
   /**
    * @test
@@ -63,7 +51,7 @@ class GetUserDetailsTest extends \PHPUnit\Framework\TestCase
   {
     self::generateInvalidRequest();
 
-    $response = GetUserDetails::makeCall();
+    $response = GetRecommendedItems::makeCall();
 
     $this->assertMatchesRegularExpression('/\"INVALID_USER\"/', $response, "Meant to receive an INVALID_USER response");
   }

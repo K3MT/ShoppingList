@@ -5,7 +5,7 @@
 
     # Using the required classes
     use App\GVM;
-    use RequestObject;
+    use App\RequestObject;
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class ResetPassword{
@@ -38,7 +38,11 @@ class ResetPassword{
 
     }
 
-    # Echoing the result
-    echo ResetPassword::makeCall();
+    // @codeCoverageIgnoreStart
+    # Echoing the result if not in test mode
+    if (!(defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE)) {
+        echo ResetPassword::makeCall();
+    }
+    // @codeCoverageIgnoreEnd
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ?>
