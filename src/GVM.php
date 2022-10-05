@@ -103,8 +103,10 @@
 
           $query = "call " . $procedureName . "(" . GVM::buildParameters($parameters) . ");";
 
-          require_once(__DIR__.'/../tests/TestInput.php');
-          TestInput::log("QUERY:\n".$query);
+          if (defined('TEST_MODE') && defined('INPUT_TEST_FILE') && TEST_MODE) {
+            require_once(__DIR__.'/../tests/TestInput.php');
+            TestInput::log("QUERY:\n".$query);
+          }
 
           if ($r = mysqli_query($link, $query))
             {
