@@ -16,16 +16,12 @@ require_once('TestInput.php');
  */
 class AddItemToListTest extends \PHPUnit\Framework\TestCase
 {
-  private static function generateValidRequest()
+  private static function writeRequest($objRequest)
   {
-    $objRequest = TestInput::getItem();
-    $objRequest->data->typeCart = "true";
-
     $jsonString = json_encode($objRequest);
 
     TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
 
-    return $objRequest->data->itemID;
   }
 
   private static function generateInvalidRequest()
@@ -43,12 +39,21 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
     return $objRequest->data->itemID;
   }
 
+  private static function generateValidCartRequest()
+  {
+    $objRequest = TestInput::getItem();
+    $objRequest->data->typeCart = "true";
+
+    self::writeRequest($objRequest);
+    return $objRequest->data->itemID;
+  }
+
   /**
    * @test
    */
   public function testValidCall()
   {
-    $addedItemID = self::generateValidRequest();
+    $addedItemID = self::generateValidCartRequest();
 
     $response = GetActiveCart::makeCall();  // Need to check if the item to be added exists in the cart
 
