@@ -27,7 +27,6 @@
             $userPassword = new RequestObject($json["userPassword"], true);
 
             require_once(__DIR__.'/../tests/TestInput.php');
-            TestInput::log("LOGIN RQ:\n".json_encode($userPassword));
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Creating a parameter array and setting the procedure name for the procedure call
