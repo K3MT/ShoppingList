@@ -49,7 +49,7 @@ class ResetPasswordTest extends \PHPUnit\Framework\TestCase
     $objRequest = TestInput::getRegistrationDetails();
 
     $objRequest->data->userID = TestInput::$DEFAULT_USER_ID;
-    $objRequest->data->newPassword = $faker->password();
+    $objRequest->data->newPassword = $faker->imei();
     $objRequest->data->securityAnswer = $faker->words(5, true);
 
     $jsonString = json_encode($objRequest);
