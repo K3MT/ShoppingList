@@ -73,7 +73,7 @@ class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
     $jsonResponse = (array) json_decode($response);
     $currQuantity = TestInput::getItemCount($jsonResponse, $itemID);
 
-    $this->assertEquals($currQuantity,$expectedRemainingQuantity, "The expected remaining items in the cart does not match the actual quantity");
+    $this->assertEquals($expectedRemainingQuantity, $currQuantity, "The expected remaining items in the cart does not match the actual quantity");
   }
   public function testInvalidCall()
   {
