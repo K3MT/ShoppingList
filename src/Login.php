@@ -6,7 +6,7 @@
     # Using the required classes
     use App\GVM;
     use App\RequestObject;
-    use TestInput;
+//    use TestInput;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -26,7 +26,7 @@
             $userEmail = new RequestObject($json["userEmail"], true);
             $userPassword = new RequestObject($json["userPassword"], true);
 
-            require_once(__DIR__.'/../tests/TestInput.php');
+//            require_once(__DIR__.'/../tests/TestInput.php');
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Creating a parameter array and setting the procedure name for the procedure call
