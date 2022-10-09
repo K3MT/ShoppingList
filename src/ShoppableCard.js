@@ -7,7 +7,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 //TODO smooth out hover animation using css
 
@@ -80,12 +80,12 @@ function ShoppableCard({
           backgroundImage: `url(${product_imageurl})`,
         }}
       ></div>
-      <ToastContainer/>
-      <button className="btn" onClick={addTocart}>
-        Add to cart
+      <ToastContainer />
+      <button className="addProfileButton" onClick={addTocart}>
+        <h3>Add to Cart</h3>
       </button>
-      <button className="btn" onClick={addTotemplate}>
-        Add to Template
+      <button className="templateProfileButton" onClick={addTotemplate}>
+        <h3>Add to template</h3>
       </button>
       <Popup
         className="PopupInfo"

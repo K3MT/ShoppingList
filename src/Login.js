@@ -67,7 +67,7 @@ export default function Login(props) {
     };
     console.log(data);
     axios
-      .post("https://k3mt-shopping-list-backend.herokuapp.com/src/Login.php", {
+      .post("https://k3mt-backend.herokuapp.com//src/Login.php", {
         data: data,
       })
       .then((result) => {
@@ -122,24 +122,24 @@ export default function Login(props) {
         </div>
       </div>
 
-      <form className="Auth-form" onSubmit={submitForm}>
+      <form className="Auth-form-login" onSubmit={submitForm}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Login</h3>
 
-          <div className="form-group mt-3">
+          <div className="form-group mt-1">
             <label>Email address</label>
             <input
               type="email"
-              className="form-control mt-1"
+              className="form-control mt-4"
               placeholder="Enter email"
               id="loginemail"
             />
           </div>
-          <div className="form-group mt-3">
+          <div className="form-group mt-1">
             <label>Password</label>
             <input
               type="password"
-              className="form-control mt-1"
+              className="form-control mt-4"
               placeholder="Enter password"
               name="userPassword"
               id="loginpassword"
@@ -151,7 +151,7 @@ export default function Login(props) {
           <div className="d-grid gap-2 mt-3">
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn-login"
               onClick={checkFormValidity}
             >
               Submit

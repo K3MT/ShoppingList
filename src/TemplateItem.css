@@ -4,6 +4,7 @@
 }
 
 
+
 .addButtontemplate{
     height: 20%;
     width: 90%;
@@ -12,19 +13,19 @@
     outline: none;
     color: white;
     font-weight: 500;
-    background: blue;
+    background: orangered;
     cursor: pointer;
     border-radius: 12px;
     letter-spacing: 1.15px;
 }
 .templategameTile {
-    height: 150px;
+    height: 100px;
     width: 100%;
     padding: 0.5em 1em 1em 1em;
     text-align: center;
     border-radius: 0.8em;
-    box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.7), 2px 2px 5px rgba(94, 104, 121, 0.3);
     max-width: 25em;
+    box-shadow: 0px 0px 20px gray;
     display: fixed;
     background-color: white;
     box-shadow: 2%;

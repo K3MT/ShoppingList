@@ -160,18 +160,18 @@ body{
   align-items: center;
   width: 100vw;
   height: 100vh;
-  /* background-color: #0039A9; */
 }
 
-.Auth-form {
-  width: 370px;
-  box-shadow: rgb(200 200 200 / 16%) 2px 2px 10px;
+.Auth-form-register {
+  width: 400px;
+  height: 90%;
   margin-top: 2%;
   padding-top: 30px;
   position: absolute;
   padding-bottom: 20px;
   border-radius: 8px;
   background-color: white;
+  box-shadow: 0px 0px 40px gray;
 }
 
 .Auth-form-content {
@@ -189,6 +189,16 @@ body{
 
 .input:focus {
   outline: 3px solid transparent;
+}
+
+.btn-register{
+  color: white;
+  margin-top: 7%;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 1.5em;
+  background-color: orangered;
+  height: 30px;
 }
 
 label {
@@ -214,6 +224,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
+  max-height: 100vh;
 }
 
 .title {
@@ -225,34 +236,33 @@ canvas {
   width: 100%;
 }
 
-.imessage {
-  background-color: #fff;
+.imessage_register {
+  
   display: flex;
   flex-direction: column;
   font-family: "SanFrancisco";
   font-size: 1.25rem;
   margin: 0 auto 1rem;
-  width: 300px;
+  width: 350px;
   position: absolute;
   border-radius: 2%;
-  margin-left: 50%;
+  margin-left: 60%;
   margin-top: 11.5%;
   height: 450px;
   padding: 0.5rem 1.5rem;
 }
-.imessage_security {
-  background-color: #fff;
+.imessage_security_register {
   display: flex;
   flex-direction: column;
   font-family: "SanFrancisco";
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin: 0 auto 1rem;
-  width: 300px;
+  width: 350px;
   position: absolute;
   border-radius: 2%;
-  margin-right: 50%;
+  margin-right: 60%;
   margin-bottom: 6.8%;
-  height: 450px;
+  height: 10px;
   padding: 0.5rem 1.5rem;
 }
 
@@ -262,7 +272,7 @@ canvas {
   text-align :center;
 }
 
-.imessage_security p {
+.imessage_security_register p {
   border-radius: 1.15rem;
   line-height: 1.25;
   padding: 0.5rem .875rem;
@@ -270,7 +280,7 @@ canvas {
   word-wrap: break-word;
 }
 
-.imessage p {
+.imessage_register p {
   border-radius: 1.15rem;
   line-height: 1.25;
   padding: 0.5rem .875rem;
@@ -278,9 +288,9 @@ canvas {
   word-wrap: break-word;
 }
 
-p.from-me {
+p.from-me-register {
   align-self: flex-end;
-  background-color: #248bf5;
+  background-color: black;
   color: #fff; 
   margin: 1%;
 }
