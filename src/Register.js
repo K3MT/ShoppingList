@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Register.css";
-import axios from "axios"
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Register(props) {
@@ -78,9 +78,7 @@ export default function Register(props) {
 
     // attach an event listener on the button to dismiss the message
     // include the once flag to have the button register the click only one time
-    const button = document.querySelector(
-      ".notification__message button"
-    );
+    const button = document.querySelector(".notification__message button");
     button.addEventListener("click", dismissMessage);
   }
 
@@ -133,9 +131,12 @@ export default function Register(props) {
     };
     console.log(data);
     axios
-      .post("https://k3mt-shopping-list-backend.herokuapp.com/src/Registration.php", {
-        "data": data,
-      })
+      .post(
+        "https://k3mt-shopping-list-backend.herokuapp.com/src/Registration.php",
+        {
+          data: data,
+        }
+      )
       .then((result) => {
         console.log(result.data);
         if (result.data.length === 0) {
@@ -194,18 +195,19 @@ export default function Register(props) {
         </div>
       </div>
 
-      <div class="imessage_security">
-        <p class="from-me">Enter a security question and answer</p>
-        <p class="from-me">
+      <div className="imessage_security_register">
+        <p class="from-me-register">Enter a security question and answer</p>
+        <p class="from-me-register">
           For example, the question might be your dog's name
         </p>
-        <p class="from-me">
+        <p class="from-me-register">
           This information will be used in the event that you forget your
           password
         </p>
-        <p class="from-me">& you need to reset it</p>
+        <p class="from-me-register">& you need to reset it</p>
       </div>
-      <form className="Auth-form">
+
+      <form className="Auth-form-register">
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Register</h3>
 
@@ -274,19 +276,25 @@ export default function Register(props) {
             <button
               type="button"
               onClick={checkFormValidity}
-              className="btn btn-primary"
+              className="btn-register"
             >
               Submit
             </button>
           </div>
         </div>
       </form>
-      <div class="imessage">
-        <p class="from-me">Your password must be at least 8 characters long</p>
-        <p class="from-me">It should have at least one uppercase letter</p>
-        <p class="from-me">It should also have atleast one lowercase letter</p>
-        <p class="from-me">It should also have at least one digit</p>
-        <p class="from-me">
+      <div className="imessage_register">
+        <p class="from-me-register">
+          Your password must be at least 8 characters long
+        </p>
+        <p class="from-me-register">
+          It should have at least one uppercase letter
+        </p>
+        <p class="from-me-register">
+          It should also have atleast one lowercase letter
+        </p>
+        <p class="from-me-register">It should also have at least one digit</p>
+        <p class="from-me-register">
           It should also have at least one special character
         </p>
       </div>

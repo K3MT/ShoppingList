@@ -94,7 +94,7 @@ export default function EditProfile(props) {
         </ul>
       </div>
 
-      <form className="Auth-form">
+      <form className="Auth-form-edit">
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Update your bio</h3>
 
@@ -117,14 +117,8 @@ export default function EditProfile(props) {
               id="newprofilepicture"
             />
           </div>
-          <div className="d-grid gap-2 mt-3">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={validateForm}
-            >
-              Submit
-            </button>
+          <div className="editSubmitButton" onClick={validateForm}>
+            <h3>Submit</h3>
           </div>
         </div>
       </form>

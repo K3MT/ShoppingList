@@ -17,7 +17,7 @@
     box-sizing: border-box;
     outline: none; border:none;
     text-decoration: none;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     transition: all .2s linear;
 }
 
@@ -274,7 +274,7 @@ section{
     text-decoration: underline;
 }
 
-.home{
+/* .home{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -304,7 +304,7 @@ section{
     font-size: 1.7rem;
     padding:1rem 0;
     line-height: 1.8;
-}
+} */
 
 .features .box-container{
     display: grid;

@@ -3,28 +3,39 @@
       background: transparent; /* make scrollbar transparent */
   }
 
-.cartArea{
-    width: 70%;
-    height: 101%;
-    background-color: #fff;
-    box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.7), 2px 2px 5px rgba(94, 104, 121, 0.3);
+  .divider {
     position: absolute;
-    top: 0%;
-    left: 0%;
-    border-radius: 0%;
+    height: 80%;
+    width: 0.105%;
+    margin-left: 42%;
+    margin-top: 7%;
+    z-index: 100000;
+    background: blue;
+    background: linear-gradient(90deg, hsl(0, 0%, 20%), hsl(0, 0%, 70%), hsl(0, 0%, 20%));
+  }
+
+.cartArea{
+    width: 65%;
+    height: 90%;
+    background-color: white;
+    position: absolute;
+    box-shadow:  0px 0px 25px #CC7952;
+    border-radius: 2rem;
+    top: 5%;
+    left: 3%;
     overflow: hidden;
 }
 
 .templateArea{
-    width: 30%;
-    height: 101%;
-    background-color: #fff;
-    box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.7), 2px 2px 5px rgba(94, 104, 121, 0.3);
+    width: 28%;
+    top:5%;
+    border-radius: 2rem;
+    height: 90%;
+    background-color: white;
     position: absolute;
-    top: 0%;
+    box-shadow:  0px 0px 25px #CC7952;
     overflow: hidden;
     left: 70%;
-    border-radius: 0%;
 }
 
 .templateList{
