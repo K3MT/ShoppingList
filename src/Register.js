@@ -131,12 +131,9 @@ export default function Register(props) {
     };
     console.log(data);
     axios
-      .post(
-        "https://k3mt-shopping-list-backend.herokuapp.com/src/Registration.php",
-        {
-          data: data,
-        }
-      )
+      .post("https://k3mt-backend.herokuapp.com//src/Registration.php", {
+        data: data,
+      })
       .then((result) => {
         console.log(result.data);
         if (result.data.length === 0) {
