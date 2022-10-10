@@ -34,7 +34,7 @@ function CartItem({
       typePublic: "false",
     };
     axios
-      .post("https://k3mt-backend.herokuapp.com/src/RemoveItemFromList.php", {
+      .post("https://k3mt-backend.herokuapp.com//src/RemoveItemFromList.php", {
         data: data,
       })
       .then((result) => {

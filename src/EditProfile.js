@@ -15,12 +15,9 @@ export default function EditProfile(props) {
         userAboutMe: document.getElementById("newbio").value,
       };
       axios
-        .post(
-          "https://k3mt-shopping-list-backend.herokuapp.com/src/UpdateAboutMe.php",
-          {
-            data: data,
-          }
-        )
+        .post("https://k3mt-backend.herokuapp.com//src/UpdateAboutMe.php", {
+          data: data,
+        })
         .then((result) => {
           if (result.data.length != 0) {
             let profilepicturelink =
@@ -38,7 +35,7 @@ export default function EditProfile(props) {
                 };
                 axios
                   .post(
-                    "https://k3mt-shopping-list-backend.herokuapp.com/src/UploadProfilePicture.php",
+                    "https://k3mt-backend.herokuapp.com//src/UploadProfilePicture.php",
                     {
                       data: data_two,
                     }
