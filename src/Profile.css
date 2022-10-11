@@ -803,11 +803,18 @@ a .uil {
   background-color: #0CB4FB;
   color: white;
   border-radius: 1rem;
-  min-width: 130px;
-  width: 130px;
-  max-width: 130px;
+  min-width: 160px;
+  width: 160px;
+  max-width: 160px;
   text-align: center;
   cursor: pointer;
+}
+
+.sectionButtons:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  /* background: #FFF;
+  color: #000; */
 }
 
 .sectionButtons h3{
