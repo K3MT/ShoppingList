@@ -3,6 +3,7 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Overlay } from "react-bootstrap";
+
 export default function Login(props) {
   //To navigate through different pages of teh website.
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ export default function Login(props) {
     };
     console.log(data);
     axios
-      .post("https://k3mt-shopping-list-backend.herokuapp.com/src/Login.php", {
+      .post("https://k3mt-backend.herokuapp.com/src/Login.php", {
         data: data,
       })
       .then((result) => {

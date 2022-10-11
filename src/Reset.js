@@ -147,7 +147,7 @@ export default function Reset(props) {
     };
     console.log(data);
     axios
-      .post("https://k3mt-shopping-list-backend.herokuapp.com/src/GetSecurityQuestion.php", {
+      .post("https://k3mt-backend.herokuapp.com/src/GetSecurityQuestion.php", {
         "data": data,
       })
       .then((result) => {
@@ -172,7 +172,7 @@ export default function Reset(props) {
       newPassword: password,
     };
     axios
-      .post("https://k3mt-shopping-list-backend.herokuapp.com/src/ResetPassword.php", {
+      .post("https://k3mt-backend.herokuapp.com/src/ResetPassword.php", {
         "data": data,
       })
       .then((result) => {

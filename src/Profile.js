@@ -39,7 +39,7 @@ export default function Profile(props) {
     };
     axios
       .post(
-        "https://k3mt-shopping-list-backend.herokuapp.com/src/GetUserDetails.php",
+        "https://k3mt-backend.herokuapp.com/src/GetUserDetails.php",
         {
           data: data,
         }
@@ -55,7 +55,7 @@ export default function Profile(props) {
   useEffect(() => {
     let mounted = true;
     axios
-      .post("https://k3mt-backend.herokuapp.com//src/GetAllItems.php", {
+      .post("https://k3mt-backend.herokuapp.com/src/GetAllItems.php", {
         data: [],
       })
       .then((result) => {
@@ -101,8 +101,8 @@ export default function Profile(props) {
 
   return (
     <div className="Auth-form-container">
-      <div class="Proarea">
-        <ul class="Procircles">
+      <div className="Proarea">
+        <ul className="Procircles">
           <li></li>
           <li></li>
           <li></li>
@@ -117,8 +117,8 @@ export default function Profile(props) {
       </div>
       <span>
 
-      <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> K3MT </a>
-      <nav class="navMenu">
+      <a href="#" className="logo"> <i class="fas fa-shopping-basket"></i> K3MT </a>
+      <nav className="navMenu">
         
           <a href="#">Sort By</a>
           <a href="#" >
@@ -139,9 +139,9 @@ export default function Profile(props) {
       </span>
 
       <div className="shoppableItems">
-      <section class="home" id="home">
+      <section className="home" id="home">
 
-      <div class="content">
+      <div className="content">
           <h3>fresh and <span>organic</span> products for you</h3>
       </div>
 

@@ -20,7 +20,7 @@ export default function Cart(props) {
     };
     axios
       .post(
-        "https://k3mt-shopping-list-backend.herokuapp.com/src/GetCartTotalPrice.php",
+        "https://k3mt-backend.herokuapp.com/src/GetCartTotalPrice.php",
         {
           data: data,
         }
@@ -38,7 +38,7 @@ export default function Cart(props) {
     };
     axios
       .post(
-        "https://k3mt-shopping-list-backend.herokuapp.com/src/GetActiveCart.php",
+        "https://k3mt-backend.herokuapp.com/src/GetActiveCart.php",
         {
           data: data,
         }
@@ -78,7 +78,7 @@ export default function Cart(props) {
     };
     axios
       .post(
-        "https://k3mt-shopping-list-backend.herokuapp.com/src/PurchaseCart.php",
+        "https://k3mt-backend.herokuapp.com/src/PurchaseCart.php",
         {
           data: data,
         }

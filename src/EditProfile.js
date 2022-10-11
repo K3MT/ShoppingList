@@ -16,7 +16,7 @@ export default function EditProfile(props) {
       };
       axios
         .post(
-          "https://k3mt-shopping-list-backend.herokuapp.com/src/UpdateAboutMe.php",
+          "https://k3mt-backend.herokuapp.com/src/UpdateAboutMe.php",
           {
             data: data,
           }
@@ -38,7 +38,7 @@ export default function EditProfile(props) {
                 };
                 axios
                   .post(
-                    "https://k3mt-shopping-list-backend.herokuapp.com/src/UploadProfilePicture.php",
+                    "https://k3mt-backend.herokuapp.com/src/UploadProfilePicture.php",
                     {
                       data: data_two,
                     }
