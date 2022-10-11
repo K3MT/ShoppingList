@@ -128,8 +128,8 @@ export default function Profile(props) {
 
   return (
     <div className="Auth-form-container">
-      <div class="Proarea">
-        <ul class="Procircles">
+      <div className="Proarea">
+        <ul className="Procircles">
           <li></li>
           <li></li>
           <li></li>
@@ -143,10 +143,10 @@ export default function Profile(props) {
         </ul>
       </div>
       <span>
-        {/* <a href="#" class="logo">
+        <a href="#" class="logo">
           {" "}
           <i class="fas fa-shopping-basket"></i> K3MT{" "}
-        </a> */}
+        </a>
         <nav class="navMenu">
           <AiOutlineShoppingCart
             className="CartIconButton"

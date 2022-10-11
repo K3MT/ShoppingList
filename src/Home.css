@@ -129,13 +129,13 @@
   background: url(./image/banner-bg.webp) no-repeat;
   background-position: center;
   background-size: cover;
-  width: 96%;
+  width: 100%;
   max-width: 98%;
-  border-radius: 2.5rem;
-  margin-top: 1.5%;
+  /* border-radius: 2.5rem; */
+  margin-top: 1%;
   padding-top: 17rem;
   padding-bottom: 10rem;
-  box-shadow:  0px 0px 25px #CC7952;
+  /* box-shadow:  0px 0px 25px #CC7952; */
 
 }
 
@@ -306,7 +306,7 @@ h2 {
 
 .navMenuHome a:hover {
   background-color: white; 
-  color: red;
+  color: #0CB4FB;
 }
 
 

@@ -55,7 +55,7 @@ function ShoppableCard({
       typePublic: "false",
     };
     axios
-      .post("https://k3mt-backend.herokuapp.com//src/AddItemToList.php", {
+      .post("https://k3mt-backend.herokuapp.com/src/AddItemToList.php", {
         data: data,
       })
       .then((result) => {

@@ -19,7 +19,7 @@
     height: 90%;
     background-color: white;
     position: absolute;
-    box-shadow:  0px 0px 25px #CC7952;
+    box-shadow:  0px 0px 25px #0CB4FB;
     border-radius: 2rem;
     top: 5%;
     left: 3%;
@@ -33,7 +33,7 @@
     height: 90%;
     background-color: white;
     position: absolute;
-    box-shadow:  0px 0px 25px #CC7952;
+    box-shadow:  0px 0px 25px #0CB4FB;
     overflow: hidden;
     left: 70%;
 }

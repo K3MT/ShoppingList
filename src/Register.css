@@ -193,12 +193,12 @@ body{
 
 .btn-register{
   color: white;
-  margin-top: 7%;
+  margin-top: 17%;
   border-radius: 0.5rem;
   font-weight: 500;
   font-size: 1.5em;
-  background-color: orangered;
-  height: 30px;
+  background-color: #0CB4FB;
+  height: 35px;
 }
 
 label {
@@ -290,7 +290,7 @@ canvas {
 
 p.from-me-register {
   align-self: flex-end;
-  background-color: black;
+  background-color: #0CB4FB;
   color: #fff; 
   margin: 1%;
 }

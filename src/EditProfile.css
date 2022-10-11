@@ -23,11 +23,11 @@
   }
 
   .editSubmitButton{
-    background-color: orangered;
+    background-color: #0CB4FB;
     color: white;
     height: 35px;
-    margin-top: 10%;
-    border-radius: 1.5em;
+    margin-top: 12%;
+    border-radius: 1em;
   }
 
   .editSubmitButton h3{
