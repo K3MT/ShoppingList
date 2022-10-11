@@ -15,12 +15,9 @@ export default function EditProfile(props) {
         userAboutMe: document.getElementById("newbio").value,
       };
       axios
-        .post(
-          "https://k3mt-backend.herokuapp.com/src/UpdateAboutMe.php",
-          {
-            data: data,
-          }
-        )
+        .post("https://k3mt-backend.herokuapp.com//src/UpdateAboutMe.php", {
+          data: data,
+        })
         .then((result) => {
           if (result.data.length != 0) {
             let profilepicturelink =
@@ -38,7 +35,7 @@ export default function EditProfile(props) {
                 };
                 axios
                   .post(
-                    "https://k3mt-backend.herokuapp.com/src/UploadProfilePicture.php",
+                    "https://k3mt-backend.herokuapp.com//src/UploadProfilePicture.php",
                     {
                       data: data_two,
                     }
@@ -94,7 +91,7 @@ export default function EditProfile(props) {
         </ul>
       </div>
 
-      <form className="Auth-form">
+      <form className="Auth-form-edit">
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Update your bio</h3>
 
@@ -117,14 +114,8 @@ export default function EditProfile(props) {
               id="newprofilepicture"
             />
           </div>
-          <div className="d-grid gap-2 mt-3">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={validateForm}
-            >
-              Submit
-            </button>
+          <div className="editSubmitButton" onClick={validateForm}>
+            <h3>Submit</h3>
           </div>
         </div>
       </form>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Reset.css";
-import axios from "axios"
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 export default function Reset(props) {
   let timeout;
@@ -105,7 +105,7 @@ export default function Reset(props) {
   const [isVerified, setisVarified] = useState(false);
   const [Data, setData] = useState({
     userID: "",
-    securityQuestion: ""
+    securityQuestion: "",
   });
 
   //Fucntion to check the form validity in the isnotVarified state page.
@@ -119,10 +119,11 @@ export default function Reset(props) {
     }
   };
 
-  const setQuestion =()=>{
+  const setQuestion = () => {
     console.log(securityQuestion);
-    document.getElementById("resetsecurityquestion").placeholder = securityQuestion;
-  }
+    document.getElementById("resetsecurityquestion").placeholder =
+      securityQuestion;
+  };
 
   //Check the form validity of the input form in the isVarified state page.
   const checkFormValidity2 = () => {
@@ -147,8 +148,8 @@ export default function Reset(props) {
     };
     console.log(data);
     axios
-      .post("https://k3mt-backend.herokuapp.com/src/GetSecurityQuestion.php", {
-        "data": data,
+      .post("https://k3mt-backend.herokuapp.com//src/GetSecurityQuestion.php", {
+        data: data,
       })
       .then((result) => {
         console.log(result.data);
@@ -172,8 +173,8 @@ export default function Reset(props) {
       newPassword: password,
     };
     axios
-      .post("https://k3mt-backend.herokuapp.com/src/ResetPassword.php", {
-        "data": data,
+      .post("https://k3mt-backend.herokuapp.com//src/ResetPassword.php", {
+        data: data,
       })
       .then((result) => {
         console.log(result.data);

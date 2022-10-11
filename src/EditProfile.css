@@ -10,9 +10,10 @@
     position: absolute;
   }
   
-  .Auth-form {
+  .Auth-form-edit {
     width: 370px;
-    box-shadow: rgb(200 200 200 / 16%) 2px 2px 10px;
+    height: 43%;
+    box-shadow: 0px 0px 100px gray;
     margin-top: 2%;
     padding-top: 30px;
     position: absolute;
@@ -21,8 +22,22 @@
     background-color: white;
   }
 
-  
-  
+  .editSubmitButton{
+    background-color: #0CB4FB;
+    color: white;
+    height: 35px;
+    margin-top: 12%;
+    border-radius: 1em;
+  }
+
+  .editSubmitButton h3{
+    font-weight: 600;
+    font-size: 1.5em;
+    padding: 2.5%;
+    text-align: center;
+    cursor: pointer;
+  }
+
   .btn btn-primary{
     background-color: #fff;
     position: absolute;

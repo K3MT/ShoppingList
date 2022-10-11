@@ -19,12 +19,9 @@ export default function Cart(props) {
       userID: state.userID,
     };
     axios
-      .post(
-        "https://k3mt-backend.herokuapp.com/src/GetCartTotalPrice.php",
-        {
-          data: data,
-        }
-      )
+      .post("https://k3mt-backend.herokuapp.com//src/GetCartTotalPrice.php", {
+        data: data,
+      })
       .then((result) => {
         setfectchedCartTotal(true);
         setCartTotal(result.data[0].totalCost);
@@ -37,12 +34,9 @@ export default function Cart(props) {
       userID: state.userID,
     };
     axios
-      .post(
-        "https://k3mt-backend.herokuapp.com/src/GetActiveCart.php",
-        {
-          data: data,
-        }
-      )
+      .post("https://k3mt-backend.herokuapp.com//src/GetActiveCart.php", {
+        data: data,
+      })
       .then((result) => {
         console.log(result.data);
         if (mounted) {
@@ -77,12 +71,9 @@ export default function Cart(props) {
       userID: state.userID,
     };
     axios
-      .post(
-        "https://k3mt-backend.herokuapp.com/src/PurchaseCart.php",
-        {
-          data: data,
-        }
-      )
+      .post("https://k3mt-backend.herokuapp.com//src/PurchaseCart.php", {
+        data: data,
+      })
       .then((result) => {
         console.log(result.data);
         setstatechange(stateChange + 100);
@@ -106,7 +97,7 @@ export default function Cart(props) {
         </ul>
       </div>
       <div className="cartArea">
-        <div class="area">
+        {/* <div class="area">
           <ul class="circles">
             <li></li>
             <li></li>
@@ -119,7 +110,7 @@ export default function Cart(props) {
             <li></li>
             <li></li>
           </ul>
-        </div>
+        </div> */}
         <div className="cartInfo">
           <h1 className="cartTotalPrice">Total Price: R{cartTotal}</h1>
           <button className="CheckoutBtn" onClick={checkOut}>
@@ -146,8 +137,9 @@ export default function Cart(props) {
             })}
         </div>
       </div>
+
       <div className="templateArea">
-        <div class="area">
+        {/* <div class="area">
           <ul class="circles">
             <li></li>
             <li></li>
@@ -160,7 +152,7 @@ export default function Cart(props) {
             <li></li>
             <li></li>
           </ul>
-        </div>
+        </div> */}
         <div className="cartInfo">
           <h1 className="cartTotalPrice">Template Items</h1>
         </div>

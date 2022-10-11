@@ -25,54 +25,8 @@ export default function Home(props) {
   //Return the html
   return (
     <div className="Auth-form-container-home">
-      <span>
-      <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> K3MT </a>
-        <nav class="navMenuHome">
-        
-          <a href="#">Home</a>
-          <a href="#" onClick={homeToLogin}>
-            Login
-          </a>
-          <a href="#" onClick={homeToRegister}>
-            Register
-          </a>
-  
-          
-          
-        </nav>
-
-
-        
-
-      </span>
-
-
-      <div className="shoppinglist">
-      <section class="home" id="home">
-
-      <div class="content">
-          <h3>fresh and <span>organic</span> products for you</h3>
-      </div>
-
-      </section>
-        {listArray.map((item) => {
-          return (
-            
-            <Tile
-              title={item.itemName}
-              key={item.itemID}
-              imageurl={item.itemImageURL}
-              game_id={item.itemPrice}
-              tournament_id={item.itemMass}
-              arbTourney={item.itemMass}
-              setArbtourney={item.brandID}
-            />
-          );
-        })}
-      </div>
-
       <div className="homearea">
-        <ul className="homecircles">
+        <ul className="homecircles-home">
           <li></li>
           <li></li>
           <li></li>
@@ -84,6 +38,44 @@ export default function Home(props) {
           <li></li>
           <li></li>
         </ul>
+      </div>
+      <span>
+        <a href="#" class="logo">
+          {" "}
+          <i class="fas fa-shopping-basket"></i> K3MT{" "}
+        </a>
+        <nav class="navMenuHome">
+          <a href="#">Home</a>
+          <a href="#" onClick={homeToLogin}>
+            Login
+          </a>
+          <a href="#" onClick={homeToRegister}>
+            Register
+          </a>
+        </nav>
+      </span>
+
+      <div className="shoppinglist">
+        <section class="home" id="home">
+          <div class="content">
+            <h3>
+              Fresh and <span>Affordable</span> products for you
+            </h3>
+          </div>
+        </section>
+        {listArray.map((item) => {
+          return (
+            <Tile
+              title={item.itemName}
+              key={item.itemID}
+              imageurl={item.itemImageURL}
+              game_id={item.itemPrice}
+              tournament_id={item.itemMass}
+              arbTourney={item.itemMass}
+              setArbtourney={item.brandID}
+            />
+          );
+        })}
       </div>
     </div>
   );

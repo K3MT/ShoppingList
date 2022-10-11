@@ -787,9 +787,9 @@ a .uil {
 
 .shoppableItems {
   width: 100%;
-  height: 80%;
+  height: 70%;
   position: absolute;
-  top: 18%;
+  top: 35%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -797,6 +797,22 @@ a .uil {
   scroll-behavior: smooth;
   overflow-y: scroll;
   z-index: 0;
+}
+
+.sectionButtons{
+  background-color: #0CB4FB;
+  color: white;
+  border-radius: 1rem;
+  min-width: 130px;
+  width: 130px;
+  max-width: 130px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.sectionButtons h3{
+  margin-top: 9%;
+  font-size: 1.4em;
 }
 
 .editProfileBtn{
@@ -812,50 +828,297 @@ a .uil {
   box-sizing: border-box;
   border-radius: 20px;
 }
-.home{
+
+.ViewSections{
   display: flex;
+  flex-direction: row;
+  position: absolute;
+  /* background-color: white; */
+  width: 45%;
+  max-width: 50%;
+  justify-content: space-between;
+  height: 5%;
+  left: 3%;
+  margin-top: -17.775%;
+}
+
+.profileBox{
+  display: flex;
+  flex-direction: row; 
+  box-shadow:  0px 0px 15px #0CB4FB;
+  width: 30%;
+  left: -55px;
+  background-color: white;
+  border-radius: 2.5rem;
+  margin-top: -32.25%;
+  position: relative;
+  padding: 0.9em;
+}
+
+.profileBox .infoSection{
+  display: flex;
+  flex-direction: column;
+  margin: 4%;
+}
+
+.profileBox .infoSection h1{
+  font-weight: 600;
+}
+
+.profileBox .infoSection .EditInfoButton{
+    height: 150px;
+    width: 30px;
+    margin: 1%;
+    position: absolute;
+    bottom: -50px;
+    text-align: center;
+    left: 80%;
+    cursor: pointer;
+}
+
+.CartIconButton{
+  height: 150px;
+  margin: 1%;
+  position: absolute;
+  bottom: -110px;
+  text-align: center;
+  left: 79%;
+  cursor: pointer;
+  color: black;
+  /* background-color: white;  */
+  font-weight: 700;
   align-items: center;
-  justify-content: center;
-  background: url(./image/banner-bg.webp) no-repeat;
+  display: inline-block;
+  width: 60px;
+  max-width: 60px;
+  padding: 1%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.profile{
+  display: flex;
+  flex-direction: row;
   background-position: center;
   background-size: cover;
-  width: 200%;;
-  padding-top: 17rem;
-  padding-bottom: 10rem;
+  width: 85%;
+  max-width: 50%;
+  width: 50%;
+  border-radius: 2.5rem;
+  left: -96px;
+  margin-top: -32.25%;
+  padding: 5em;
+  position:relative;
+  margin-right:1%;
+  background-color: white;
+  box-shadow:  0px 0px 15px #0CB4FB;
 }
 
-.home .content{
+.profile .categories{
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+  height: 90%;
+  width: 10%;
+  background-color: #000;
+  color: #000;
+}
+
+.profile .categories .dairy{
+  height: 70px;
+  min-height: 60px;
+  width: 80px;
+  top: 15%;
+  align-items: center;
+  align-content: center;
   text-align: center;
-  width:60rem;
+  left: 5%;
+  min-width: 80px;
+  position: absolute;
+  cursor: pointer;
+  color: black;
+  background-color: white;
 }
 
-.home .content h3{
-  color:var(--black);
-  font-size: 3rem;
+.profile .categories .dairy .DairyIcon{
+  height: 70px;
+  width: 70px;
+  min-width: 50px;
 }
 
-.home .content h3 span{
-  color:var(--orange);
+.profile .categories .dairy h3{
+  font-weight: 600;
+  font-size: medium;
 }
 
-.home .content p{
-  color:var(--light-color);
-  font-size: 1.7rem;
-  padding:1rem 0;
-  line-height: 1.8;
+.profile .categories .bread{
+  height: 75px;
+  width: 80px;
+  text-align: center;
+  min-width: 80px;
+  position: absolute;
+  left: 20%;
+  top: 15%;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+
+  
+}
+
+.profile .categories .bread .BreadIcon{
+  height: 70px;
+  width: 70px;
+  min-width: 50px;
+}
+
+.profile .categories .bread h3{
+  font-weight: 600;
+  font-size: medium;
+}
+
+.profile .categories .random{
+  height: 94px;
+  width: 80px;
+  text-align: center;
+  min-width: 80px;
+  left: 38%;
+  top: 15%;
+  position: absolute;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile .categories .random .RandomIcon{
+  height: 75px;
+  width: 70px;
+  min-width: 50px;
+}
+
+.profile .categories .random h3{
+  font-weight: 600;
+  font-size: medium;
+}
+
+.profile .categories .beverage{
+  height: 84px;
+  width: 80px;
+  text-align: center;
+  min-width: 80px;
+  left: 55%;
+  top: 12%;
+  position: absolute;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+}
+
+.profile .categories .beverage .BeverageIcon{
+  height: 75px;
+  width: 70px;
+  min-width: 50px;
+}
+
+.profile .categories .beverage h3{
+  font-weight: 600;
+  font-size: medium;
+}
+
+.profile .sorting{
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+  justify-content: space-between;
+  height: 70%;
+  width: 45%;
+  position: absolute;
+  left: 70%;
+  top: 62px;
+}
+
+.profile .sorting h3{
+  font-weight: 700;
+  position: relative;
+  top:-61px;
+}
+
+.profile .sorting .ascending{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top:-60px;
+  cursor: pointer;
+  color: #0CB4FB;
+}
+
+.profile .sorting .ascending h4{
+  font-weight: 700;
+  position: relative;
+  color: #0CB4FB;
+}
+
+.profile .sorting .ascending .AscendingIcon{
+  width: 25px;
+  height: 25px;
+}
+
+.profile .sorting .descending{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top:-60px;
+  color: #0CB4FB;
+  cursor: pointer;
+}
+
+.profile .sorting .descending h4{
+  font-weight: 700;
+  position: relative;
+  color: #0CB4FB;
+}
+
+.profile .sorting .descending .DescendingIcon{
+  width: 25px;
+  height: 25px;
+}
+
+.profile .sorting .random{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top:-60px;
+  cursor: pointer;
+  color: #0CB4FB;
+}
+
+.profile .sorting .random h4{
+  font-weight: 700;
+  position: relative;
+  color: #0CB4FB;
+}
+
+.profile .sorting .random .RandomIcon{
+  width: 18px;
+  height: 18px;
+  margin: 0.1em;
 }
 
 .navMenu {
   position: absolute;
   top: 2%;
-  
-  background: white;  
-  width: 90%;
+  left: 45%;
+  /* background: white;   */
+  width: 105%;
   height: 20%;
   overflow: hidden;
   align-items: center;
   align-content: center;
-  -webkit-transform: translate(-50%, -50%);
+  
   transform: translate(-40%, 0%);
 }
   .logo{
@@ -874,7 +1137,7 @@ a .uil {
   text-decoration: none;
   font-size: 1.2em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
   align-items: center;
   display: inline-block;
   width: 80px;
@@ -887,10 +1150,8 @@ a .uil {
 
 .navMenu a:hover {
   background-color: white; 
-  color: red;
+  color: #0CB4FB;
 }
-
-
 
 .navMenu a:nth-child(1):hover ~ .dot {
   -webkit-transform: translateX(30px);
@@ -922,4 +1183,44 @@ a .uil {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   opacity: 1;
+}
+
+
+.homep{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(./image/banner-bg.webp) no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 80%;
+  max-width: 90%;
+  border-radius: 2.5rem;
+  margin-top: 1.8%;
+  padding-top: 1rem;
+  position: relative;
+  left: 2.3%;
+  padding-bottom: 1rem;
+  box-shadow:  10px 0px 25px #0CB4FB;
+}
+
+.homep .content{
+  text-align: center;
+  width:60rem;
+}
+
+.homep .content h3{
+  color:var(--black);
+  font-size: 3rem;
+}
+
+.homep .content h3 span{
+  color:var(--orange);
+}
+
+.homep .content p{
+  color:var(--light-color);
+  font-size: 1.7rem;
+  padding:1rem 0;
+  line-height: 1.8;
 }

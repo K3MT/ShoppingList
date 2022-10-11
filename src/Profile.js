@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Profile.css";
-// import "./Home.css";
+import { AiOutlineEdit, AiOutlineShoppingCart } from "react-icons/ai";
+import { GiMilkCart, GiSlicedBread, GiSodaCan } from "react-icons/gi";
+import { BiDrink } from "react-icons/bi";
+import {
+  TbMilk,
+  TbBread,
+  TbSortAscendingNumbers,
+  TbSortDescendingNumbers,
+  TbSortAscending2,
+  TbSortDescending2,
+} from "react-icons/tb";
+import { FaRandom } from "react-icons/fa";
 import ShoppableCard from "./ShoppableCard.js";
 import axios from "axios";
 import { Dialog } from "primereact/dialog";
@@ -20,6 +31,7 @@ export default function Profile(props) {
   const [stateChange, setstatechange] = useState(0);
   const [userInfofectched, setuserinfofecthed] = useState(true);
   const [image, setImage] = useState("");
+  const [productMode, setproductMode] = useState("All");
 
   //get the different categories
   const categoryArrayupdate = () => {
@@ -38,12 +50,9 @@ export default function Profile(props) {
       userID: state.userID,
     };
     axios
-      .post(
-        "https://k3mt-backend.herokuapp.com/src/GetUserDetails.php",
-        {
-          data: data,
-        }
-      )
+      .post("https://k3mt-backend.herokuapp.com//src/GetUserDetails.php", {
+        data: data,
+      })
       .then((result) => {
         setuserinfofecthed(true);
         console.log(result.data);
@@ -54,11 +63,24 @@ export default function Profile(props) {
   //Catch request response from server
   useEffect(() => {
     let mounted = true;
+    let data = {};
+    let url = "https://k3mt-backend.herokuapp.com//src/GetAllItems.php";
+    if (productMode == "Recommended") {
+      url = "https://k3mt-backend.herokuapp.com//src/GetRecommendedItems.php";
+      data = { userID: state.userID };
+    }
+    if (productMode == "Specials") {
+      url = "https://k3mt-backend.herokuapp.com//src/GetItemsOnSpecial.php";
+    }
+    if (productMode == "TopItems") {
+      url = "https://k3mt-backend.herokuapp.com//src/GetPopularItems.php";
+    }
     axios
-      .post("https://k3mt-backend.herokuapp.com/src/GetAllItems.php", {
-        data: [],
+      .post(url, {
+        data: data,
       })
       .then((result) => {
+        // console.log(result.data);
         if (mounted) {
           if (currSortOrder == "Ascending") {
             result.data.sort(function (a, b) {
@@ -90,6 +112,11 @@ export default function Profile(props) {
     setstatechange(stateChange + 1);
   };
 
+  const setMode = (mode) => {
+    setproductMode(mode);
+    setstatechange(stateChange + 1);
+  };
+
   let navigate = useNavigate();
   const toEditProfile = () => {
     navigate("/editprofile", { state: { userID: state.userID } });
@@ -116,36 +143,96 @@ export default function Profile(props) {
         </ul>
       </div>
       <span>
-
-      <a href="#" className="logo"> <i class="fas fa-shopping-basket"></i> K3MT </a>
-      <nav className="navMenu">
-        
-          <a href="#">Sort By</a>
-          <a href="#" >
-            Filter
-          </a>
-          <a href="#">Profile
-            
-          
-            
-          </a>
-          <a href="" onClick={profileToCart}>
-            Cart
-          </a>
-  
-          
-          
+        <a href="#" class="logo">
+          {" "}
+          <i class="fas fa-shopping-basket"></i> K3MT{" "}
+        </a>
+        <nav class="navMenu">
+          <AiOutlineShoppingCart
+            className="CartIconButton"
+            id="CartIconButton"
+            onClick={profileToCart}
+          />
         </nav>
       </span>
+      <section class="profile" id="home">
+        <div class="categories">
+          <div className="random" onClick={() => categoryFilter("Unfiltered")}>
+            <FaRandom className="RandomIcon" />
+            <h3>Random</h3>
+          </div>
 
-      <div className="shoppableItems">
-      <section className="home" id="home">
+          <div className="dairy" onClick={() => categoryFilter("Dairy")}>
+            <TbMilk className="DairyIcon" />
+            <h3>Dairy</h3>
+          </div>
 
-      <div className="content">
-          <h3>fresh and <span>organic</span> products for you</h3>
-      </div>
+          <div className="beverage" onClick={() => categoryFilter("Beverages")}>
+            <BiDrink className="BeverageIcon" />
+            <h3>Beverages</h3>
+          </div>
 
+          <div className="bread" onClick={() => categoryFilter("Bread")}>
+            <TbBread className="BreadIcon" />
+            <h3>Bread</h3>
+          </div>
+        </div>
+        <div class="sorting">
+          <h3>Sort by price</h3>
+          <div className="ascending" onClick={() => setOrder("Ascending")}>
+            <h4>Ascending</h4>
+            <TbSortAscending2 className="AscendingIcon" />
+          </div>
+          <div className="descending" onClick={() => setOrder("Descending")}>
+            <h4>Descending</h4>
+            <TbSortDescending2 className="DescendingIcon" />
+          </div>
+          <div className="random" onClick={() => setOrder("Unsorted")}>
+            <h4>Unsorted </h4>
+            <FaRandom className="RandomIcon" />
+          </div>
+        </div>
       </section>
+      <div className="profileBox">
+        <div
+          className="imageSection"
+          style={{
+            width: "35%",
+            height: "100px",
+            margin: "1%",
+            backgroundSize: "cover",
+            borderRadius: "1.5em",
+            color: "black",
+            backgroundImage: `url(${userInfo[0].userImageURL})`,
+          }}
+        ></div>
+        <div className="infoSection">
+          <h1>
+            {userInfo[0].name} {userInfo[0].surname}
+          </h1>
+          <h3>{userInfo[0].userAboutMe}</h3>
+          <AiOutlineEdit
+            className="EditInfoButton"
+            id="EditInfoButton"
+            onClick={toEditProfile}
+          />
+        </div>
+      </div>
+      <div className="ViewSections">
+        <div className="sectionButtons" onClick={() => setMode("All")}>
+          <h3>All</h3>
+        </div>
+        <div className="sectionButtons" onClick={() => setMode("Recommended")}>
+          <h3>Recommended</h3>
+        </div>
+        <div className="sectionButtons" onClick={() => setMode("TopItems")}>
+          <h3>Top selling</h3>
+        </div>
+        <div className="sectionButtons" onClick={() => setMode("Specials")}>
+          <h3>Specials</h3>
+        </div>
+      </div>
+      <div className="shoppableItems">
         {isResponse &&
           listArray.map((item) => {
             if (currcategoryFilter == "Unfiltered") {
@@ -165,13 +252,13 @@ export default function Profile(props) {
               if (item.categoryName == currcategoryFilter) {
                 return (
                   <ShoppableCard
-                    title={item.itemName}
-                    keyy={item.itemID}
-                    imageurl={item.itemImageURL}
-                    game_id={item.itemPrice}
-                    tournament_id={item.itemMass}
-                    arbTourney={item.itemMass}
-                    setArbtourney={item.brandID}
+                    product_title={item.itemName}
+                    product_ID={item.itemID}
+                    product_imageurl={item.itemImageURL}
+                    product_price={item.itemPrice}
+                    product_mass={item.itemMass}
+                    product_brandID={item.brandID}
+                    product_description={item.itemDescription}
                     user_id={state.userID}
                   />
                 );

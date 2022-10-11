@@ -4,9 +4,24 @@
 }
 
 
+.toaster{
+    background: green;
+    color: #fff;
+    background-color: #fff;
+    font-size: 20px;
+    width: 200px;
+    max-width: 200px;
+    height: 90px;
+    padding: 30px 20px;
+    box-shadow: white;
+    border: none;
+    border-style: dashed;
+}
+
 .InfoButton{
     height: 200px;
     width: 30px;
+    max-width: 25px;
     margin: 1%;
     position: absolute;
     bottom: -75px;
@@ -16,21 +31,27 @@
 }
 
 .addProfileButton{
-    height:50px;
-    width:35%;
-    bottom:60px;
+    height:30px;
+    width:33%;
+    bottom:50px;
     border: white;
     z-index: 1000;
     outline: none;
-    border-color: white;
     color: white;
     position: absolute;
-    background: black;
+    background: #0CB4FB;
     cursor: pointer;
-    border-radius: 25px;
+    font-weight: 700;
+    border-radius: 5px;
     right: 20px;
     letter-spacing: 1.15px;
 }
+.addProfileButton h3{
+  font-size: 1em;
+  font-weight: 500;
+  margin-top: 5%;
+}
+
 .btn{
   margin-top: 1rem;
   display: inline-block;
@@ -49,47 +70,54 @@
 }
 
 .templateProfileButton{
-  height:50px;
-  width:50%;
-  bottom:60px;
+  height:30px;
+  width:48%;
+  bottom:50px;
   left: 20px;
   border: none;
   outline: none;
-  color: white;
   position: absolute;
-  background: black;
+  background-color:  #0CB4FB;
+  color: white;
   cursor: pointer;
-  border-radius: 25px;
+  border-radius: 5px;
   letter-spacing: 1.15px;
 }
 
+.templateProfileButton h3{
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-top: 4%;
+
+}
+
 .Title{
-    margin-top: 2%;
+    margin-top: -1.5%;
 }
 
 .Tile {
-    height: 500px;
-    padding: 0.5em 1em 1em 1em;
-    text-align: center;
-    border-radius: 0.8em;
-    /* box-shadow: -5px -5px 12px rgba(255, 255, 255, 0.7), 2px 2px 5px rgba(94, 104, 121, 0.3); */
-    width:300px;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 2%;
-    position: relative;
-    margin: 2.5%;
-    text-align: center;
-    padding:3rem 2rem;
-    outline-offset: -1rem;
-    outline: var(--outline);
-    box-shadow: var(--box-shadow);
-    transition: .2s linear;
+  height: 450px;
+  max-height: 380px;
+  padding: 0.5em 1em 1em 1em;
+  text-align: center;
+  border-radius: 0.8em;
+  width: 300px;
+  max-width: 265px;
+  display: fixed;
+  background-color: white;
+  box-shadow: 50%;
+  margin: 2.5%;
+  background: whitesmoke;
+  text-align: center;
+  padding:3rem 2rem;
+  box-shadow:  0px -2px 35px gray;
+  transition: .5s linear;
+  position: relative;
 }
 .Tile:hover{
   outline-offset: 0rem;
   outline: var(--outline-hover);
+  box-shadow:  0px 0px 15px #0CB4FB;
 }
 
 .imageholder {
@@ -101,11 +129,11 @@
 }
 
 .PopupInfoContent{
-    width:600px;
+    width:400px;
+    max-width: 250px;
     margin: 2%;
-    height:250px;
-    border-radius: 10%;
-    background-color: #ffffff;
+    height:150px;
+    border-radius: 10%; 
 }
 
 .modal {
@@ -140,7 +168,7 @@
     right: -10px;
     top: -10px;
     font-size: 24px;
-    background: #ffffff;
+    
     border-radius: 18px;
     border: 1px solid #cfcece;
   }
