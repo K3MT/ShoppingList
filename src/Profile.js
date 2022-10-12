@@ -243,6 +243,7 @@ export default function Profile(props) {
                   product_imageurl={item.itemImageURL}
                   product_price={item.itemPrice}
                   product_mass={item.itemMass}
+                  product_unit={item.unitShort}
                   product_brandID={item.brandID}
                   product_description={item.itemDescription}
                   user_id={state.userID}
@@ -257,6 +258,7 @@ export default function Profile(props) {
                     product_imageurl={item.itemImageURL}
                     product_price={item.itemPrice}
                     product_mass={item.itemMass}
+                    product_unit={item.unitShort}
                     product_brandID={item.brandID}
                     product_description={item.itemDescription}
                     user_id={state.userID}

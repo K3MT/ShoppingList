@@ -17,6 +17,7 @@ function ShoppableCard({
   product_imageurl,
   product_price,
   product_mass,
+  product_unit,
   product_brandID,
   product_description,
   user_id,
@@ -98,7 +99,7 @@ function ShoppableCard({
             <h3>{product_title}</h3>
             <span></span>
             <h2></h2>
-            <h2>Weight: {product_mass}kg</h2>
+            <h2>Units: {product_mass}{product_unit}</h2>
             <h2>Cost: R{product_price}</h2>
           </div>
         )}
