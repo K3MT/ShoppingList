@@ -21,11 +21,11 @@
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Getting the post variables
-            $userID = new RequestObject($json["userID"], true);
+            $followerID = new RequestObject($json["followerID"], true);
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Creating a parameter array and setting the procedure name for the procedure call
-            $parameters = array($userID);
+            $parameters = array($followerID);
             $procedureName = "getInfluencerMetadata";
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
