@@ -27,7 +27,7 @@
 
             # Creating a parameter array and setting the procedure name for the procedure call
             $parameters = array($userID, $listID);
-            $procedureName = "addItemToList";
+            $procedureName = "addListToCart";
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             # Making the procedural call using these parameters
