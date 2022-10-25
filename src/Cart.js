@@ -38,7 +38,6 @@ export default function Cart(props) {
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
         if (mounted) {
           setListArray(Array.from(result.data));
           setResponse(true);
@@ -57,7 +56,6 @@ export default function Cart(props) {
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
         if (mounted) {
           setListArraytemplate(Array.from(result.data));
           setResponse(true);
@@ -75,7 +73,6 @@ export default function Cart(props) {
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
         setstatechange(stateChange + 100);
       });
   };

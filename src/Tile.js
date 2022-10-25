@@ -18,8 +18,6 @@ function Tile({
     window.scroll(0, 0);
   }, []);
 
-  console.log("called 2");
-
   return (
     <div className="homegameTile">
       <h3 className="Title">{title}</h3>
@@ -32,7 +30,6 @@ function Tile({
           backgroundSize: "100% 100%",
           borderRadius: "1em",
           backgroundImage: `url(${imageurl})`,
-          
         }}
       ></div>
     </div>

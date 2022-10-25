@@ -789,7 +789,7 @@ a .uil {
   width: 100%;
   height: 70%;
   position: absolute;
-  top: 35%;
+  top: 35.5%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -799,10 +799,13 @@ a .uil {
   z-index: 0;
 }
 
+
+
 .sectionButtons{
-  background-color: orangered;
+  background-color: gray;
   color: white;
-  border-radius: 3rem;
+  box-shadow:  0px 0px 120px #CC7952;
+  border-radius: 1.2rem;
   min-width: 130px;
   width: 130px;
   max-width: 130px;
@@ -839,7 +842,7 @@ a .uil {
   justify-content: space-between;
   height: 5%;
   left: 3%;
-  margin-top: -17.775%;
+  margin-top: -19.775%;
 }
 
 .profileBox{
@@ -850,7 +853,7 @@ a .uil {
   left: -55px;
   background-color: white;
   border-radius: 2.5rem;
-  margin-top: -32.25%;
+  margin-top: -35.25%;
   position: relative;
   padding: 0.9em;
 }
@@ -863,6 +866,12 @@ a .uil {
 
 .profileBox .infoSection h1{
   font-weight: 600;
+  font-size: 1.5em;
+}
+
+.profileBox .infoSection h3{
+  font-weight: 600;
+  font-size: 1.1em;
 }
 
 .profileBox .infoSection .EditInfoButton{
@@ -874,6 +883,28 @@ a .uil {
     text-align: center;
     left: 80%;
     cursor: pointer;
+}
+
+.HomeIconButton{
+  height: 150px;
+  margin: 1%;
+  position: absolute;
+  bottom: -110px;
+  text-align: center;
+  left: 79%;
+  cursor: pointer;
+  color: black;
+  /* background-color: white;  */
+  font-weight: 700;
+  align-items: center;
+  display: inline-block;
+  width: 60px;
+  max-width: 60px;
+  padding: 1%;
+  margin-bottom: 6%;
+  margin-left: 3%;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .CartIconButton{
@@ -892,8 +923,8 @@ a .uil {
   width: 60px;
   max-width: 60px;
   padding: 1%;
-  margin-bottom: 5%;
-  margin-left: 5%;
+  margin-bottom: 6%;
+  margin-left: 6%;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -908,7 +939,7 @@ a .uil {
   width: 50%;
   border-radius: 2.5rem;
   left: -96px;
-  margin-top: -32.25%;
+  margin-top: -35.25%;
   padding: 5em;
   position:relative;
   margin-right:1%;
@@ -1110,9 +1141,8 @@ a .uil {
 
 .navMenu {
   position: absolute;
-  top: 2%;
+  top: 0.5%;
   left: 45%;
-  /* background: white;   */
   width: 105%;
   height: 20%;
   overflow: hidden;

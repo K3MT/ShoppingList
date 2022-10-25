@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import "./CartItem.css";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-
+import { RiMoneyDollarBoxFill } from "react-icons/ri";
+import { MdRemoveShoppingCart } from "react-icons/md";
 //TODO smooth out hover animation using css
 
 function CartItem({
@@ -23,9 +24,6 @@ function CartItem({
   }, []);
 
   function removeFromCart() {
-    console.log(document.getElementById("prodTitle").textContent);
-    console.log(user_id);
-    console.log(item_id);
     const data = {
       userID: user_id,
       itemID: item_id,
@@ -38,21 +36,37 @@ function CartItem({
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
         stateChanger(100 * game_id);
       });
   }
 
   return (
     <div className="cartgameTile">
-      <h3 id="prodTitle" className="Title">
+      <h3 id="prodTitle" className="cartItemTitle">
         {title}
       </h3>
-      <h3 className="Title">Price: R{game_id}</h3>
-      <h3 className="Title">Quantity: {keyy}</h3>
-      <button className="addButton" onClick={removeFromCart}>
+      <div className="priceSection">
+        <RiMoneyDollarBoxFill className="priceIcon" />
+        <h3 className="cartItemPrice">R{game_id}</h3>
+        <h3 className="cartItemCount">{keyy}x</h3>
+      </div>
+      <div
+        className="imageholder"
+        style={{
+          width: "90%",
+          height: "200px",
+          marginTop: "-1.75%",
+          backgroundSize: "100% 100%",
+          borderRadius: "1.5em",
+          marginLeft: "5%",
+          backgroundImage: `url(${imageurl})`,
+        }}
+      ></div>
+
+      <MdRemoveShoppingCart className="RemoveIcon" onClick={removeFromCart} />
+      {/* <button className="addButton" onClick={removeFromCart}>
         Remove Item
-      </button>
+      </button> */}
     </div>
   );
 }

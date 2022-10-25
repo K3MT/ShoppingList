@@ -120,7 +120,6 @@ export default function Reset(props) {
   };
 
   const setQuestion = () => {
-    console.log(securityQuestion);
     document.getElementById("resetsecurityquestion").placeholder =
       securityQuestion;
   };
@@ -146,13 +145,11 @@ export default function Reset(props) {
     const data = {
       userEmail: document.getElementById("resetemail").value,
     };
-    console.log(data);
     axios
       .post("https://k3mt-backend.herokuapp.com//src/GetSecurityQuestion.php", {
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
         if (result.data.length === 0) {
           generateMessage("Email not associated with any account");
         } else {
@@ -177,7 +174,6 @@ export default function Reset(props) {
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
         if (result.data.length === 0) {
           generateMessage("Reset unsuccesful");
         } else {

@@ -7,70 +7,91 @@ export default function EditProfile(props) {
   //Use location to get sent attributes
   const { state } = useLocation();
   let navigate = useNavigate();
+
+  let userAboutMepassed;
+  let userImageUrlpassed;
+
+  var newAboutMe = state.userAboutMe;
+  var newuserImageUrl = state.userImageURL;
+
   //Validate the form
   const validateForm = () => {
-    if (document.getElementById("newbio").value.length != 0) {
-      let data = {
-        userID: state.userID,
-        userAboutMe: document.getElementById("newbio").value,
-      };
-      axios
-        .post("https://k3mt-backend.herokuapp.com//src/UpdateAboutMe.php", {
-          data: data,
-        })
-        .then((result) => {
-          if (result.data.length != 0) {
-            let profilepicturelink =
-              document.getElementById("newprofilepicture").value;
-            let length =
-              document.getElementById("newprofilepicture").value.length;
-            console.log(length);
-            if (length != 0) {
-              console.log("Length achieved");
-              if (1 == 1) {
-                console.log("exists");
-                let data_two = {
-                  userID: state.userID,
-                  userImageURL: profilepicturelink,
-                };
-                axios
-                  .post(
-                    "https://k3mt-backend.herokuapp.com//src/UploadProfilePicture.php",
-                    {
-                      data: data_two,
-                    }
-                  )
-                  .then((result) => {
-                    if (result.data.length != 0) {
-                      navigate("/profile", { state: { userID: state.userID } });
-                      console.log("done");
-                    }
-                  });
-              } else {
-                navigate("/profile", { state: { userID: state.userID } });
-              }
-            } else {
-              navigate("/profile", { state: { userID: state.userID } });
-            }
-          }
-        });
+    newAboutMe = document.getElementById("newbio").value;
+
+    if (document.getElementById("newbio").value.length == 0) {
+      newAboutMe = state.userAboutMe;
     }
+    newuserImageUrl = document.getElementById("newprofilepicture").value;
+    if (document.getElementById("newprofilepicture").value.length == 0) {
+      newuserImageUrl = state.userImageURL;
+    }
+
+    let data = {
+      userID: state.userID,
+      userAboutMe: newAboutMe,
+    };
+
+    userAboutMepassed = true;
+    userImageUrlpassed = true;
+
+    axios
+      .post("https://k3mt-backend.herokuapp.com//src/UpdateAboutMe.php", {
+        data: data,
+      })
+      .then((result) => {
+        if (result.data[0].length == 1) {
+          userAboutMepassed = false;
+        }
+        var tester = new Image();
+        tester.onload = imageFound;
+        tester.onerror = imageNotFound;
+        tester.src = newuserImageUrl;
+      });
   };
 
-  //Check if the image url exists
-  async function exists(url) {
-    try {
-      const result = await fetch(url, { method: "HEAD" });
-      console.log(result.ok);
-      if (result.ok) {
-        console.log("exists!");
-        return 1;
-      } else {
-        return 0;
-      }
-    } catch {
-      return 0;
-    }
+  function imageFound() {
+    let data_profilepicture = {
+      userID: state.userID,
+      userImageURL: newuserImageUrl,
+    };
+    axios
+      .post(
+        "https://k3mt-backend.herokuapp.com//src/UploadProfilePicture.php",
+        {
+          data: data_profilepicture,
+        }
+      )
+      .then((result) => {
+        if (result.data[0].length == 1) {
+          userImageUrlpassed = false;
+        }
+        if (userAboutMepassed && userImageUrlpassed) {
+          navigate("/profile", { state: { userID: state.userID } });
+        }
+      });
+  }
+
+  function imageNotFound() {
+    alert("Image could not be found, Profile picture set to default");
+    let data_profilepicture = {
+      userID: state.userID,
+      userImageURL: "https://i.imgur.com/CjnIMqJ.png",
+    };
+    axios
+      .post(
+        "https://k3mt-backend.herokuapp.com//src/UploadProfilePicture.php",
+        {
+          data: data_profilepicture,
+        }
+      )
+      .then((result) => {
+        if (result.data[0].length == 1) {
+          userImageUrlpassed = false;
+        }
+        if (userAboutMepassed && userImageUrlpassed) {
+          navigate("/profile", { state: { userID: state.userID } });
+        }
+      });
   }
 
   //Return the html

@@ -3,7 +3,41 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.templateRemoveIcon{
+  width: 5rem;
+  height: 2.25rem;
+  color: red;
+  cursor: pointer;
+  bottom: 0px;
+  margin-left: 37%;
+  /* margin-left: 25%; */
+  margin-bottom: 5%;
+}
 
+.templateItemTitle{
+  font-weight: 600;
+    color: black;
+    margin-top: 3.5%;
+    font-size: 1.6em;
+}
+
+.templatePriceIconButton{
+    width: 5rem;
+    height: 2.5rem;
+    color: green;
+}
+
+.templatePriceSection{
+  display: flex;
+  flex-direction: row;
+  /* margin-left: 25%; */
+}
+
+.templateItemPrice{
+  font-weight: 600;
+  /* margin-left: -5%; */
+  margin-top: 1.2%;
+}
 
 .addButtontemplate{
     height: 20%;
@@ -13,20 +47,22 @@
     outline: none;
     color: white;
     font-weight: 500;
-    background: orangered;
+    background: gray;
     cursor: pointer;
     border-radius: 12px;
     letter-spacing: 1.15px;
 }
 .templategameTile {
-    height: 100px;
+    height: 280px;
     width: 100%;
+    position: relative;
     padding: 0.5em 1em 1em 1em;
     text-align: center;
     border-radius: 0.8em;
     max-width: 25em;
-    box-shadow: 0px 0px 20px gray;
-    display: fixed;
+    box-shadow: 0px 0px 15px gray;
+    display: flex;
+    flex-direction: column;
     background-color: white;
     box-shadow: 2%;
     margin: 2.5%;

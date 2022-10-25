@@ -65,13 +65,14 @@ export default function Login(props) {
       userEmail: document.getElementById("loginemail").value,
       userPassword: document.getElementById("loginpassword").value,
     };
-    console.log(data);
     axios
       .post("https://k3mt-backend.herokuapp.com//src/Login.php", {
         data: data,
       })
       .then((result) => {
-        if (result.data.length === 0) {
+        console.log(result.data);
+        if (result.data[0]["INVALID_LOGIN"]) {
+          console.log("aha");
           generateMessage("User does not exist");
         } else {
           setuserVerified(true);
@@ -123,9 +124,8 @@ export default function Login(props) {
       </div>
 
       <form className="Auth-form-login" onSubmit={submitForm}>
-        <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Login</h3>
-
+        <div className="Auth-form-content-login">
+          <h3 className="Auth-form-title-login">Login</h3>
           <div className="form-group mt-1">
             <label>Email address</label>
             <input

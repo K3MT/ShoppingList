@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
+
 *{
     margin: 0px;
     padding: 0px;
@@ -164,12 +165,13 @@ body{
 
 .Auth-form-register {
   width: 400px;
-  height: 90%;
+  height: 65%;
+  max-height: 70%;
   margin-top: 2%;
   padding-top: 30px;
   position: absolute;
   padding-bottom: 20px;
-  border-radius: 8px;
+  border-radius: 20px;
   background-color: white;
   box-shadow: 0px 0px 40px gray;
 }
@@ -177,11 +179,15 @@ body{
 .Auth-form-content {
   padding-left: 12%;
   padding-right: 12%;
+  margin-top: 7%;
+  background-color: white;
+  height: 100%;
+  max-height: 90%; 
 }
 
 .Auth-form-title {
   text-align: center;
-  margin-bottom: 1em;
+  margin: 1em;
   font-size: 24px;
   color: rgb(34, 34, 34);
   font-weight: 800;
