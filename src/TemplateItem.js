@@ -1,7 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import "./TemplateItem.css";
+import { RiMoneyDollarBoxFill } from "react-icons/ri";
 import { useHistory } from "react-router-dom";
+import { MdRemoveShoppingCart } from "react-icons/md";
 import axios from "axios";
 
 //TODO smooth out hover animation using css
@@ -23,9 +25,6 @@ function TemplateItem({
   }, []);
 
   function removeFromTemplate() {
-    console.log(document.getElementById("prodTitle").textContent);
-    console.log(user_id);
-    console.log(item_id);
     const data = {
       userID: user_id,
       itemID: item_id,
@@ -38,20 +37,35 @@ function TemplateItem({
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
         stateChanger(100 * game_id);
       });
   }
 
   return (
     <div className="templategameTile">
-      <h3 id="prodTitle" className="Title">
+      <h3 id="templateItemTitle" className="templateItemTitle">
         {title}
       </h3>
-      <h3 className="Title">Price: R{game_id}</h3>
-      <button className="addButtontemplate" onClick={removeFromTemplate}>
-        Remove Item
-      </button>
+      <div className="templatePriceSection">
+        <RiMoneyDollarBoxFill className="templatePriceIconButton" />
+        <h3 className="templateItemPrice">R{game_id}</h3>
+        <MdRemoveShoppingCart
+          className="templateRemoveIcon"
+          onClick={removeFromTemplate}
+        />
+      </div>
+      <div
+        className="templateimageholder"
+        style={{
+          width: "90%",
+          height: "90%",
+          marginTop: "5%",
+          backgroundSize: "100% 100%",
+          borderRadius: "1.5em",
+          marginLeft: "5%",
+          backgroundImage: `url(${imageurl})`,
+        }}
+      ></div>
     </div>
   );
 }

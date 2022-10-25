@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Profile.css";
-import { AiOutlineEdit, AiOutlineShoppingCart } from "react-icons/ai";
+import {
+  AiOutlineEdit,
+  AiOutlineShoppingCart,
+  AiOutlineHome,
+} from "react-icons/ai";
 import { GiMilkCart, GiSlicedBread, GiSodaCan } from "react-icons/gi";
 import { BiDrink } from "react-icons/bi";
 import {
@@ -55,7 +59,6 @@ export default function Profile(props) {
       })
       .then((result) => {
         setuserinfofecthed(true);
-        console.log(result.data);
         setUserInfo(result.data);
       });
   }, []);
@@ -80,7 +83,6 @@ export default function Profile(props) {
         data: data,
       })
       .then((result) => {
-        // console.log(result.data);
         if (mounted) {
           if (currSortOrder == "Ascending") {
             result.data.sort(function (a, b) {
@@ -92,7 +94,6 @@ export default function Profile(props) {
               return parseFloat(b.itemPrice) - parseFloat(a.itemPrice);
             });
           }
-
           categoryArrayupdate();
           setListArray(Array.from(result.data));
           setResponse(true);
@@ -107,7 +108,6 @@ export default function Profile(props) {
   };
 
   const setOrder = (order) => {
-    console.log("called");
     setSortOrder(order);
     setstatechange(stateChange + 1);
   };
@@ -119,11 +119,21 @@ export default function Profile(props) {
 
   let navigate = useNavigate();
   const toEditProfile = () => {
-    navigate("/editprofile", { state: { userID: state.userID } });
+    navigate("/editprofile", {
+      state: {
+        userID: state.userID,
+        userAboutMe: userInfo[0].userAboutMe,
+        userImageURL: userInfo[0].userImageURL,
+      },
+    });
   };
 
   const profileToCart = () => {
     navigate("/cart", { state: { userID: state.userID } });
+  };
+
+  const profileToManagement = () => {
+    navigate("/management", { state: { userID: state.userID } });
   };
 
   return (
@@ -152,6 +162,11 @@ export default function Profile(props) {
             className="CartIconButton"
             id="CartIconButton"
             onClick={profileToCart}
+          />
+          <AiOutlineHome
+            className="HomeIconButton"
+            id="HomeIconButton"
+            onClick={profileToManagement}
           />
         </nav>
       </span>
@@ -200,16 +215,18 @@ export default function Profile(props) {
             width: "35%",
             height: "100px",
             margin: "1%",
-            backgroundSize: "cover",
+            backgroundSize: "100% 100%",
             borderRadius: "1.5em",
             color: "black",
             backgroundImage: `url(${userInfo[0].userImageURL})`,
           }}
         ></div>
+
         <div className="infoSection">
           <h1>
             {userInfo[0].name} {userInfo[0].surname}
           </h1>
+
           <h3>{userInfo[0].userAboutMe}</h3>
           <AiOutlineEdit
             className="EditInfoButton"

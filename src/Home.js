@@ -5,9 +5,7 @@ import "./style.css";
 import jdata from "./data.json";
 import { useNavigate } from "react-router-dom";
 export default function Home(props) {
-  console.log(jdata.data[0].itemID);
   var listArray = Array.from(jdata.data);
-  console.log(listArray);
 
   //Initialize useNavigate for routing
   const navigate = useNavigate();

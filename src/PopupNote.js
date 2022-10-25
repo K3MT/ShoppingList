@@ -2,7 +2,6 @@ import React from "react";
 
 const PopupNote = (open, title, price, mass) => {
   if (open) {
-    console.log("note reacting");
     return (
       <div className="overlay">
         <div className="modalContainer">

@@ -7,7 +7,11 @@ import { BsInfoCircle } from "react-icons/bs";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { ToastContainer, toast } from "react-toastify";
+import { RiMoneyDollarBoxFill } from "react-icons/ri";
 import "react-toastify/dist/ReactToastify.css";
+import Lottie from "lottie-react";
+import { useLottie } from "lottie-react";
+import addedToCartAnim from "./lotties/cartAdded.json";
 
 //TODO smooth out hover animation using css
 
@@ -27,7 +31,6 @@ function ShoppableCard({
   }, []);
 
   function addTocart() {
-    console.log(document.getElementById("prodTitle").textContent);
     const data = {
       userID: user_id,
       itemID: product_ID,
@@ -40,14 +43,12 @@ function ShoppableCard({
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
-        toast.success("Successfully added to cart");
-        // window.alert("Successfully added to cart");
+        playCartAdded();
+        // toast.success("Successfully added to cart");
       });
   }
 
   function addTotemplate() {
-    console.log(document.getElementById("prodTitle").textContent);
     const data = {
       userID: user_id,
       itemID: product_ID,
@@ -60,9 +61,20 @@ function ShoppableCard({
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
-        toast.success("Successfully added to template");
+        playCartAdded();
+        // toast.success("Successfully added to cart");
       });
+  }
+
+  const playCartAdded = () => {
+    let anim = document.getElementById(product_ID);
+    anim.style.visibility = "visible";
+    setTimeout(hidecartadded, 1000);
+  };
+
+  function hidecartadded() {
+    let anim = document.getElementById(product_ID);
+    anim.style.visibility = "hidden";
   }
 
   return (
@@ -70,7 +82,10 @@ function ShoppableCard({
       <h3 id="prodTitle" className="Title">
         {product_title}
       </h3>
-      <h3 className="Title">R{product_price}</h3>
+      <div className="shoppablePriceSection">
+        <RiMoneyDollarBoxFill className="shoppablePriceIcon" />
+        <h3 className="shoppablePrice">R{product_price}</h3>
+      </div>
       <div
         className="imageholder"
         style={{
@@ -88,6 +103,15 @@ function ShoppableCard({
       <button className="templateProfileButton" onClick={addTotemplate}>
         <h3>Add to template</h3>
       </button>
+      <Lottie
+        animationData={addedToCartAnim}
+        height={100}
+        loop={false}
+        width={100}
+        autoPlay={false}
+        id={product_ID}
+        className="addedAnim"
+      />
       <Popup
         className="PopupInfo"
         trigger={<BsInfoCircle className="InfoButton" />}

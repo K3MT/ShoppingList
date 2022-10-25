@@ -24,7 +24,6 @@ export default function Register(props) {
   //This function will be used to show the badge
   function setPasswordStrength() {
     password = document.getElementById("registerpassword");
-    console.log("present");
     strengthBadge = document.getElementById("StrengthDisp");
     password.addEventListener("input", () => {
       //The badge is hidden by default, so we show it
@@ -129,15 +128,13 @@ export default function Register(props) {
       securityQuestion: document.getElementById("registersquestion").value,
       securityAnswer: document.getElementById("registersanswer").value,
     };
-    console.log(data);
     axios
       .post("https://k3mt-backend.herokuapp.com//src/Registration.php", {
         data: data,
       })
       .then((result) => {
-        console.log(result.data);
-        if (result.data.length === 0) {
-          generateMessage("User does not exist");
+        if (result.data[0]["DUPLICATE_USER_EMAIL"]) {
+          generateMessage("Email not available");
         } else {
           navigate("/login");
         }

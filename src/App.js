@@ -9,6 +9,7 @@ import Home from "./Home.js";
 import Profile from "./Profile.js";
 import EditProfile from "./EditProfile.js";
 import Cart from "./Cart.js";
+import ProfileManagement from "./ProfileManagement.js";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/editprofile" element={<EditProfile />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/management" element={<ProfileManagement />} />
       </Routes>
     </div>
   );

@@ -14,8 +14,6 @@
     height: 90px;
     padding: 30px 20px;
     box-shadow: white;
-    border: none;
-    border-style: dashed;
 }
 
 .InfoButton{
@@ -39,10 +37,18 @@
     outline: none;
     color: white;
     position: absolute;
+<<<<<<< HEAD
+    box-shadow:  0px 0px 6px black;
+    background: gray;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 10px;
+=======
     background: #0CB4FB;
     cursor: pointer;
     font-weight: 700;
     border-radius: 5px;
+>>>>>>> 585ea147173b5343f2741c0e18aa8425353c4c3e
     right: 20px;
     letter-spacing: 1.15px;
 }
@@ -84,10 +90,18 @@
   border: none;
   outline: none;
   position: absolute;
+<<<<<<< HEAD
+  box-shadow:  0px 0px 6px black;
+  background: gray;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+=======
   background-color:  #0CB4FB;
   color: white;
   cursor: pointer;
   border-radius: 5px;
+>>>>>>> 585ea147173b5343f2741c0e18aa8425353c4c3e
   letter-spacing: 1.15px;
 }
 
@@ -105,6 +119,26 @@
 
 .Title{
     margin-top: -1.5%;
+    font-weight: 600;
+}
+
+.shoppablePriceIcon{
+  width: 5rem;
+  height: 2.5rem;
+  color: green;
+}
+
+.shoppablePrice{
+  position: absolute;
+  margin-left: 17%;
+  margin-top: 1%;
+}
+
+.shoppablePriceSection{
+  display: flex;
+  width: 45%;
+  margin-left: 25%;
+  flex-direction: row;
 }
 
 .Tile {
@@ -146,6 +180,18 @@
     margin: 2%;
     height:150px;
     border-radius: 10%; 
+}
+
+.addedAnim{
+    height:5em;
+    width: 5em;
+    margin: 1%;
+    position: absolute;
+    bottom: -0.5px;
+    text-align: center;
+    left: 2%;
+    visibility: hidden;
+    z-index: 100000000;
 }
 
 .modal {
