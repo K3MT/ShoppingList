@@ -38,10 +38,10 @@ export default function Home(props) {
         </ul>
       </div>
       <span>
-        {/* <a href="#" class="logo">
+        <a href="#" class="logo">
           {" "}
           <i class="fas fa-shopping-basket"></i> K3MT{" "}
-        </a> */}
+        </a>
         <nav class="navMenuHome">
           <a href="#">Home</a>
           <a href="#" onClick={homeToLogin}>

@@ -111,7 +111,7 @@ export default function Cart(props) {
         <div className="cartInfo">
           <h1 className="cartTotalPrice">Total Price: R{cartTotal}</h1>
           <button className="CheckoutBtn" onClick={checkOut}>
-            Checkout
+            Proceed to Checkout
           </button>
         </div>
         <div className="cartList">

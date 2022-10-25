@@ -88,7 +88,7 @@
 
   .Proarea{
     background: white;  
-    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+    /* background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);   */
     width: 100%;
     height:100%;
     position: absolute;
@@ -802,6 +802,7 @@ a .uil {
 
 
 .sectionButtons{
+<<<<<<< HEAD
   background-color: gray;
   color: white;
   box-shadow:  0px 0px 120px #CC7952;
@@ -809,13 +810,28 @@ a .uil {
   min-width: 130px;
   width: 130px;
   max-width: 130px;
+=======
+  background-color: #0CB4FB;
+  color: white;
+  border-radius: 1rem;
+  min-width: 160px;
+  width: 160px;
+  max-width: 160px;
+>>>>>>> 585ea147173b5343f2741c0e18aa8425353c4c3e
   text-align: center;
   cursor: pointer;
 }
 
+.sectionButtons:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  /* background: #FFF;
+  color: #000; */
+}
+
 .sectionButtons h3{
-  margin-top: 5%;
-  font-size: 1.5em;
+  margin-top: 9%;
+  font-size: 1.4em;
 }
 
 .editProfileBtn{
@@ -848,7 +864,7 @@ a .uil {
 .profileBox{
   display: flex;
   flex-direction: row; 
-  box-shadow:  0px 0px 25px #CC7952;
+  box-shadow:  0px 0px 15px #0CB4FB;
   width: 30%;
   left: -55px;
   background-color: white;
@@ -944,7 +960,7 @@ a .uil {
   position:relative;
   margin-right:1%;
   background-color: white;
-  box-shadow:  0px 0px 25px #CC7952;
+  box-shadow:  0px 0px 15px #0CB4FB;
 }
 
 .profile .categories{
@@ -1084,13 +1100,13 @@ a .uil {
   position: relative;
   top:-60px;
   cursor: pointer;
-  color: orange;
+  color: #0CB4FB;
 }
 
 .profile .sorting .ascending h4{
   font-weight: 700;
   position: relative;
-  color: orangered;
+  color: #0CB4FB;
 }
 
 .profile .sorting .ascending .AscendingIcon{
@@ -1103,14 +1119,14 @@ a .uil {
   flex-direction: row;
   position: relative;
   top:-60px;
-  color: orange;
+  color: #0CB4FB;
   cursor: pointer;
 }
 
 .profile .sorting .descending h4{
   font-weight: 700;
   position: relative;
-  color: orangered;
+  color: #0CB4FB;
 }
 
 .profile .sorting .descending .DescendingIcon{
@@ -1124,13 +1140,13 @@ a .uil {
   position: relative;
   top:-60px;
   cursor: pointer;
-  color: orange;
+  color: #0CB4FB;
 }
 
 .profile .sorting .random h4{
   font-weight: 700;
   position: relative;
-  color: orangered;
+  color: #0CB4FB;
 }
 
 .profile .sorting .random .RandomIcon{
@@ -1180,7 +1196,7 @@ a .uil {
 
 .navMenu a:hover {
   background-color: white; 
-  color: red;
+  color: #0CB4FB;
 }
 
 .navMenu a:nth-child(1):hover ~ .dot {
@@ -1231,7 +1247,7 @@ a .uil {
   position: relative;
   left: 2.3%;
   padding-bottom: 1rem;
-  box-shadow:  10px 0px 25px #CC7952;
+  box-shadow:  10px 0px 25px #0CB4FB;
 }
 
 .homep .content{

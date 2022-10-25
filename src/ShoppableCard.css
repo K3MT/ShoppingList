@@ -37,14 +37,28 @@
     outline: none;
     color: white;
     position: absolute;
+<<<<<<< HEAD
     box-shadow:  0px 0px 6px black;
     background: gray;
     cursor: pointer;
     font-weight: 700;
     border-radius: 10px;
+=======
+    background: #0CB4FB;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 5px;
+>>>>>>> 585ea147173b5343f2741c0e18aa8425353c4c3e
     right: 20px;
     letter-spacing: 1.15px;
 }
+
+.addProfileButton:hover {
+  outline-offset: 0rem;
+  outline: var(--outline-hover);
+  /* box-shadow:  0px 0px 15px #0CB4FB; */
+}
+
 .addProfileButton h3{
   font-size: 1em;
   font-weight: 500;
@@ -76,12 +90,24 @@
   border: none;
   outline: none;
   position: absolute;
+<<<<<<< HEAD
   box-shadow:  0px 0px 6px black;
   background: gray;
   color: white;
   cursor: pointer;
   border-radius: 10px;
+=======
+  background-color:  #0CB4FB;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+>>>>>>> 585ea147173b5343f2741c0e18aa8425353c4c3e
   letter-spacing: 1.15px;
+}
+
+.templateProfileButton:hover {
+  outline-offset: 0rem;
+  outline: var(--outline-hover);
 }
 
 .templateProfileButton h3{
@@ -122,23 +148,23 @@
   text-align: center;
   border-radius: 0.8em;
   width: 300px;
-  max-width: 250px;
+  max-width: 265px;
   display: fixed;
   background-color: white;
   box-shadow: 50%;
-  margin: 2.5%;
+  margin: 2%;
   background: whitesmoke;
-  border-radius: 2rem;
   text-align: center;
   padding:3rem 2rem;
-  box-shadow:  0px 0px 30px gray;
-  transition: .2s linear;
+  box-shadow:  0px -2px 35px gray;
+  transition: .5s linear;
   position: relative;
 }
+
 .Tile:hover{
   outline-offset: 0rem;
   outline: var(--outline-hover);
-  box-shadow:  0px 0px 30px white;
+  box-shadow:  0px 0px 15px #0CB4FB;
 }
 
 .imageholder {
@@ -146,7 +172,6 @@
     height: fit-content;
     background-size: 'cover';
     border-radius: '1em';
-
 }
 
 .PopupInfoContent{
