@@ -1,15 +1,15 @@
 <?php
 
 use \PHPUnit\Framework\TestCase;
-use App\GetActiveCart;
+use App\GetUserListMetadata;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers \App\GetActiveCart
+ * @covers \App\GetUserListMetadata
  * @covers App\GVM */
-class GetActiveCartTest extends \PHPUnit\Framework\TestCase
+class GetUserListMetadataTest extends \PHPUnit\Framework\TestCase
 {
   private static function generateValidRequest()
   {
@@ -30,6 +30,7 @@ class GetActiveCartTest extends \PHPUnit\Framework\TestCase
     $jsonString = json_encode($objRequest);
 
     TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+
   }
 
   /**
@@ -39,9 +40,13 @@ class GetActiveCartTest extends \PHPUnit\Framework\TestCase
   {
     self::generateValidRequest();
 
-    $response = GetActiveCart::makeCall();
+    $response = GetUserListMetadata::makeCall();
 
-      $this->assertMatchesRegularExpression('/\"itemID\"|\[]/', $response, "Meant to either have an item or be empty");
+    $responseArr = (array) json_decode($response);
+
+    $arrSize = count($responseArr);
+    $this->assertGreaterThanOrEqual(0, $arrSize, "Meant to either have an item or be empty");
+    $this->assertMatchesRegularExpression('/\"listID\"/', $response, "Elements are meant to be lists");
   }
   /**
    * @test
@@ -50,7 +55,7 @@ class GetActiveCartTest extends \PHPUnit\Framework\TestCase
   {
     self::generateInvalidRequest();
 
-    $response = GetActiveCart::makeCall();
+    $response = GetUserListMetadata::makeCall();
 
     $this->assertMatchesRegularExpression('/\"INVALID_USER\"/', $response, "Meant to receive an INVALID_USER response");
   }

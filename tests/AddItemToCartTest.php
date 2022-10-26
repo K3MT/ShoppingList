@@ -1,21 +1,20 @@
 <?php
 
-use App\GetListItems;
-use \PHPUnit\Framework\TestCase;
-use App\AddItemToList;
 use App\GetActiveCart;
+use \PHPUnit\Framework\TestCase;
+use App\AddItemToCart;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers \App\AddItemToList
- * @covers \App\GetListItems
+ * @covers \App\AddItemToCart
+ * @covers \App\GetActiveCart
  * @covers App\GVM
- * @depends GetListItemsTest::testValidCall
- * @depends GetListItemsTest::testInvalidCall
+ * @depends GetActiveCartTest::testValidCall
+ * @depends GetActiveCartTest::testInvalidCall
  */
-class AddItemToListTest extends \PHPUnit\Framework\TestCase
+class AddItemToCartTest extends \PHPUnit\Framework\TestCase
 {
   private static function writeRequest($objRequest)
   {
@@ -28,7 +27,7 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
   private static function generateInvalidRequest()
   {
     $faker = Faker\Factory::create();
-    $objRequest = TestInput::getListItem();
+    $objRequest = TestInput::getItem();
 
     $objRequest->data->itemID = $faker->uuid(); // give a random uuid
 
@@ -41,7 +40,7 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
 
   private static function generateValidCartRequest()
   {
-    $objRequest = TestInput::getListItem();
+    $objRequest = TestInput::getItem();
 
     self::writeRequest($objRequest);
     return $objRequest->data->itemID;
@@ -54,7 +53,7 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
    {
      $addedItemID = self::generateValidCartRequest();
 
-     $response = GetListItems::makeCall();  // Need to check if the item to be added exists in the cart
+     $response = GetActiveCart::makeCall();  // Need to check if the item to be added exists in the cart
 
      // Retrieve the current quantity of items added to the cart
      $jsonResponse = (array) json_decode($response);
@@ -62,13 +61,13 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
      $currQuantity = TestInput::getItemCount($jsonResponse, $addedItemID);
      $expectedQuantity = $currQuantity + 1;
 
-     $response = AddItemToList::makeCall();
+     $response = AddItemToCart::makeCall();
 
      // Retrieve the current quantity of items added to the cart
      $jsonResponse = (array) json_decode($response);
      $responseQuantity = TestInput::getItemCount($jsonResponse, $addedItemID);
 
-     $this->assertMatchesRegularExpression('/\"itemID\":\"'.$addedItemID.'\"/', $response, "Meant to be successful in adding an item to list");
+     $this->assertMatchesRegularExpression('/\"itemID\":\"'.$addedItemID.'\"/', $response, "Meant to be successful in adding an item to cart");
      $this->assertEquals($expectedQuantity, $responseQuantity, "The quantity of the item added should have increased by 1");
    }
    /**
@@ -78,7 +77,7 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
    {
      self::generateInvalidRequest();
 
-     $response = AddItemToList::makeCall();
+     $response = AddItemToCart::makeCall();
 
      $this->assertMatchesRegularExpression('/\"INVALID_ENTRY\"/', $response, "Meant to receive an INVALID_ENTRY response");
    }
