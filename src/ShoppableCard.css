@@ -37,18 +37,11 @@
     outline: none;
     color: white;
     position: absolute;
-<<<<<<< HEAD
     box-shadow:  0px 0px 6px black;
     background: gray;
     cursor: pointer;
     font-weight: 700;
     border-radius: 10px;
-=======
-    background: #0CB4FB;
-    cursor: pointer;
-    font-weight: 700;
-    border-radius: 5px;
->>>>>>> 585ea147173b5343f2741c0e18aa8425353c4c3e
     right: 20px;
     letter-spacing: 1.15px;
 }
@@ -90,18 +83,11 @@
   border: none;
   outline: none;
   position: absolute;
-<<<<<<< HEAD
   box-shadow:  0px 0px 6px black;
   background: gray;
   color: white;
   cursor: pointer;
   border-radius: 10px;
-=======
-  background-color:  #0CB4FB;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
->>>>>>> 585ea147173b5343f2741c0e18aa8425353c4c3e
   letter-spacing: 1.15px;
 }
 
@@ -142,21 +128,19 @@
 }
 
 .Tile {
-  height: 450px;
-  max-height: 380px;
+  height: 40rem;
   padding: 0.5em 1em 1em 1em;
   text-align: center;
   border-radius: 0.8em;
-  width: 300px;
-  max-width: 265px;
+  width: 28rem;
   display: fixed;
   background-color: white;
   box-shadow: 50%;
   margin: 2%;
-  background: whitesmoke;
+  background: white;
   text-align: center;
   padding:3rem 2rem;
-  box-shadow:  0px -2px 35px gray;
+  box-shadow:  0px -2px 10px gray;
   transition: .5s linear;
   position: relative;
 }
@@ -164,7 +148,7 @@
 .Tile:hover{
   outline-offset: 0rem;
   outline: var(--outline-hover);
-  box-shadow:  0px 0px 15px #0CB4FB;
+  box-shadow:  0px 0px 15px white;
 }
 
 .imageholder {

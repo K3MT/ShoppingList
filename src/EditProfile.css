@@ -11,8 +11,8 @@
   }
   
   .Auth-form-edit {
-    width: 370px;
-    height: 43%;
+    width: 42rem;
+    height: 43rem;
     box-shadow: 0px 0px 100px gray;
     margin-top: 2%;
     padding-top: 30px;
@@ -23,7 +23,7 @@
   }
 
   .editSubmitButton{
-    background-color: #0CB4FB;
+    background-color: orangered;
     color: white;
     height: 35px;
     margin-top: 12%;
@@ -49,10 +49,10 @@
     padding-right: 12%;
   }
   
-  .Auth-form-title {
+  .Auth-form-edit-title {
     text-align: center;
     margin-bottom: 1em;
-    font-size: 24px;
+    font-size: 3.5em;
     color: rgb(34, 34, 34);
     font-weight: 800;
   }

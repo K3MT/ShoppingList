@@ -129,18 +129,19 @@
   background: url(./image/banner-bg.webp) no-repeat;
   background-position: center;
   background-size: cover;
-  width: 100%;
+  width: 96%;
+  height: 25rem;
+  border-radius: 2em;
   max-width: 98%;
-  /* border-radius: 2.5rem; */
   margin-top: 1%;
-  padding-top: 17rem;
   padding-bottom: 10rem;
-  /* box-shadow:  0px 0px 25px #CC7952; */
+  box-shadow:  0px 0px 12px #CC7952;
 }
 
 .home .content{
   text-align: center;
   width:60rem;
+  margin-top: 5%;
 }
 
 .home .content h3{
@@ -305,7 +306,7 @@ h2 {
 
 .navMenuHome a:hover {
   background-color: white; 
-  color: #0CB4FB;
+  color: orangered;
 }
 
 

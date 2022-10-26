@@ -153,10 +153,10 @@ export default function Profile(props) {
         </ul>
       </div>
       <span>
-        <a href="#" class="logo">
+        {/* <a href="#" class="logo">
           {" "}
           <i class="fas fa-shopping-basket"></i> K3MT{" "}
-        </a>
+        </a> */}
         <nav class="navMenu">
           <AiOutlineShoppingCart
             className="CartIconButton"
@@ -170,7 +170,7 @@ export default function Profile(props) {
           />
         </nav>
       </span>
-      <section class="profile" id="home">
+      <section className="profile" id="home">
         <div class="categories">
           <div className="random" onClick={() => categoryFilter("Unfiltered")}>
             <FaRandom className="RandomIcon" />

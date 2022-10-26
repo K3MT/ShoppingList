@@ -203,7 +203,7 @@ export default function Register(props) {
 
       <form className="Auth-form-register">
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Register</h3>
+          <h3 className="Auth-form-register-title">Register</h3>
 
           <div className="form-group mt-3">
             <label>First Name</label>
