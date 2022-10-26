@@ -164,9 +164,8 @@ body{
 }
 
 .Auth-form-register {
-  width: 400px;
-  height: 65%;
-  max-height: 70%;
+  width: 50rem;
+  height: 70rem;
   margin-top: 2%;
   padding-top: 30px;
   position: absolute;
@@ -185,10 +184,10 @@ body{
   max-height: 90%; 
 }
 
-.Auth-form-title {
+.Auth-form-register-title {
   text-align: center;
   margin: 1em;
-  font-size: 24px;
+  font-size: 4em;
   color: rgb(34, 34, 34);
   font-weight: 800;
 }
@@ -203,7 +202,7 @@ body{
   border-radius: 0.5rem;
   font-weight: 500;
   font-size: 1.5em;
-  background-color: #0CB4FB;
+  background-color: orangered;
   height: 35px;
 }
 
@@ -296,7 +295,7 @@ canvas {
 
 p.from-me-register {
   align-self: flex-end;
-  background-color: #0CB4FB;
+  background-color: black;
   color: #fff; 
   margin: 1%;
 }

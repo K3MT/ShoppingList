@@ -114,7 +114,7 @@ export default function EditProfile(props) {
 
       <form className="Auth-form-edit">
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Update your bio</h3>
+          <h3 className="Auth-form-edit-title">Update your bio</h3>
 
           <div className="form-group mt-3">
             <label>New Bio</label>

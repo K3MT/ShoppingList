@@ -8,11 +8,11 @@
 
 .btn-login{
   color: white;
-  margin-top: 17%;
+  margin-top: 5%;
   border-radius: 0.5rem;
   font-weight: 500;
   font-size: 1.5em;
-  background-color: #0CB4FB;
+  background-color: orangered;
   height: 30px;
 }
 
@@ -150,10 +150,8 @@
 }
 
 .Auth-form-login {
-  max-width: 27%;
-  width: 27%;
-  height: 55%;
-  max-height: 55%;
+  width: 45rem;
+  height: 45rem;
   margin-top: 2%;
   padding-top: 30px;
   position: absolute;
@@ -173,7 +171,7 @@
 .Auth-form-title-login {
   text-align: center;
   margin-bottom: 1em;
-  font-size: 3em;
+  font-size: 5em;
   color: rgb(34, 34, 34);
   font-weight: 800;
 }

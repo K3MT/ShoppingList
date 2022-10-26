@@ -14,12 +14,12 @@
   .emptyBoxAnimstyle{
     height:50em;
     width: 50em;
-    margin-bottom: 12%;
+    margin-bottom: 15%;
     position: absolute;
     bottom: -0.5px;
     text-align: center;
     margin-left: 4%;
-    left: 2%;
+    left: 8.5%;
     /* visibility: hidden; */
     z-index: 100000000;
 }
@@ -30,7 +30,7 @@
   margin-bottom: 30%;
   position: relative;
   text-align: center;
-  left: 18%;
+  left: 25%;
   /* visibility: hidden; */
   z-index: 100000000;
 }
@@ -41,7 +41,7 @@
   margin-bottom: 30%;
   position: relative;
   text-align: center;
-  left: 18%;
+  left: 25%;
   /* visibility: hidden; */
   z-index: 100000000;
 }

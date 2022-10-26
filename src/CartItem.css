@@ -51,7 +51,6 @@
 }
 
 .addButton{
-<<<<<<< HEAD
     height: 15%;
     width: 50%;
     bottom: 0px;
@@ -67,18 +66,7 @@
     margin-left: -25%;
     margin-bottom: 7%;
     border-radius: 12px;
-=======
-    height: 25%;
-    width: 90%;
-    margin-top: 1%;
-    border: none;
-    outline: none;
-    color: white;
-    font-weight: 500;
-    background: #0CB4FB;;
-    cursor: pointer;
-    border-radius: 5px;
->>>>>>> 585ea147173b5343f2741c0e18aa8425353c4c3e
+
     letter-spacing: 1.15px;
 }
 .cartgameTile {
