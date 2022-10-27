@@ -150,6 +150,6 @@ class AcceptFollowRequestTest extends \PHPUnit\Framework\TestCase
 
     $response = AcceptFollowRequest::makeCall();
 
-    $this->assertMatchesRegularExpression('/INVALID_FOLLOWER_ID|INVALID_INFLUENCER_ID|INVALID_USER_ID_PAIR/', $response, "Meant to receive an invalid response");
+    $this->assertMatchesRegularExpression('/FOLLOW_REQUEST_ALREADY_ACCEPTED|INVALID_FOLLOWER_ID|INVALID_INFLUENCER_ID|INVALID_USER_ID_PAIR/', $response, "Meant to receive an invalid response");
   }
 }
