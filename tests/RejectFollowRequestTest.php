@@ -99,10 +99,10 @@ class RejectFollowRequestTest extends \PHPUnit\Framework\TestCase
     $newRelationshipObj = self::generateNewRelationship($suggestedInfluencer);
     SendFollowRequest::makeCall();
 
+    // Reject the request
     $response = RejectFollowRequest::makeCall();
-    // Accept the request
 
-    $this->assertMatchesRegularExpression('/\"FOLLOW_REQUEST_ACCEPTED\"/', $response, 'Meant to be notified of the accepted request');
+    $this->assertMatchesRegularExpression('/\"FOLLOW_REQUEST_REJECTED\"/', $response, 'Meant to be notified of the rejected request');
 
     // Check that the user no longer has the request
     self::generateGetFollowerRequests($newRelationshipObj->influencerUserID);
