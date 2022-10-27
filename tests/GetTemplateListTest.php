@@ -42,7 +42,13 @@ class GetTemplateListTest extends \PHPUnit\Framework\TestCase
 
     $response = GetTemplateList::makeCall();
 
-    $this->assertMatchesRegularExpression('/\"itemID\"|\[]/', $response, "Meant to have an list of available templates");
+    $responseArr = (array) json_decode($response);
+
+    $arrSize = count($responseArr);
+    $this->assertGreaterThanOrEqual(0, $arrSize, "Meant to either have an item or be empty");
+
+    if ($arrSize > 0)
+      $this->assertMatchesRegularExpression('/\"itemID\"/', $response, "Elements are meant to be items");
   }
   /**
    * @test

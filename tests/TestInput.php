@@ -8,6 +8,8 @@ class TestInput
 {
   public static $POST = 'POST';
   public static $GET = 'GET';
+
+  // User info
   public static $DEFAULT_USER_ID = 'd27dcd5c-3f5d-11ed-a0a3-062079ffe796';
   public static $DEFAULT_NAME = 'Myriam';
   public static $DEFAULT_SURNAME = 'Ortiz';
@@ -16,6 +18,17 @@ class TestInput
   public static $DEFAULT_ABOUT_ME = 'I am a bot for testing the API of the system';
   public static $DEFAULT_EMAIL = '2326254@students.wits.ac.za';
   public static $DEFAULT_SECURITY_ANSWER = 'testing purposes';
+
+  // List info
+  public static $DEFAULT_LIST_ID = '56604c36-5562-11ed-a0a3-062079ffe796';
+  public static $DEFAULT_LIST_NAME = 'veniam-est-eligendi';
+  public static $DEFAULT_LIST_IMG_URL = 'https:\/\/i.imgur.com\/rN58RWC.png';
+
+  // Follower info
+  public static $DEFAULT_FOLLOWER_ID = 'd27dcd5c-3f5d-11ed-a0a3-062079ffe796';
+  public static $DEFAULT_INFLUENCER_ID = 'b17b7c6e-4023-11ed-a0a3-062079ffe796';
+
+  // Item info
   public static $DEFAULT_ITEM_ID = '52315eed-282f-11ed-a567-e454e831c10d';
   public static $ITEM_IDS = ['522fa3f4-282f-11ed-a567-e454e831c10d',
     '52306e1a-282f-11ed-a567-e454e831c10d',
@@ -60,9 +73,23 @@ class TestInput
     $bodyContent = new stdClass();
     $bodyContent->userID = self::$DEFAULT_USER_ID;
     $bodyContent->itemID = self::$ITEM_IDS[$dex];
-    $bodyContent->typeTemplate = "false";
-    $bodyContent->typeCart = "false";
-    $bodyContent->typePublic = "false";
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+
+  public static function getListItem()
+  {
+    $faker = Faker\Factory::create();
+    $dex = array_rand(self::$ITEM_IDS);
+
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->listID = self::$DEFAULT_LIST_ID;
+    $bodyContent->itemID = self::$ITEM_IDS[$dex];
 
     $objContent->data = $bodyContent;
 
@@ -180,5 +207,112 @@ class TestInput
 
     return $requestObject;
   }
+
+  public static function getExitingList()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->listID = self::$DEFAULT_LIST_ID;
+    $bodyContent->listName = self::$DEFAULT_LIST_NAME;
+    $bodyContent->listImageURL = self::$DEFAULT_LIST_IMG_URL;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getnewList()
+  {
+    $faker = Faker\Factory::create();
+
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->userID = self::$DEFAULT_USER_ID;
+    $bodyContent->listName = $faker->slug(3, false);
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getUserList()
+  {
+    $faker = Faker\Factory::create();
+
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->userID = self::$DEFAULT_USER_ID;
+    $bodyContent->listID = self::$DEFAULT_LIST_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getUserFollower()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->followerID = self::$DEFAULT_USER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getInfluenceerID()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->influencerID = self::$DEFAULT_USER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getExistingRelationship()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->followerUserID = self::$DEFAULT_FOLLOWER_ID;
+    $bodyContent->influencerUserID = self::$DEFAULT_INFLUENCER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getNewRelationship($influencerID)
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->followerUserID = self::$DEFAULT_FOLLOWER_ID;
+    $bodyContent->influencerUserID = $influencerID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getFollowerID()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->followerID = self::$DEFAULT_FOLLOWER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
 
 }

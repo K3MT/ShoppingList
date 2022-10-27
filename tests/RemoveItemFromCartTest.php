@@ -1,24 +1,24 @@
 <?php
 
 use \PHPUnit\Framework\TestCase;
-use App\RemoveItemFromList;
-use App\AddItemToList;
+use App\RemoveItemFromCart;
+use App\AddItemToCart;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers App\RemoveItemFromList
- * @covers App\AddItemToList
+ * @covers App\RemoveItemFromCart
+ * @covers App\AddItemToCart
  * @covers App\GVM
- * @depends AddItemToListTest::testValidCall
- * @depends AddItemToListTest::testInvalidCall
+ * @depends AddItemToCartTest::testValidCall
+ * @depends AddItemToCartTest::testInvalidCall
  */
-class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
+class RemoveItemFromCartTest extends \PHPUnit\Framework\TestCase
 {
   private static function generateValidRequest()
   {
-    $objRequest = TestInput::getListItem();
+    $objRequest = TestInput::getItem();
 
     $jsonString = json_encode($objRequest);
 
@@ -30,7 +30,7 @@ class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
   private static function generateInvalidRequest()
   {
     $faker = Faker\Factory::create();
-    $objRequest = TestInput::getListItem();
+    $objRequest = TestInput::getItem();
 
     $objRequest->data->itemID = $faker->uuid(); // give a random uuid
 
@@ -53,7 +53,7 @@ class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
 
     // In order to remove anything, some items need to exist in the list beforehand
     for ($count = 0; $count < $maxAddedItems; $count++) {
-      $response = AddItemToList::makeCall();  // Already tested and is valid if reaching this test
+      $response = AddItemToCart::makeCall();  // Already tested and is valid if reaching this test
     }
 
     // Retrieve the current quantity of items added to the cart
@@ -62,7 +62,7 @@ class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
 
 
     for ($count = 0; $count < $maxRemovedItems; $count++) {
-      $response = RemoveItemFromList::makeCall();
+      $response = RemoveItemFromCart::makeCall();
     }
 
     $expectedRemainingQuantity = $currQuantity - $maxRemovedItems;
@@ -77,7 +77,7 @@ class RemoveItemFromListTest extends \PHPUnit\Framework\TestCase
   {
     self::generateInvalidRequest();
 
-    $response = RemoveItemFromList::makeCall();
+    $response = RemoveItemFromCart::makeCall();
 
     $this->assertMatchesRegularExpression('/\"INVALID_ENTRY\"/', $response, "Meant to receive an INVALID_ENTRY response");
   }

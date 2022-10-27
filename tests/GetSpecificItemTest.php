@@ -14,7 +14,6 @@ class GetSpecificItemTest extends \PHPUnit\Framework\TestCase
   private static function generateValidRequest()
   {
     $objRequest = TestInput::getItem();
-    $objRequest->data->typeCart = "true";
 
     $jsonString = json_encode($objRequest);
 
@@ -28,7 +27,6 @@ class GetSpecificItemTest extends \PHPUnit\Framework\TestCase
     $faker = Faker\Factory::create();
     $objRequest = TestInput::getItem();
 
-    $objRequest->data->typeCart = "true";
     $objRequest->data->itemID = $faker->uuid(); // give a random uuid
 
     $jsonString = json_encode($objRequest);

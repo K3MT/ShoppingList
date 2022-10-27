@@ -1,15 +1,16 @@
 <?php
 
 use \PHPUnit\Framework\TestCase;
-use App\GetActiveCart;
+use App\GetFollowRequests;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers \App\GetActiveCart
- * @covers App\GVM */
-class GetActiveCartTest extends \PHPUnit\Framework\TestCase
+ * @covers \App\GetFollowRequests
+ * @covers App\GVM
+ */
+class GetFollowRequestsTest extends \PHPUnit\Framework\TestCase
 {
   private static function generateValidRequest()
   {
@@ -23,13 +24,14 @@ class GetActiveCartTest extends \PHPUnit\Framework\TestCase
   private static function generateInvalidRequest()
   {
     $faker = Faker\Factory::create();
-    $objRequest = TestInput::getUserID();
+    $objRequest = TestInput:: getUserID();
 
-    $objRequest->data->userID = $faker->uuid(); // give a random uuid
+    $objRequest->data->userID = $faker->uuid(); // give a random password
 
     $jsonString = json_encode($objRequest);
 
     TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+
   }
 
   /**
@@ -39,9 +41,14 @@ class GetActiveCartTest extends \PHPUnit\Framework\TestCase
   {
     self::generateValidRequest();
 
-    $response = GetActiveCart::makeCall();
+    $response = GetFollowRequests::makeCall();
 
-      $this->assertMatchesRegularExpression('/\"itemID\"|\[]/', $response, "Meant to either have an item or be empty");
+    $objResponse = (array) json_decode($response);
+
+    $this->assertGreaterThan(-1, count($objResponse), 'There is meant to be an array of followers');
+
+    if (count($objResponse) > 0)
+      $this->assertMatchesRegularExpression('/\"userID\"/', $response, 'Meant to contain followers');
   }
   /**
    * @test
@@ -50,7 +57,7 @@ class GetActiveCartTest extends \PHPUnit\Framework\TestCase
   {
     self::generateInvalidRequest();
 
-    $response = GetActiveCart::makeCall();
+    $response = GetFollowRequests::makeCall();
 
     $this->assertMatchesRegularExpression('/\"INVALID_USER\"/', $response, "Meant to receive an INVALID_USER response");
   }

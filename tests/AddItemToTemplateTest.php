@@ -1,21 +1,20 @@
 <?php
 
-use App\GetListItems;
+use App\GetTemplateList;
 use \PHPUnit\Framework\TestCase;
-use App\AddItemToList;
-use App\GetActiveCart;
+use App\AddItemToTemplate;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers \App\AddItemToList
- * @covers \App\GetListItems
+ * @covers \App\AddItemToTemplate
+ * @covers \App\GetTemplateList
  * @covers App\GVM
- * @depends GetListItemsTest::testValidCall
- * @depends GetListItemsTest::testInvalidCall
+ * @depends GetTemplateListTest::testValidCall
+ * @depends GetTemplateListTest::testInvalidCall
  */
-class AddItemToListTest extends \PHPUnit\Framework\TestCase
+class AddItemToTemplateTest extends \PHPUnit\Framework\TestCase
 {
   private static function writeRequest($objRequest)
   {
@@ -28,9 +27,9 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
   private static function generateInvalidRequest()
   {
     $faker = Faker\Factory::create();
-    $objRequest = TestInput::getListItem();
+    $objRequest = TestInput::getItem();
 
-    $objRequest->data->itemID = $faker->uuid(); // give a random uuid
+    $objRequest->data->userID = $faker->uuid(); // give a random uuid
 
     $jsonString = json_encode($objRequest);
 
@@ -39,9 +38,9 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
     return $objRequest->data->itemID;
   }
 
-  private static function generateValidCartRequest()
+  private static function generateValidTemplateRequest()
   {
-    $objRequest = TestInput::getListItem();
+    $objRequest = TestInput::getItem();
 
     self::writeRequest($objRequest);
     return $objRequest->data->itemID;
@@ -52,23 +51,23 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
     */
    public function testValidCall()
    {
-     $addedItemID = self::generateValidCartRequest();
+     $addedItemID = self::generateValidTemplateRequest();
 
-     $response = GetListItems::makeCall();  // Need to check if the item to be added exists in the cart
+     $response = GetTemplateList::makeCall();  // Need to check if the item to be added exists in the Template
 
-     // Retrieve the current quantity of items added to the cart
+     // Retrieve the current quantity of items added to the Template
      $jsonResponse = (array) json_decode($response);
 
      $currQuantity = TestInput::getItemCount($jsonResponse, $addedItemID);
      $expectedQuantity = $currQuantity + 1;
 
-     $response = AddItemToList::makeCall();
+     $response = AddItemToTemplate::makeCall();
 
-     // Retrieve the current quantity of items added to the cart
+     // Retrieve the current quantity of items added to the Template
      $jsonResponse = (array) json_decode($response);
      $responseQuantity = TestInput::getItemCount($jsonResponse, $addedItemID);
 
-     $this->assertMatchesRegularExpression('/\"itemID\":\"'.$addedItemID.'\"/', $response, "Meant to be successful in adding an item to list");
+     $this->assertMatchesRegularExpression('/\"itemID\":\"'.$addedItemID.'\"/', $response, "Meant to be successful in adding an item to Template");
      $this->assertEquals($expectedQuantity, $responseQuantity, "The quantity of the item added should have increased by 1");
    }
    /**
@@ -78,7 +77,7 @@ class AddItemToListTest extends \PHPUnit\Framework\TestCase
    {
      self::generateInvalidRequest();
 
-     $response = AddItemToList::makeCall();
+     $response = AddItemToTemplate::makeCall();
 
      $this->assertMatchesRegularExpression('/\"INVALID_ENTRY\"/', $response, "Meant to receive an INVALID_ENTRY response");
    }
