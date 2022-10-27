@@ -33,9 +33,9 @@ function FriendComponent({
         style={{
           width: "30%",
           height: "75px",
-          marginTop: "-14.5%",
+          marginTop: "-13.5%",
           backgroundSize: "100% 100%",
-          borderRadius: "2em",
+          borderRadius: "5em",
           backgroundImage: `url(${friend_imageurl}), url("https://i.imgur.com/CjnIMqJ.png")`,
         }}
       ></div>

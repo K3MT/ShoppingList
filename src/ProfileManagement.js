@@ -8,6 +8,7 @@ import ListComponent from "./ListComponent.js";
 import RequestComponent from "./RequestComponent.js";
 import DiscoverComponent from "./DiscoverComponent.js";
 import FriendComponent from "./FriendComponent.js";
+import FriendListComponent from "./FriendListComponent";
 import Lottie from "lottie-react";
 import { useLottie } from "lottie-react";
 import emptyBoxAnim from "./lotties/emptyBox.json";
@@ -19,6 +20,7 @@ import {
   AiOutlineHome,
   AiFillCloseCircle,
 } from "react-icons/ai";
+import { isElementType } from "@testing-library/user-event/dist/utils";
 export default function ProfileManagement(props) {
   //Use to extract information sent from other page.
   const { state } = useLocation();
@@ -45,6 +47,9 @@ export default function ProfileManagement(props) {
   const [myFriendsEmpty, setmyFriendsEmpty] = useState(false);
   const [myReqsEmpty, setmyReqsEmpty] = useState(false);
   const [myFocusedListEmpty, setmyFocusedListEmpty] = useState(false);
+  const [selectedUserInfoFetched, setselectedUserInfoFetched] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     let mounted = true;
@@ -78,10 +83,12 @@ export default function ProfileManagement(props) {
           setfriendsResponse(true);
           if (result.data.length == 0) {
             setmyFriendsEmpty(true);
-          } else {
-            if (result.data[0].length == 1) {
-              setmyFriendsEmpty(true);
-            }
+          }
+          if (result.data[0].length == 1) {
+            setmyFriendsEmpty(true);
+          }
+          if (result.data.length > 0) {
+            setmyFriendsEmpty(false);
           }
         }
         return () => (mounted = false);
@@ -102,10 +109,12 @@ export default function ProfileManagement(props) {
           setreqsResponse(true);
           if (result.data.length == 0) {
             setmyReqsEmpty(true);
-          } else {
-            if (result.data[0].length == 1) {
-              setmyFriendsEmpty(true);
-            }
+          }
+          if (result.data[0].length == 1) {
+            setmyReqsEmpty(true);
+          }
+          if (result.data.length > 0) {
+            setmyReqsEmpty(false);
           }
         }
         return () => (mounted = false);
@@ -128,7 +137,7 @@ export default function ProfileManagement(props) {
             setmyFocusedListEmpty(true);
           } else {
             if (result.data[0].length == 1) {
-              setmyFriendsEmpty(true);
+              setmyFocusedListEmpty(true);
             }
           }
         }
@@ -148,6 +157,7 @@ export default function ProfileManagement(props) {
         if (mounted) {
           setListArray(Array.from(result.data));
           setResponse(true);
+          console.log(result.data);
           if (result.data.length == 0) {
             setmyListEmpty(true);
           } else {
@@ -169,12 +179,21 @@ export default function ProfileManagement(props) {
       })
       .then((result) => {
         setselectedUserInfo(Array.from(result.data));
+        setselectedUserInfoFetched(true);
       });
   }, [selectedUser]);
 
   const changeViewMode = () => {
-    if (viewmode == "Normal") setviewMode("Focused");
-    else setviewMode("Normal");
+    if (viewmode == "Normal") {
+      setviewMode("Focused");
+    } else {
+      setselectedUserInfoFetched(false);
+      setselectedUserInfo([]);
+      setfocusedListArray([]);
+      setmyFocusedListEmpty(false);
+      setfocusedlistResponse(false);
+      setviewMode("Normal");
+    }
   };
 
   const setFocusToUser = (focusID) => {
@@ -191,6 +210,14 @@ export default function ProfileManagement(props) {
     setstaterecomchange(staterecomChange + 1);
   };
 
+  const toListCreation = () => {
+    navigate("/listcreationinter", { state: { userID: state.userID } });
+  };
+
+  const managementToProfile = () => {
+    navigate("/profile", { state: { userID: state.userID } });
+  };
+
   //Return page according to set view mode.
   if (viewmode == "Normal") {
     return (
@@ -200,13 +227,16 @@ export default function ProfileManagement(props) {
             <div className="listsTitle">
               <h3>My lists</h3>
             </div>
-
+            <div className="toProfileButton" onClick={managementToProfile}>
+              <h3>Done</h3>
+            </div>
             <div className="listsList">
               {isResponse &&
                 listArray.map((item) => {
                   return (
                     <ListComponent
                       list_name={item.listName}
+                      list_imageUrl={item.listImageURL}
                       list_id={item.listID}
                       user_id={state.userID}
                     />
@@ -223,7 +253,7 @@ export default function ProfileManagement(props) {
                 className="emptyBoxAnimstyle"
               />
             )}
-            <div className="createlistBtn">
+            <div className="createlistBtn" onClick={toListCreation}>
               <h3>Create List</h3>
             </div>
           </div>
@@ -333,62 +363,70 @@ export default function ProfileManagement(props) {
                   return (
                     <ListComponent
                       list_name={item.listName}
+                      list_imageUrl={item.listImageURL}
                       list_id={item.listID}
                       user_id={state.userID}
                     />
                   );
                 })}
             </div>
+            {myListEmpty && (
+              <Lottie
+                animationData={emptyBoxAnim}
+                height={100}
+                loop={false}
+                width={100}
+                autoPlay={true}
+                className="emptyBoxAnimstyle"
+              />
+            )}
           </div>
           <div className="focusedArea">
-            <div className="focusedInfo">
-              <div
-                className="focusedimageholder"
-                style={{
-                  width: "30%",
-                  height: "97%",
-                  marginTop: "0.05em",
-                  backgroundSize: "100% 100%",
-                  borderRadius: "2em",
-                  backgroundImage: `url(${selectedUserInfo[0].userImageURL}), url("https://i.imgur.com/CjnIMqJ.png")`,
-                }}
-              ></div>
-              <div className="closefocused">
-                <AiFillCloseCircle
-                  className="closefocusedIconButton"
-                  onClick={changeViewMode}
-                />
+            {selectedUserInfoFetched && (
+              <div className="focusedInfo">
+                <div
+                  className="focusedimageholder"
+                  style={{
+                    width: "30%",
+                    height: "97%",
+                    marginTop: "0.05em",
+                    backgroundSize: "100% 100%",
+                    borderRadius: "2em",
+                    backgroundImage: `url(${selectedUserInfo[0].userImageURL}), url("https://i.imgur.com/CjnIMqJ.png")`,
+                  }}
+                ></div>
+                <div className="closefocused">
+                  <AiFillCloseCircle
+                    className="closefocusedIconButton"
+                    onClick={changeViewMode}
+                  />
+                </div>
+                <div className="focusedName">
+                  <h3>
+                    {selectedUserInfo[0].name} {selectedUserInfo[0].surname}
+                  </h3>
+                  <h1>{selectedUserInfo[0].userAboutMe}</h1>
+                </div>
               </div>
-              <div className="focusedName">
-                <h3>
-                  {selectedUserInfo[0].name} {selectedUserInfo[0].surname}
-                </h3>
-                <h1>{selectedUserInfo[0].userAboutMe}</h1>
-              </div>
-            </div>
+            )}
             <div className="focusedlistsTitle">
               <h3>User's lists</h3>
             </div>
             <div className="focusedlistsList">
               {focusedlistResponse &&
                 focusedlistArray.map((item) => {
-                  return (
-                    <ListComponent
-                      list_name={item.listName}
-                      list_id={item.listID}
-                      user_id={state.userID}
-                    />
-                  );
+                  if (item.listName) {
+                    return (
+                      <FriendListComponent
+                        friendlist_name={item.listName}
+                        friendlist_imageUrl={item.listImageURL}
+                        friendlist_id={item.listID}
+                        user_id={state.userID}
+                      />
+                    );
+                  }
                 })}
             </div>
-            <Lottie
-              animationData={emptyBoxAnim}
-              height={100}
-              loop={false}
-              width={100}
-              autoPlay={false}
-              className="emptyBoxAnimstyle"
-            />
           </div>
         </div>
       </div>

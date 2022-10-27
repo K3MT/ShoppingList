@@ -8,7 +8,7 @@ export default function Home(props) {
   var listArray = Array.from(jdata.data);
 
   //Initialize useNavigate for routing
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   //Navigate from home to login page
   const homeToLogin = () => {

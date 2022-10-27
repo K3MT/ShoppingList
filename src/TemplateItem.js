@@ -28,14 +28,14 @@ function TemplateItem({
     const data = {
       userID: user_id,
       itemID: item_id,
-      typeTemplate: "true",
-      typeCart: "false",
-      typePublic: "false",
     };
     axios
-      .post("https://k3mt-backend.herokuapp.com//src/RemoveItemFromList.php", {
-        data: data,
-      })
+      .post(
+        "https://k3mt-backend.herokuapp.com//src/RemoveItemFromTemplate.php",
+        {
+          data: data,
+        }
+      )
       .then((result) => {
         stateChanger(100 * game_id);
       });

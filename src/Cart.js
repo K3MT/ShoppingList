@@ -13,6 +13,8 @@ export default function Cart(props) {
   const [fectchedCartTotal, setfectchedCartTotal] = useState(false);
   const [cartTotal, setCartTotal] = useState(0);
 
+  let navigate = useNavigate();
+
   useEffect(() => {
     let mounted = true;
     let data = {
@@ -94,7 +96,7 @@ export default function Cart(props) {
         </ul>
       </div>
       <div className="cartArea">
-        {/* <div class="area">
+        <div class="area">
           <ul class="circles">
             <li></li>
             <li></li>
@@ -107,13 +109,13 @@ export default function Cart(props) {
             <li></li>
             <li></li>
           </ul>
-        </div> */}
+        </div>
         <div className="cartInfo">
           <h1 className="cartTotalPrice">Total Price: R{cartTotal}</h1>
-          <button className="CheckoutBtn" onClick={checkOut}>
-            Proceed to Checkout
-          </button>
         </div>
+        <button className="CheckoutBtn" onClick={checkOut}>
+          Proceed to Checkout
+        </button>
         <div className="cartList">
           {isResponse &&
             listArray.map((item) => {
@@ -150,7 +152,7 @@ export default function Cart(props) {
             <li></li>
           </ul>
         </div> */}
-        <div className="cartInfo">
+        <div className="templateInfo">
           <h1 className="cartTotalPrice">Template Items</h1>
         </div>
         <div className="templateList">

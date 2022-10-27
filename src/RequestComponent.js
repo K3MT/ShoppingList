@@ -57,9 +57,9 @@ function RequestComponent({
         style={{
           width: "26%",
           height: "65px",
-          marginTop: "-5%",
+          marginTop: "-4%",
           backgroundSize: "100% 100%",
-          borderRadius: "1.5em",
+          borderRadius: "5em",
           backgroundImage: `url(${request_imageurl}), url("https://i.imgur.com/CjnIMqJ.png")`,
         }}
       ></div>

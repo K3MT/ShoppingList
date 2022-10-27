@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+.removeotherlistButton{
+    height:30px;
+    width:50%;
+    bottom:50px;
+    border: white;
+    z-index: 1000;
+    outline: none;
+    color: white;
+    position: absolute;
+    box-shadow:  0px 0px 6px black;
+    background: orangered;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 10px;
+    left: 25%;
+    text-align: center;
+    letter-spacing: 1.15px;
+}
+
+.removeotherlistButton:hover {
+  outline-offset: 0rem;
+  outline: var(--outline-hover);
+  /* box-shadow:  0px 0px 15px #0CB4FB; */
+}
+
+.removeotherlistButton h3{
+  font-size: 1em;
+  font-weight: 500;
+  margin-top: 2%;
+}
+
+.otherlistTitle{
+    margin-top: -1.5%;
+    font-weight: 600;
+}
+
+.otherlistPriceIcon{
+  width: 5rem;
+  height: 2.5rem;
+  color: green;
+}
+
+.otherlistPrice{
+  position: absolute;
+  margin-left: 17%;
+  margin-top: 1%;
+}
+
+.otherlistPriceSection{
+  display: flex;
+  width: 45%;
+  margin-left: 25%;
+  flex-direction: row;
+}
+
+.otherlistTile {
+  height: 36rem;
+  padding: 0.5em 1em 1em 1em;
+  text-align: center;
+  border-radius: 0.8em;
+  width: 30rem;
+  display: fixed;
+  background-color: white;
+  box-shadow: 50%;
+  margin: 2%;
+  background: white;
+  text-align: center;
+  padding:3rem 2rem;
+  box-shadow:  0px -2px 10px gray;
+  transition: .5s linear;
+  position: relative;
+}
+
+.otherlistTile:hover{
+  outline-offset: 0rem;
+  outline: var(--outline-hover);
+  box-shadow:  0px 0px 15px white;
+}
+
+.imageholder {
+    width: fit-content;
+    height: fit-content;
+    background-size: 'cover';
+    border-radius: '1em';
+}

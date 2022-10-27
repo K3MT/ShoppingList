@@ -3,69 +3,80 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.listTile {
-  height: 150px;
-  max-height: 1000px;
+.availableTile {
+  height: 95px;
+  max-height: 250px;
   padding: 0.5em 1em 1em 1em;
   text-align: center;
+  align-self: center;
   border-radius: 0.8em;
-  width: 94%;
-  max-width: 95%;
-  display: fixed;
+  width: 40rem;
+ 
+  /* display: fixed; */
   background-color: white;
   box-shadow: 50%;
-  margin: 1.25%;
-  background: whitesmoke;
-  border-radius: 2rem;
+  margin: 2%;
+  background: white;
+  border-radius: 1rem;
   text-align: center;
-  padding:5rem 2rem;
+  padding:5em 2em;
   box-shadow:  0px 0px 10px gray;
   transition: .2s linear;
   position: relative;
   display: flex;
   flex-direction: row;
 }
-.listName{
+.availableName{
     font-weight: 700;
-    font-size: 3.5em;
-    margin-left: 2%;
-    margin-top: 6.5%;
+    font-size: 1.4em;
+    margin-left: 5%;
+    margin-top: 3%;
     top: 0;
     position: absolute;
 }
-
-.listCount{
+.availablePrice{
     font-weight: 600;
-    font-size: 2em;
-    margin-left: 2%;
-    margin-top: 12%;
+    font-size: 1.4em;
+    margin-left: 5%;
+    margin-top: 10%;
     top: 0;
     position: absolute;
 }
 
-.listEnterIcon{
-    height: 3em;
-    margin-left: 70%;
-    margin-top: 0%;
-}
 
-.listEnterIconButton{
-    height: 4em;
-    width: 4em;
-    color: white;
-    cursor: pointer;
-}
 
-.listTile:hover{
+.avialbleTile:hover{
   outline-offset: 0rem;
   outline: var(--outline-hover);
   box-shadow:  0px 0px 30px white;
 }
 
-.listTile .imageholder {
+.imageholder {
     width: fit-content;
     height: fit-content;
     background-size: 'cover';
     border-radius: '1em';
+}
 
+.availableButtons{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    margin-left: 25.5%;
+    margin-bottom: 8%;
+    height: 20%;
+    width: 70%;
+}
+
+.availableBtn{
+    background-color: orangered;
+    margin-left: 7.5%;
+    margin-top: 5%;
+    color: white;
+    width: 50%;
+    cursor: pointer;
+    height: 100%;
+    padding: 1%;
+    border-radius: 0.5rem;
 }
