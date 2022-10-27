@@ -24,7 +24,11 @@ class TestInput
   public static $DEFAULT_LIST_NAME = 'veniam-est-eligendi';
   public static $DEFAULT_LIST_IMG_URL = 'https:\/\/i.imgur.com\/rN58RWC.png';
 
+  // Follower info
+  public static $DEFAULT_FOLLOWER_ID = 'd27dcd5c-3f5d-11ed-a0a3-062079ffe796';
+  public static $DEFAULT_INFLUENCER_ID = 'b17b7c6e-4023-11ed-a0a3-062079ffe796';
 
+  // Item info
   public static $DEFAULT_ITEM_ID = '52315eed-282f-11ed-a567-e454e831c10d';
   public static $ITEM_IDS = ['522fa3f4-282f-11ed-a567-e454e831c10d',
     '52306e1a-282f-11ed-a567-e454e831c10d',
@@ -248,6 +252,55 @@ class TestInput
     return $objContent;
   }
 
+  public static function getUserFollower()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->followerID = self::$DEFAULT_USER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getInfluenceerID()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->influencerID = self::$DEFAULT_USER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getExistingRelationship()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->followerUserID = self::$DEFAULT_FOLLOWER_ID;
+    $bodyContent->influencerUserID = self::$DEFAULT_INFLUENCER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
+  public static function getNewRelationship($influencerID)
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->followerUserID = self::$DEFAULT_FOLLOWER_ID;
+    $bodyContent->influencerUserID = $influencerID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
 
 
 }
