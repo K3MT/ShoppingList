@@ -118,6 +118,7 @@ export default function Profile(props) {
   };
 
   let navigate = useNavigate();
+
   const toEditProfile = () => {
     navigate("/editprofile", {
       state: {
@@ -134,6 +135,10 @@ export default function Profile(props) {
 
   const profileToManagement = () => {
     navigate("/management", { state: { userID: state.userID } });
+  };
+
+  const logOut = () => {
+    navigate("/login");
   };
 
   return (
@@ -228,6 +233,9 @@ export default function Profile(props) {
           </h1>
 
           <h3>{userInfo[0].userAboutMe}</h3>
+          <div className="logoutButton" onClick={logOut}>
+            <h3>Sign Out</h3>
+          </div>
           <AiOutlineEdit
             className="EditInfoButton"
             id="EditInfoButton"

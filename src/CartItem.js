@@ -27,12 +27,9 @@ function CartItem({
     const data = {
       userID: user_id,
       itemID: item_id,
-      typeTemplate: "false",
-      typeCart: "true",
-      typePublic: "false",
     };
     axios
-      .post("https://k3mt-backend.herokuapp.com//src/RemoveItemFromList.php", {
+      .post("https://k3mt-backend.herokuapp.com//src/RemoveItemFromCart.php", {
         data: data,
       })
       .then((result) => {

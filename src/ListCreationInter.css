@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+.context {
+    width: 100%;
+    position: absolute;
+    top:50vh;
+}
+
+.btn-listcreationinter{
+  color: white;
+  margin-top: 5%;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 1.5em;
+  background-color: orangered;
+  height: 30px;
+}
+
+.context h1{
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+}
+
+.listcreationinterarea{
+    background: white;  
+    /* background: -webkit-linear-gradient(to left, #f1f1f4, #cdced0);   */
+    width: 100%;
+    height: 100vh;
+    z-index: -1; 
+}
+
+.listcreationintercircles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.listcreationintercircles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(10, 10, 10, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+}
+
+.listcreationintercircles li:nth-child(1){
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.listcreationintercircles li:nth-child(2){
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.listcreationintercircles li:nth-child(3){
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.listcreationintercircles li:nth-child(4){
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.listcreationintercircles li:nth-child(5){
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.listcreationintercircles li:nth-child(6){
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.listcreationintercircles li:nth-child(7){
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.listcreationintercircles li:nth-child(8){
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.listcreationintercircles li:nth-child(9){
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.listcreationintercircles li:nth-child(10){
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+@keyframes animate {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+.Auth-form-container-listcreationinter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.Auth-form-listcreationinter {
+  width: 45rem;
+  height: 45rem;
+  margin-top: 2%;
+  padding-top: 30px;
+  position: absolute;
+  padding-bottom: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 100px gray;
+}
+
+.Auth-form-content-listcreationinter {
+  margin:8%;
+  max-height: 150px;
+  max-height: 150%;
+}
+
+
+.Auth-form-title-listcreationinter {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 5em;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+.input:focus {
+  outline: 3px solid transparent;
+}
+
+label {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+
+body {
+  font-family: 'Alatsi', sans-serif;
+  margin: 0;
+  overflow: hidden;
+  background: black;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.title {
+  font-size: 10vw;
+  color: rgb(19, 16, 16);
+}
+
+canvas {
+  width: 100%;
+}
+
+.imessage {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-family: "SanFrancisco";
+  font-size: 1.25rem;
+  margin: 0 auto 1rem;
+  width: 300px;
+  position: absolute;
+  border-radius: 2%;
+  margin-left: 50%;
+  margin-top: 11.5%;
+  height: 450px;
+  padding: 0.5rem 1.5rem;
+}
+
+.imessage_security {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-family: "SanFrancisco";
+  font-size: 1.25rem;
+  margin: 0 auto 1rem;
+  width: 300px;
+  position: absolute;
+  border-radius: 2%;
+  margin-right: 50%;
+  margin-bottom: 6.8%;
+  height: 450px;
+  padding: 0.5rem 1.5rem;
+}
+
+.displayBadge{
+  margin-top: 5%; 
+  display: block; 
+  text-align :center;
+}
+
+.imessage_security p {
+  border-radius: 1.15rem;
+  line-height: 1.25;
+  padding: 0.5rem .875rem;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.imessage p {
+  border-radius: 1.15rem;
+  line-height: 1.25;
+  padding: 0.5rem .875rem;
+  position: relative;
+  word-wrap: break-word;
+}
+
+p.from-me {
+  align-self: flex-end;
+  background-color: #248bf5;
+  color: #fff; 
+  margin: 1%;
+}
+
+/* general styling */
+@font-face {
+  font-family: "SanFrancisco";
+  src:
+    url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff2") format("woff2"),
+    url("https://cdn.rawgit.com/AllThingsSmitty/fonts/25983b71/SanFrancisco/sanfranciscodisplay-regular-webfont.woff") format("woff");
+}
+
+body {  
+  font-family: -apple-system, 
+    BlinkMacSystemFont, 
+    "Segoe UI", 
+    Roboto, 
+    Oxygen-Sans, 
+    Ubuntu, 
+    Cantarell, 
+    "Helvetica Neue", 
+    sans-serif;
+  font-weight: normal;
+  margin: 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 1rem;
+}
+
+h1 {
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  border-bottom: 1px solid #e5e5ea;
+  color: #666;
+  font-weight: normal;
+  margin-top: 0;
+  padding-bottom: 1.5rem;
+}
+
+.comment {
+  color: #222;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  max-width: 100%;
+  padding: 0;
+}
+
+@media screen and (width: 2000px) {
+  body {
+    width: 200px;
+    height: 200px;
+  }
+
+
+  .imessage {
+    width: 300px;
+    height: 300px;
+  }
+
+  .imessage p {
+   
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+
+.listcreationinternotification {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  /* align the content to the rigth */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: hsl(0, 0%, 20%);
+  /* hide the overflow to conceal the message when translated to the right of the container */
+  overflow-x: hidden;
+  /* padding to avoid cropping the box-shadow on the message */
+  padding: 0.25rem;
+}
+
+/* reduce the size of the icon and give a white fill to the elements of the graphic */
+
+/* when the .listcreationinternotification container is given a class of .received animate the body and clapper of the bell to swing
+! animate the clapper with a slight delay as to follow through the animation of the main body
+*/
+.listcreationinternotification.received .bell__body {
+  animation: swingBody 0.7s 0.02s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+.listcreationinternotification.received .bell__clapper {
+  animation: swingClapper 0.7s 0.04s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+/* ! for both elements the rotation occurs using the parent group element as a hinge, allowing for the pendulum-like swing */
+@keyframes swingBody {
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+/* animation for the clapper, following the main body and with a larger rotation */
+@keyframes swingClapper {
+  5% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-8deg);
+  }
+  80% {
+    transform: rotate(8deg);
+  }
+}
+
+.listcreationinternotification__message {
+  display: grid;
+  grid-gap: 0.2rem;
+  grid-template-columns: 1fr auto;
+  padding: 0.5rem 1rem;
+  margin-right: 30%;
+  margin-top: 50%;
+  padding: 10%;
+  background: hsl(0, 0%, 100%);
+  border-radius: 10px;
+  box-shadow: 0 0 5px hsla(0, 0%, 0%, 0.1), 0 2px 3px hsla(0, 0%, 0%, 0.1);
+  border-left: 0.5rem solid hsl(0, 0%, 100%);
+  /* by default hide the element from sight and include a transition for the chosen properties */
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  transition-property: transform, opacity, visibility;
+  transition-duration: 0.7s;
+  transition-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+.listcreationinternotification__message h1 {
+  font-size: 2rem;
+  color: red;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.listcreationinternotification__message p {
+  max-width: 320px;
+  font-size: 1.7rem;
+  grid-column: 1/-1;
+}
+.listcreationinternotification__message button {
+  background: none;
+  border: none;
+  color: inherit;
+  width: 20px;
+  height: 20px;
+  grid-column: 2/3;
+  grid-row: 1/2;
+  align-self: center;
+}
+.listcreationinternotification__message button svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* when the .listcreationinternotification container has a class of .received transition the message into view */
+.listcreationinternotification.received .listcreationinternotification__message {
+  transform: translateX(0%);
+  opacity: 1;
+  visibility: visible;
+}

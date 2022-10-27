@@ -34,12 +34,9 @@ function ShoppableCard({
     const data = {
       userID: user_id,
       itemID: product_ID,
-      typeTemplate: "false",
-      typeCart: "true",
-      typePublic: "false",
     };
     axios
-      .post("https://k3mt-backend.herokuapp.com//src/AddItemToList.php", {
+      .post("https://k3mt-backend.herokuapp.com//src/AddItemToCart.php", {
         data: data,
       })
       .then((result) => {
@@ -52,12 +49,9 @@ function ShoppableCard({
     const data = {
       userID: user_id,
       itemID: product_ID,
-      typeTemplate: "true",
-      typeCart: "false",
-      typePublic: "false",
     };
     axios
-      .post("https://k3mt-backend.herokuapp.com/src/AddItemToList.php", {
+      .post("https://k3mt-backend.herokuapp.com/src/AddItemToTemplate.php", {
         data: data,
       })
       .then((result) => {
@@ -123,7 +117,10 @@ function ShoppableCard({
             <h3>{product_title}</h3>
             <span></span>
             <h2></h2>
-            <h2>Units: {product_mass}{product_unit}</h2>
+            <h2>
+              Units: {product_mass}
+              {product_unit}
+            </h2>
             <h2>Cost: R{product_price}</h2>
           </div>
         )}

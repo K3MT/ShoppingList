@@ -66,12 +66,12 @@
   }
  
   .mylistsarea{
-    width: 50%;
-    margin:1%;
+    width: 51%;
+    margin:0.5%;
     background-color: white;
     box-shadow:  0px 0px 5px #CC7952;
     height: 96.5%;
-    border-radius: 2em;
+    border-radius: 1em;
   }
 
 .focusedInfo{
@@ -107,22 +107,42 @@
 
 }
 
+.toProfileButton{
+  background-color: orangered;
+  border-radius: 1rem;
+  width: 5%;
+  height: 3%;
+  position: absolute;
+  left:42%;
+  top: 5%;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+}
+
+.toProfileButton h3{
+  margin-top: 4%;
+  font-weight: 700;
+  margin-left: 23%;
+
+}
+
   .focusedArea{
-    width: 50%;
+    width: 51%;
     display: flex;
     flex-direction: column;
-    margin:1%;
+    margin:0.5%;
     background-color: white;
     box-shadow:  0px 0px 5px #CC7952;
     height: 96.5%;
-    border-radius: 2em;
+    border-radius: 1em;
   }
 
   .peoplearea{
     height: 104%;
     box-shadow:  0px 0px 10px white;
     background-color: white;
-    border-radius: -2em;
+    border-radius: 1rem;
     background-color: white;
     width: 53%;
     display: flex;
@@ -133,9 +153,9 @@
     height: 46%;
     box-shadow:  0px 0px 5px #CC7952;
     width: 97%;
-    margin-top: 2%;
-    margin-left: 2%;
-    border-radius: 2em;
+    margin-top: 1%;
+    margin-left: 1%;
+    border-radius: 1em;
     margin-bottom: 3%;
   }
 
@@ -151,11 +171,11 @@
     width: 48%;
     display: flex;
     flex-direction: column;
-    margin-right: 2%;
-    margin-left: 2%;
+    margin-right: 1%;
+    margin-left: 1%;
     box-shadow:  0px 0px 5px #CC7952;
     background-color: white;
-    border-radius: 2em;
+    border-radius: 1em;
     margin-top: -1%;
   
   }
@@ -207,12 +227,12 @@
 
   .followingarea{
     height: 90%;
-    width: 48%;
+    width: 49%;
     display: flex;
     flex-direction: column;
     box-shadow:  0px 0px 5px #CC7952;
     background-color: white;
-    border-radius: 2em;
+    border-radius: 1em;
     margin-bottom: 10%;
     margin-top: -1%;
     position: relative;

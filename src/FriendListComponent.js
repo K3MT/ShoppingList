@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import "./ListComponent.css";
+import "./FriendListComponent.css";
 import { useHistory, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BsInfoCircle } from "react-icons/bs";
@@ -14,20 +14,25 @@ import "react-toastify/dist/ReactToastify.css";
 
 //TODO smooth out hover animation using css
 
-function ListComponent({ list_name, user_id, list_id, list_imageUrl }) {
+function FriendListComponent({
+  friendlist_name,
+  user_id,
+  friendlist_id,
+  friendlist_imageUrl,
+}) {
   const navigate = useNavigate();
-  const viewList = () => {
+  const viewfriendlist = () => {
     navigate("/userlistcreation", {
       state: {
         userID: user_id,
-        listName: list_name,
-        listID: list_id,
-        viewMode: "currentUser",
+        listName: friendlist_name,
+        listID: friendlist_id,
+        viewMode: "otherUser",
       },
     });
   };
   return (
-    <div className="listTile">
+    <div className="friendlistTile">
       <div
         className="imageholder"
         style={{
@@ -36,17 +41,17 @@ function ListComponent({ list_name, user_id, list_id, list_imageUrl }) {
           marginTop: "-6.25%",
           backgroundSize: "100% 100%",
           borderRadius: "1.5em",
-          backgroundImage: `url(${list_imageUrl})`,
+          backgroundImage: `url(${friendlist_imageUrl})`,
         }}
       ></div>
       <div>
-        <h3 className="listName">{list_name}</h3>
+        <h3 className="friendlistName">{friendlist_name}</h3>
       </div>
 
-      <div className="listEnterIcon" onClick={viewList}>
-        <GrView className="listEnterIconButton" />
+      <div className="friendlistEnterIcon" onClick={viewfriendlist}>
+        <GrView className="friendlistEnterIconButton" />
       </div>
     </div>
   );
 }
-export default ListComponent;
+export default FriendListComponent;

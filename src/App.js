@@ -1,5 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 import Register from "./Register.js";
 import Login from "./Login.js";
@@ -10,6 +16,8 @@ import Profile from "./Profile.js";
 import EditProfile from "./EditProfile.js";
 import Cart from "./Cart.js";
 import ProfileManagement from "./ProfileManagement.js";
+import UserListCreation from "./ListCreation.js";
+import ListCreationInter from "./ListCreationInter.js";
 
 function App() {
   return (
@@ -24,6 +32,8 @@ function App() {
         <Route path="/editprofile" element={<EditProfile />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/management" element={<ProfileManagement />} />
+        <Route path="/userlistcreation" element={<UserListCreation />} />
+        <Route path="/listcreationinter" element={<ListCreationInter />} />
       </Routes>
     </div>
   );
