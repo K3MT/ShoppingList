@@ -45,13 +45,10 @@ class GetFollowerMetadataTest extends \PHPUnit\Framework\TestCase
 
     $objResponse = (array) json_decode($response);
 
-    $this->assertGreaterThan(-1, count($objResponse), 'There is meant to be an array of followers');
+    $this->assertGreaterThan(-1, count($objResponse), 'There is meant to be an array of influencers');
 
     if (count($objResponse) > 0)
-      $this->assertMatchesRegularExpression('/\"userID\"/', $response, 'Meant to contain followers');
-
-    TestInput::log("OK");
-    exit(1);
+      $this->assertMatchesRegularExpression('/\"userID\"/', $response, 'Meant to contain influencers');
   }
   /**
    * @test
@@ -61,7 +58,6 @@ class GetFollowerMetadataTest extends \PHPUnit\Framework\TestCase
     self::generateInvalidRequest();
 
     $response = GetFollowerMetadata::makeCall();
-
 
     $this->assertMatchesRegularExpression('/\"INVALID_INFLUENCER\"/', $response, "Meant to receive an INVALID_INFLUENCER response");
   }

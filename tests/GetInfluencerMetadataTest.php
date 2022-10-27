@@ -1,20 +1,20 @@
 <?php
 
 use \PHPUnit\Framework\TestCase;
-use App\GetFollowRequests;
+use App\GetInfluencerMetadata;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers \App\GetFollowRequests
+ * @covers \App\GetInfluencerMetadata
  * @covers App\GVM
  */
-class GetFollowRequestsTest extends \PHPUnit\Framework\TestCase
+class GetInfluencerMetadataTest extends \PHPUnit\Framework\TestCase
 {
   private static function generateValidRequest()
   {
-    $objRequest = TestInput::getUserID();
+    $objRequest = TestInput::getFollowerID();
 
     $jsonString = json_encode($objRequest);
 
@@ -24,9 +24,9 @@ class GetFollowRequestsTest extends \PHPUnit\Framework\TestCase
   private static function generateInvalidRequest()
   {
     $faker = Faker\Factory::create();
-    $objRequest = TestInput:: getUserID();
+    $objRequest = TestInput:: getFollowerID();
 
-    $objRequest->data->userID = $faker->uuid(); // give a random password
+    $objRequest->data->followerID = $faker->uuid(); // give a random password
 
     $jsonString = json_encode($objRequest);
 
@@ -41,7 +41,7 @@ class GetFollowRequestsTest extends \PHPUnit\Framework\TestCase
   {
     self::generateValidRequest();
 
-    $response = GetFollowRequests::makeCall();
+    $response = GetInfluencerMetadata::makeCall();
 
     $objResponse = (array) json_decode($response);
 
@@ -57,8 +57,9 @@ class GetFollowRequestsTest extends \PHPUnit\Framework\TestCase
   {
     self::generateInvalidRequest();
 
-    $response = GetFollowRequests::makeCall();
+    $response = GetInfluencerMetadata::makeCall();
 
-    $this->assertMatchesRegularExpression('/\"INVALID_USER\"/', $response, "Meant to receive an INVALID_USER response");
+
+    $this->assertMatchesRegularExpression('/\"INVALID_FOLLOWER\"/', $response, "Meant to receive an INVALID_FOLLOWER response");
   }
 }

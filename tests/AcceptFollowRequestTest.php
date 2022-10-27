@@ -2,21 +2,23 @@
 
 use App\GetFollowRequests;
 use App\GetUsersToFollow;
-use \PHPUnit\Framework\TestCase;
 use App\SendFollowRequest;
+use \PHPUnit\Framework\TestCase;
+use App\AcceptFollowRequest;
 
 require_once(__DIR__.'/../vendor/autoload.php');
 require_once('TestInput.php');
 
 /**
- * @covers \App\SendFollowRequest
+ * @covers \App\AcceptFollowRequest
  * @covers App\GVM
  * @depends GetUsersToFollowTest::testValidCall
  * @depends GetUsersToFollowTest::testInvalidCall
  * @depends GetFollowRequestsTest::testValidCall
  * @depends GetFollowRequestsTest::testInvalidCall
+ * @depends SendFollowRequestTest::testValidCall
  */
-class SendFollowRequestTest extends \PHPUnit\Framework\TestCase
+class AcceptFollowRequestTest extends \PHPUnit\Framework\TestCase
 {
   private static function generateFollowerSuggestionRequest()
   {
@@ -56,6 +58,8 @@ class SendFollowRequestTest extends \PHPUnit\Framework\TestCase
     $jsonString = json_encode($objRequest);
 
     TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+
+    return $objRequest;
   }
 
 
@@ -70,10 +74,8 @@ class SendFollowRequestTest extends \PHPUnit\Framework\TestCase
     else if (random_int(0, 1) == 0)
       $objRequest->data->followerUserID = $faker->uuid();
     // Or following one's self
-    else if (random_int(0, 1) == 0)
+    else
       $objRequest->data->influencerID = $objRequest->data->followerUserID;
-
-    // If none of these if statements have been executed, the test for an already existing relationship is done
 
     $jsonString = json_encode($objRequest);
 
@@ -88,7 +90,6 @@ class SendFollowRequestTest extends \PHPUnit\Framework\TestCase
   {
     // First get the users one can follow
     self::generateFollowerSuggestionRequest();
-
     $jsonResponse = GetUsersToFollow::makeCall();
     $suggestionArr = (array) json_decode($jsonResponse);
     $randKey = array_rand($suggestionArr);
@@ -96,15 +97,49 @@ class SendFollowRequestTest extends \PHPUnit\Framework\TestCase
 
     // Send the follow request to the user
     $newRelationshipObj = self::generateNewRelationship($suggestedInfluencer);
+    SendFollowRequest::makeCall();
 
-    $response = SendFollowRequest::makeCall();
-    $this->assertMatchesRegularExpression('/\"FOLLOW_REQUEST_SENT\"/', $response, 'Meant to be notified of the sent request');
+    $response = AcceptFollowRequest::makeCall();
+    // Accept the request
 
-    // Check that the user received the request
+    $this->assertMatchesRegularExpression('/\"FOLLOW_REQUEST_ACCEPTED\"/', $response, 'Meant to be notified of the accepted request');
+
+    // Check that the user no longer has the request
     self::generateGetFollowerRequests($newRelationshipObj->influencerUserID);
     $response = GetFollowRequests::makeCall();
+    $this->assertDoesNotMatchRegularExpression('/\"userID\":\"'.$newRelationshipObj->followerUserID.'\"/', $response, 'The follow request should no longer appear here');
+  }
 
-    $this->assertMatchesRegularExpression('/\"userID\":\"'.$newRelationshipObj->followerUserID.'\"/', $response, 'Meant to contain the request of the new relationship');
+  /**
+   * @test
+   */
+  public function testNonExistentRequest()
+  {
+    // First get the users one can follow
+    self::generateFollowerSuggestionRequest();
+    $jsonResponse = GetUsersToFollow::makeCall();
+    $suggestionArr = (array) json_decode($jsonResponse);
+    $randKey = array_rand($suggestionArr);
+    $suggestedInfluencer = (object) $suggestionArr[$randKey];
+
+    // Send the follow request to the user
+    self::generateNewRelationship($suggestedInfluencer);
+    $response = AcceptFollowRequest::makeCall();
+
+    $this->assertMatchesRegularExpression('/\"FOLLOW_REQUEST_DOESNT_EXIST\"/', $response, 'Meant to be FOLLOW_REQUEST_DOESNT_EXIST');
+  }
+  /**
+   * @test
+   */
+  public function testAlreadyAcceptedRequest()
+  {
+    // First get the users one can follow
+    self::generateExistingRelationship();
+
+    // Send the follow request to the user
+    $response = AcceptFollowRequest::makeCall();
+
+    $this->assertMatchesRegularExpression('/\"FOLLOW_REQUEST_ALREADY_ACCEPTED\"/', $response, 'Meant to be FOLLOW_REQUEST_ALREADY_ACCEPTED');
   }
   /**
    * @test
@@ -113,19 +148,8 @@ class SendFollowRequestTest extends \PHPUnit\Framework\TestCase
   {
     self::generateInvalidRequestID();
 
-    $response = SendFollowRequest::makeCall();
+    $response = AcceptFollowRequest::makeCall();
 
-    $this->assertMatchesRegularExpression('/INFLUENCER_ALREADY_ACCEPTED_REQUEST|INVALID_FOLLOWER_ID|INVALID_INFLUENCER_ID|INVALID_USER_ID_PAIR/', $response, "Meant to receive an INVALID_INFLUENCER_ID response");
-  }
-  /**
-   * @test
-   */
-  public function testInvalidExistingRelationship()
-  {
-    self::generateExistingRelationship();
-
-    $response = SendFollowRequest::makeCall();
-
-    $this->assertMatchesRegularExpression('/INFLUENCER_ALREADY_ACCEPTED_REQUEST/', $response, "Meant to receive an INFLUENCER_ALREADY_ACCEPTED_REQUEST response");
+    $this->assertMatchesRegularExpression('/INVALID_FOLLOWER_ID|INVALID_INFLUENCER_ID|INVALID_USER_ID_PAIR/', $response, "Meant to receive an invalid response");
   }
 }

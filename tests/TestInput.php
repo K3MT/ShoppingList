@@ -302,5 +302,17 @@ class TestInput
     return $objContent;
   }
 
+  public static function getFollowerID()
+  {
+    $objContent = new stdClass();
+
+    $bodyContent = new stdClass();
+    $bodyContent->followerID = self::$DEFAULT_FOLLOWER_ID;
+
+    $objContent->data = $bodyContent;
+
+    return $objContent;
+  }
+
 
 }
