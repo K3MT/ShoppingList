@@ -1,6 +1,7 @@
 <?php
 
 use App\GetFollowRequests;
+use App\GetInfluencerMetadata;
 use App\GetUsersToFollow;
 use App\SendFollowRequest;
 use \PHPUnit\Framework\TestCase;
@@ -17,9 +18,19 @@ require_once('TestInput.php');
  * @depends GetFollowRequestsTest::testValidCall
  * @depends GetFollowRequestsTest::testInvalidCall
  * @depends SendFollowRequestTest::testValidCall
+ * @depends GetInfluencerMetadataTest::testValidCall
  */
 class AcceptFollowRequestTest extends \PHPUnit\Framework\TestCase
 {
+  private static function generateGetInfluencerRequest($newRelationshipReq)
+  {
+    $newRelationshipReq->data->followerID = $newRelationshipReq->data->followerUserID;
+
+    $jsonString = json_encode($newRelationshipReq);
+
+    TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
+  }
+
   private static function generateFollowerSuggestionRequest()
   {
     $objRequest = TestInput::getUserFollower();
@@ -46,7 +57,7 @@ class AcceptFollowRequestTest extends \PHPUnit\Framework\TestCase
 
     TestInput::writeInput(TestInput::$POST, INPUT_TEST_FILE, $jsonString);
 
-    return $objRequest->data;
+    return $objRequest;
   }
 
   private static function generateGetFollowerRequests($influencerID)
@@ -96,18 +107,23 @@ class AcceptFollowRequestTest extends \PHPUnit\Framework\TestCase
     $suggestedInfluencer = (object) $suggestionArr[$randKey];
 
     // Send the follow request to the user
-    $newRelationshipObj = self::generateNewRelationship($suggestedInfluencer);
+    $newRelationshipReq = self::generateNewRelationship($suggestedInfluencer);
+    $newRelationshipObj = $newRelationshipReq->data;
     SendFollowRequest::makeCall();
 
-    $response = AcceptFollowRequest::makeCall();
     // Accept the request
-
+    $response = AcceptFollowRequest::makeCall();
     $this->assertMatchesRegularExpression('/\"FOLLOW_REQUEST_ACCEPTED\"/', $response, 'Meant to be notified of the accepted request');
 
     // Check that the user no longer has the request
     self::generateGetFollowerRequests($newRelationshipObj->influencerUserID);
     $response = GetFollowRequests::makeCall();
     $this->assertDoesNotMatchRegularExpression('/\"userID\":\"'.$newRelationshipObj->followerUserID.'\"/', $response, 'The follow request should no longer appear here');
+
+    // Check that the influencer is actually followed by the user
+    self::generateGetInfluencerRequest($newRelationshipReq);
+    $response = GetInfluencerMetadata::makeCall();
+    $this->assertMatchesRegularExpression('/\"userID\":\"'.$newRelationshipObj->influencerUserID.'\"/', $response, 'The new influencer is meant to be listed here');
   }
 
   /**
